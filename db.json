@@ -1,0 +1,73 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Mary",
+      "email": "qq123@mail.com",
+      "password": "1idjfowief",
+      "phone": "0911123123"
+    },
+    {
+      "id": 2,
+      "name": "Jason",
+      "email": "aa123@mail.com",
+      "password": "1idjfow235fsgr",
+      "phone": "0911123456"
+    }
+  ],
+
+  "personalBankAccounts": [
+    {
+      "id": 1,
+      "total": 2000,
+      "goal": "旅遊基金",
+      "userId": 1,
+      "bankId": 1
+    },
+    {
+      "id": 2,
+      "total": 10000,
+      "goal": "緊急預備金",
+      "userId": 2,
+      "bankId": 2
+    }
+  ],
+
+  "banks": [
+    {
+      "中國信託": [
+        {
+          "id": 1,
+          "personalBankAccountId": 1
+        }
+      ],
+      "台新銀行": [
+        {
+          "id": 1,
+          "personalBankAccountId": 2
+        }
+      ]
+    }
+  ],
+
+  "expenses": [
+    {
+      "id": 1,
+      "date": 1675115164,
+      "category": "飲食",
+      "account": "中國信託",
+      "name": "早餐",
+      "amount": 100,
+      "personalBankAccountId": 1
+    },
+    {
+      "id": 2,
+      "date": 1675115164,
+      "category": "飲食",
+      "account": "中國信託",
+      "name": "午餐",
+      "amount": 120,
+      "personalBankAccountId": 1
+    }
+  ]
+}
