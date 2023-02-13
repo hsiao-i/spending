@@ -1,3 +1,23 @@
 <template>
-  <h2>記帳</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">左邊日曆</div>
+        <div class="col-md-6">
+          <div class="bg-light shadow rounded-3 min-vh-80 p-4">
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+              <button type="button" class="btn btn-outline-primary">+ 記錄單筆</button>
+              <button type="button" class="btn btn-outline-primary">+ 記錄多筆</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
 </template>
+
+<style lang="scss" scope>
+  // .min-vh-70 {
+  //   min-height: 70vh;
+  // }
+</style>
