@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import ModalShare from '@/components/ModalShare.vue';
+</script>
+
 <template>
     <div class="container">
       <div class="row">
@@ -9,7 +13,7 @@
               <button type="button" class="btn btn-outline-primary">+ 記錄多筆</button>
             </div>
           </div>
-          
+          <ModalShare></ModalShare>
         </div>
       </div>
       
