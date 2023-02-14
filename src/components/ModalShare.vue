@@ -4,17 +4,21 @@
   import { Modal } from 'bootstrap';
 
   let saveModal: Modal
-  let modalShare = ref<HTMLElement | null >(null)
+  const modalShare = ref<HTMLElement | null >(null)
   // let modalShare: Modal
 
-  const openModal = () => {
+  const openModalInComponent = () => {
+    console.log('觸發');
     saveModal.show()
   }
 
+  defineExpose({
+    openModalInComponent
+  })
+
   onMounted(() => {
     saveModal = new Modal(modalShare.value!)
-    console.log(modalShare);
-    console.log(saveModal);
+
   })
 
 
