@@ -27,9 +27,3 @@ const openModal = () => {
     
   </div>
 </template>
-
-<style lang="scss" scope>
-  // .min-vh-70 {
-  //   min-height: 70vh;
-  // }
-</style>
