@@ -9,8 +9,8 @@ const router = createRouter({
       component: () => import('../views/FrontView.vue'),
       children: [
         {
-          path: '',
-          name: '',
+          path: '/',
+          name: 'home',
           component: () => import('../views/HomePage.vue')
         },
         {
@@ -25,6 +25,16 @@ const router = createRouter({
         }
       ]
     },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('../views/RegisterPage.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginPage.vue')
+    }
     
   ]
 })
