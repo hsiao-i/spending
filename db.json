@@ -1,29 +1,11 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Mary",
-      "email": "qq123@mail.com",
-      "password": "1idjfowief",
-      "phone": "0911123123",
-      "role": "user",
-      "lastLogin": "2023-01-02"
-    },
-    {
-      "id": 2,
-      "name": "Jason",
-      "email": "aa123@mail.com",
-      "password": "1idjfow235fsgr",
-      "phone": "0911123456",
-      "role": "user",
-      "lastLogin": "2023-01-03"
-    },
-    {
-      "email": "qq@mail.com",
-      "password": "$2a$10$BgKju7eHZllLvV38KdtYeeCaUmjHNR8VSD6wDqy7273omJ1p8B9lG",
-      "phone": "0900000000",
-      "role": "user",
-      "id": 3
+      "email": "test1@mail.com",
+      "password": "$2a$10$hgRZG6PPvkSQ7SLII3gg1.eMjDPgwrnKXlLxrEKzwnLUKsBCOmPxe",
+      "name": "Ken",
+      "phone": "0911111111",
+      "id": 1
     }
   ],
   "personalBankAccounts": [

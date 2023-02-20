@@ -1,28 +1,31 @@
 <script setup lang="ts">
+import type { UserRegister } from '@/utilities/types';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
+import { ref } from 'vue'
 
-  const user = {
+  const router = useRouter()
+  const user = ref<UserRegister>({
     name: '',
     email: '',
     password: '',
     phone: ''
-  }
+  })
   const submitRegister = async () => {
     try {
       const url = `${import.meta.env.VITE_PATH}/signup`
-      const res = await axios.post(url, { user })
+      const res = await axios.post(url,  user )
       console.log(res);
+      alert('成功註冊，請重新登入')
+      router.push('/login')
 
 
     } catch (err) {
-      console.log(console.error(
+        if (err instanceof Error) alert('此email 帳號已被註冊')
+       
 
-
-      )
-      );
     }
-    
-    
+
   }
 
   const isPhone = (inputNumber: string) => {
@@ -42,8 +45,7 @@ import axios from 'axios';
   <div class="container">
     <div class="w-50 shadow bg-light mx-auto p-4 rounded-5">
       <h2 clsaa="text-center">註冊</h2>
-      <Form v-slot="{ errors, values, validate }">
-        {{ errors }} {{ typeof(errors) }}
+      <Form v-slot="{ errors }" @submit="submitRegister">
         <div class="mb-3">
           <label for="姓名" class="form-label">姓名</label>
           <Field type="text" class="form-control" id="姓名" name="姓名"
