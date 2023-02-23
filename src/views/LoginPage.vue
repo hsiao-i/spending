@@ -2,7 +2,10 @@
   import type { UserLogin } from '@/utilities/types';
   import { ref } from 'vue'
   import axios from 'axios';
-import { useRouter } from 'vue-router';
+  import { useRouter } from 'vue-router';
+  import request from '@/utilities/http'
+
+
   const router = useRouter()
   const user = ref<UserLogin>({
     email: '',
@@ -10,8 +13,10 @@ import { useRouter } from 'vue-router';
   })
   const submitLogin = async () => {
     try {
-      const url = `${import.meta.env.VITE_PATH}/signin`
-      const res = await axios.post(url, user)
+      // const url = `${import.meta.env.VITE_PATH}/signin`
+      
+      // const res = await axios.post(url, user)
+      const res = await request('post', '/signin', user)
       console.log(res.data.accessToken);
       document.cookie = `spendingToken=${res.data.accessToken}`
       router.push('/expense')

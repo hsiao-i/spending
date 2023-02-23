@@ -1,11 +1,17 @@
 import axios from "axios";
 
-axios.interceptors.request.use((config: any) => {
+const instance = axios.create({
+  baseURL: `${import.meta.env.VITE_APP}`,
+  headers: { 'Content-Type': 'application/json' },
+  timeout: 20000
+})
+
+instance.interceptors.request.use((config: any) => {
   const token = document.cookie.replace(
     /(?:(?:^|.*;\s*)spendingToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
   if (token) {
-    config.headers.Authorization = token
+    config.headers.Authorization = `Bearer ${token}`
     console.log(token);
   }
   return config
@@ -13,4 +19,20 @@ axios.interceptors.request.use((config: any) => {
   return Promise.reject(error)
 })
 
-export default axios
+// export default axios
+
+export default function(method: string, url: string, data = null, config: any) {
+  method = method.toLowerCase()
+  switch (method) {
+    case 'post':
+      return instance.post(url, data, config)    
+    case 'get':
+      return instance.get(url, { params: data })
+    case 'delete':
+      return instance.delete(url, { params: data })
+
+  default:
+    return false
+    }
+    
+}
