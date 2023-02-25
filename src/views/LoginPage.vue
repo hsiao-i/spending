@@ -1,9 +1,8 @@
 <script setup lang="ts">
   import type { UserLogin } from '@/utilities/types';
   import { ref } from 'vue'
-  import axios from 'axios';
+  import axios from '@/utilities/http'
   import { useRouter } from 'vue-router';
-  import request from '@/utilities/http'
 
 
   const router = useRouter()
@@ -13,12 +12,11 @@
   })
   const submitLogin = async () => {
     try {
-      // const url = `${import.meta.env.VITE_PATH}/signin`
-      
-      // const res = await axios.post(url, user)
-      const res = await request('post', '/signin', user)
-      console.log(res.data.accessToken);
+      const url = `/login`
+      const res = await axios.post(url, user.value)
+
       document.cookie = `spendingToken=${res.data.accessToken}`
+      alert('成功登入')
       router.push('/expense')
 
     } catch (err) {

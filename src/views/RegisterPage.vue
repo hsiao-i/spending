@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { UserRegister } from '@/utilities/types';
-import axios from 'axios';
+import axios from '@/utilities/http';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue'
 
@@ -13,14 +13,18 @@ import { ref } from 'vue'
   })
   const submitRegister = async () => {
     try {
-      const url = `${import.meta.env.VITE_PATH}/signup`
-      const res = await axios.post(url,  user )
+      console.log(user.value);
+      document.cookie = ''
+      const url = `/signup`
+      const res = await axios.post(url,  user.value)
+
       console.log(res);
       alert('成功註冊，請重新登入')
       router.push('/login')
 
 
     } catch (err) {
+      console.log(err);
         if (err instanceof Error) alert('此email 帳號已被註冊')
        
 

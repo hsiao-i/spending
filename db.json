@@ -6,6 +6,13 @@
       "name": "Ken",
       "phone": "0911111111",
       "id": 1
+    },
+    {
+      "email": "test2@mail.com",
+      "password": "$2a$10$tUp53pxFPeYBAIwCTp6cb.jzE3D4Nh62Zf419I61kyRZbNlxTizk2",
+      "name": "Mary",
+      "phone": "0911111111",
+      "id": 2
     }
   ],
   "personalBankAccounts": [
