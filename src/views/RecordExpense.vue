@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import ModalShare from '@/components/ModalShare.vue';
-import { ref } from 'vue-demi';
+  import { ref } from 'vue-demi';
+  import ModalShare from '@/components/ModalShare.vue';
+  import MultipleSpending from '@/components/MultipleSpending.vue'
+  import SingleSpending from '@/components/SingleSpending.vue'
 
-const modalShare = ref()
 
-const openModal = () => {
-  modalShare.value.openModalInComponent() 
-}
+  const modalShare = ref()
 
+  const openModal = (status: string) => {
+    openModalStatus.value = status
+    modalShare.value.openModalInComponent() 
+  }
+
+  const openModalStatus = ref('single')
 </script>
 
 <template>
@@ -17,11 +22,17 @@ const openModal = () => {
       <div class="col-md-6">
         <div class="bg-light shadow rounded-3 min-vh-80 p-4">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-outline-primary" @click="openModal">+ 記錄單筆</button>
-            <button type="button" class="btn btn-outline-primary">+ 記錄多筆</button>
+            <button type="button" class="btn btn-outline-primary" @click="openModal('single')">+ 記錄單筆</button>
+            <button type="button" class="btn btn-outline-primary" @click="openModal('multiple')">+ 記錄多筆 </button>
           </div>
         </div>
-        <ModalShare ref="modalShare"></ModalShare>
+        <ModalShare ref="modalShare">
+          <template v-slot:record-spending>
+            <SingleSpending v-if="openModalStatus === 'single'"/>
+            <MultipleSpending v-else-if="openModalStatus === 'multiple'"/>
+          </template>
+          
+        </ModalShare>
       </div>
     </div>
     

@@ -7,10 +7,6 @@
 
   import CategoryIconView  from '@/components/CategoryIconView.vue';
 
-  // import { useBsCollapseStore } from '@/stores/bsCollapse';
-  // // const { collapseToggle, hello } = useBsCollapseStore()
-  // const store = useBsCollapseStore()
-
   // 由父層開啟 modal
   const content = ref('0')
   let saveModal: Modal
@@ -73,90 +69,19 @@
             data-bs-target="#tabIncome" 
             role="tab"
             >收入</button>
-          </div>
-          
+          </div>          
         </div>
 
-        <div class="tab-content px-4" id="expenseTabContent">
-          <div class="tab-pane fade show active" id="tabExpense" role="tabpanel" aria-labelledby="home-tab">
-            <div class="row row-cols-5">
-              <CategoryIconView 
-                  class="col mb-2" 
-                  v-for="category in categoryIcon" 
-                  :key="category.id"
-                  :category="category"
-                />
-            </div>
-            <form>
-              
-              <div class=" mb-3">
-                <input type="date" class="form-control" id="recordInputDate" aria-describedby="dateHelp" value="2023-02-17">
-                
-              </div>
-              <div class="mb-3 row">
-                <div class=" col-8">
-                  <input type="text" class="form-control" id="recordInputName" aria-describedby="nameHelp" placeholder="名稱" >
-                </div>
-                <div class=" col-4">
-                  <input type="number" class="form-control" id="recordInputPrice" aria-describedby="priceHelp" placeholder="金額" value="0">
-                </div>               
-              </div>
-              <div class="mb-3">
-                <textarea class="form-control" placeholder="備註" id="recordTextarea" style="height: 100px"></textarea>
-              </div>
-              <!-- <div class="mb-3">
-               
-                <input type="password" class="form-control" id="exampleInputPassword1">
-              </div>
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-              </div> -->
-              <div class="py-4">
-                <!-- <button type="button" class="btn btn-outline-secondary w-20 me-3" data-bs-dismiss="modal">取消</button> -->
-                <button type="button" class="btn btn-primary w-100">儲存</button>
-              </div>
-              <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-            
-            
-            </form>
-
-            
-              
-            
-          </div>
-          
-
-
-          <div class="tab-pane fade" id="tabIncome" role="tabpanel" aria-labelledby="profile-tab">Income</div>         
-        </div>
-        
-
-        <!-- <div class="collapse" id="collapseExpense" >
-          <div class="modal-body">
-            <p>支出內容</p>
-          </div>
-        </div>
-        <div class="collapse" id="collapseIncome">
-          <div class="modal-body">
-            <p>收入內容</p>
-          </div>
-        </div> -->
-        
-        <!-- <div class="p-4">
-          <button type="button" class="btn btn-outline-secondary w-20 me-3" data-bs-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary w-75">儲存</button>
-        </div> -->
+        <main>
+          <slot name="record-spending"></slot>
+        </main>
+      
       </div>
     </div>
   </div>
 </template>
 
-<!-- <style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 
-</style> -->
 <style lang="scss" scoped>
   .category-active {
     position: relative;
