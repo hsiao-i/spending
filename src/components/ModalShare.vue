@@ -2,10 +2,10 @@
   import { onMounted, ref } from 'vue';
   // import bootstrap from "bootstrap"
   import { Modal } from 'bootstrap';
-  import axios from 'axios';
-  import type { CategoryIcon } from '@/utilities/types';
+  // import axios from 'axios';
+  // import type { CategoryIcon } from '@/utilities/types';
 
-  import CategoryIconView  from '@/components/CategoryIconView.vue';
+  // import CategoryIconView  from '@/components/CategoryIconView.vue';
 
   // 由父層開啟 modal
   const content = ref('0')
@@ -14,7 +14,6 @@
 
   const openModalInComponent = () => {
     console.log('觸發');
-    console.log(categoryIcon);
     saveModal.show()
   }
   defineExpose({
@@ -25,23 +24,10 @@
 
   })
 
-  //取出 category 顯示
-  let categoryIcon = ref<CategoryIcon[]>([])
-  const url = `${import.meta.env.VITE_PATH}/expenseCategories`
-  const getExpenseCategories = async () => {
-    try {
-      const res = await axios.get(url)
-      console.log(res);
-      categoryIcon.value = res.data
-      console.log(categoryIcon);
-
-    } catch(e) {
-      console.log(e);
-    }
-  }
-  onMounted(() => {
-    getExpenseCategories()
-  })
+ 
+  // onMounted(() => {
+  //   getExpenseCategories()
+  // })
 
 
 </script>
@@ -51,31 +37,32 @@
   <div class="modal" tabindex="-1" ref="modalShare">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        
-        <div class="p-4">
-          <div class=" text-end mb-3">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <slot name="record-assets">
+          <div class="p-4">
+            <div class=" text-end mb-3">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <!-- <h5 class="modal-title">Modal title</h5> -->
+            <div class="btn-group w-100" role="tablist" aria-label="Basic outlined example">
+              <button type="button" class="btn btn-outline-primary fw-bold active" 
+              data-bs-toggle="tab"
+              data-bs-target="#tabExpense" 
+              role="tab"
+              >支出</button>
+              <button type="button" class="btn btn-outline-primary fw-bold"
+              data-bs-toggle="tab"
+              data-bs-target="#tabIncome" 
+              role="tab"
+              >收入</button>
+            </div>          
           </div>
-          
-          <!-- <h5 class="modal-title">Modal title</h5> -->
-          <div class="btn-group w-100" role="tablist" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-outline-primary fw-bold active" 
-            data-bs-toggle="tab"
-            data-bs-target="#tabExpense" 
-            role="tab"
-            >支出</button>
-            <button type="button" class="btn btn-outline-primary fw-bold"
-            data-bs-toggle="tab"
-            data-bs-target="#tabIncome" 
-            role="tab"
-            >收入</button>
-          </div>          
-        </div>
 
-        <main>
-          <slot name="record-spending"></slot>
-        </main>
-      
+        
+          <main>
+            <slot name="record-spending"></slot>
+          </main>
+        </slot>
       </div>
     </div>
   </div>

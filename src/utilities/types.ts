@@ -15,3 +15,5 @@ export interface UserRegister {
   password: string;
   phone: string;
 }
+
+export inter

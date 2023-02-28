@@ -1,12 +1,24 @@
+<script setup lang="ts">
+  import { useCategoryStore } from '@/stores/useCategoryStore';
+  import { onMounted } from 'vue'
+  import CategoryIconView from './CategoryIconView.vue';
+
+  const store = useCategoryStore()
+
+  onMounted(() => {
+    store.getExpenseCategories()
+  })
+
+</script>
+
 <template>
    <div name="single-record" class="tab-content px-4" id="expenseTabContent">
-
     <!-- 收入 modal -->
     <div class="tab-pane fade show active" id="tabExpense" role="tabpanel" aria-labelledby="home-tab">
       <div class="row row-cols-5">
         <CategoryIconView 
             class="col mb-2" 
-            v-for="category in categoryIcon" 
+            v-for="category in store.categoryIcon" 
             :key="category.id"
             :category="category"
           />
