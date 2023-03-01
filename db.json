@@ -28,25 +28,37 @@
       "bankId": 1
     },
     {
-      "__v_isShallow": false,
-      "__v_isRef": true,
-      "_rawValue": {
-        "total": 2000,
-        "name": "旅遊基金",
-        "autoIncome": 23000,
-        "autoIncomeDate": "10",
-        "autoExpense": 1000,
-        "autoExpenseDate": "10"
-      },
-      "_value": {
-        "total": 2000,
-        "name": "旅遊基金",
-        "autoIncome": 23000,
-        "autoIncomeDate": "10",
-        "autoExpense": 1000,
-        "autoExpenseDate": "10"
-      },
+      "total": "1000",
+      "name": "生活",
+      "bankId": 43,
+      "userId": "2",
+      "autoIncome": 0,
+      "autoIncomeDate": "",
+      "autoExpense": 0,
+      "autoExpenseDate": "",
       "id": 2
+    },
+    {
+      "total": "2000",
+      "name": "旅遊",
+      "bankId": 38,
+      "userId": "2",
+      "autoIncome": 0,
+      "autoIncomeDate": "",
+      "autoExpense": 0,
+      "autoExpenseDate": "",
+      "id": 3
+    },
+    {
+      "total": "3000",
+      "name": "投資",
+      "bankId": 8,
+      "userId": "2",
+      "autoIncome": 0,
+      "autoIncomeDate": "",
+      "autoExpense": 0,
+      "autoExpenseDate": "",
+      "id": 4
     }
   ],
   "banks": [

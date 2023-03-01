@@ -15,8 +15,9 @@
       const url = `/login`
       const res = await axios.post(url, user.value)
 
+      localStorage.setItem('userId', res.data.user.id)
       document.cookie = `spendingToken=${res.data.accessToken}`
-      alert('成功登入')
+      alert('成功登入')      
       router.push('/expense')
 
     } catch (err) {
@@ -29,7 +30,7 @@
     <div class="w-50 shadow bg-light mx-auto p-4 rounded-5">
       <h2 clsaa="text-center">登入</h2>
       <Form v-slot="{ errors, values, validate }" @submit="submitLogin">
-        {{ errors }} {{ typeof(errors) }}
+        <!-- {{ errors }} {{ typeof(errors) }} -->
 
         <div class="mb-3">
           <label for="Email" class="form-label">Email</label>

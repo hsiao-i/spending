@@ -16,8 +16,13 @@
     console.log('觸發');
     saveModal.show()
   }
+  const closeModalInComponent = () => {
+    console.log('關閉');
+    saveModal.hide()
+  }
   defineExpose({
-    openModalInComponent
+    openModalInComponent,
+    closeModalInComponent
   })
   onMounted(() => {
     saveModal = new Modal(modalShare.value!)
