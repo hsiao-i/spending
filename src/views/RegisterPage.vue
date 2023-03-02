@@ -3,9 +3,11 @@ import type { UserRegister } from '@/utilities/types';
 import axios from '@/utilities/http';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue'
+import { v4 as uuidv4 } from 'uuid';
 
   const router = useRouter()
   const user = ref<UserRegister>({
+    uuid: uuidv4(),
     name: '',
     email: '',
     password: '',
@@ -15,6 +17,8 @@ import { ref } from 'vue'
     try {
       console.log(user.value);
       document.cookie = ''
+      // user.value.uuid = uuidv4()
+      console.log(user.value.uuid);
       const url = `/signup`
       const res = await axios.post(url,  user.value)
 

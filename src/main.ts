@@ -10,6 +10,7 @@ import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json' // 引入多國語�
 
 import 'material-icons/iconfont/material-icons.css';
 import './assets/all.scss'
+// import { v4 as uuidv4 } from 'uuid';
 
 import App from './App.vue'
 import router from './router'

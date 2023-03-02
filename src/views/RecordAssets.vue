@@ -5,7 +5,15 @@
 
   // 開啟 modal
   const modalShare = ref()
-  const openModal = () => {
+  const openModal = (state: string, id?: number) => {
+    if (state === 'edit') {
+      const singleBankAccount = ref<BankAccount>({})
+      const getSingleBankAccount = async () => {
+        const url = `/personalBankAccounts/${id}`
+        const res = await axios.get(url)
+        
+      }
+    }
     modalShare.value.openModalInComponent()
   }
   const closeModal = () => {
@@ -82,6 +90,7 @@
       alert('成功建立帳戶')
       formClear.value.resetForm()
       closeModal()
+      getPersonalBankAccount()
     } catch(err) {
       console.log(err);
     }
@@ -95,6 +104,7 @@
     const url = `/personalBankAccounts?userId=${userId}&_expand=bank`
     const res = await axios.get(url)
     bankAccountList.value = res.data
+    console.log(res.data);
   }
   onMounted(() => {
     getPersonalBankAccount()
@@ -104,7 +114,37 @@
 
 <template>
   <h2>資產管理</h2>
-  <button type="button" class="btn btn-primary" @click="openModal">＋ 新增帳戶</button>
+  <button type="button" class="btn btn-primary" @click="openModal('new')">＋ 新增帳戶</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-3 mb-3" >
+        <button type="button" class="add-bank btn rounded-4 mb-3 w-100" style="height: 8rem">+ 新增帳戶</button>
+      </div>
+      
+      <div class="col-3 mb-3" v-for="list in bankAccountList" :key="list.id">
+        <div class="bg-light rounded-4 shadow p-3" style="height: 8rem" >
+          <div class="d-flex justify-content-between">
+            <p class="h5">{{ list.name }} </p>
+            <div>
+              <button type="button" class="btn p-0" @click="openModal('edit', list.id)">
+                <span class="material-icons-outlined text-secondary">edit</span>
+              </button>
+            <button type="button" class="btn p-0" @click="openModal('delete')">
+              <span class="material-icons-outlined text-secondary">delete_forever</span>
+            </button>
+            </div>
+            
+          </div>
+          
+          <p>
+            <span class="h6"> ({{ list.bank?.name }})</span>
+          </p>
+
+          <p class="h4">{{ list.total }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="container">
     <div class="row gx-4">
@@ -120,7 +160,7 @@
           
           <ul class="list-unstyled">
             <li class="mb-3 bg-light rounded-4 shadow p-3" style="height: 7rem" v-for="list in bankAccountList" :key="list.id">
-              <p class="mb-0 h5">{{ list.name }} 
+              <p class=" h5">{{ list.name }} 
                 <span class="h6"> ({{ list.bank?.name }})</span> 
               </p>
 
@@ -229,9 +269,12 @@
     height: 5rem;
     border: 0.25rem dotted;
     background-color: transparent;
+    transition: all 0.3s;
     
     &:hover {
-    background-color: rgb(221, 220, 220)
+      border: 0.25rem dotted;
+      background-color: rgb(221, 220, 220);
+      // transition-duration: 0.3s
   }
 
   }

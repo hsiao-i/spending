@@ -10,10 +10,11 @@ export type UserLogin = {
 } 
 
 export interface UserRegister {
+  uuid: string
   name: string;
   email: string;
   password: string;
   phone: string;
 }
 
-export inter
+

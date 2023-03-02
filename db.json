@@ -13,6 +13,22 @@
       "name": "Mary",
       "phone": "0911111111",
       "id": 2
+    },
+    {
+      "email": "test3@mail.com",
+      "password": "$2a$10$HEJ49Lo6gou43ljSmfpwNOVcuJ8toceDCkn6zSOCsoGWgfHQ0MZla",
+      "uuid": "7af1c28f-2e64-4b55-8747-e46fa0a70903",
+      "name": "Amy",
+      "phone": "0911111111",
+      "id": 3
+    },
+    {
+      "email": "test4@mail.com",
+      "password": "$2a$10$Or41InBB5rmO/4og7qqMHecWtzZWs22twyNZQGWew/8cAcrhsk0ee",
+      "uuid": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "name": "Alice",
+      "phone": "0911111111",
+      "id": 4
     }
   ],
   "personalBankAccounts": [
@@ -59,6 +75,39 @@
       "autoExpense": 0,
       "autoExpenseDate": "",
       "id": 4
+    },
+    {
+      "total": "3000",
+      "name": "生活",
+      "bankId": 6,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "autoIncome": 0,
+      "autoIncomeDate": "",
+      "autoExpense": 0,
+      "autoExpenseDate": "",
+      "id": 5
+    },
+    {
+      "total": "5000",
+      "name": "旅遊",
+      "bankId": 7,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "autoIncome": 0,
+      "autoIncomeDate": "",
+      "autoExpense": 0,
+      "autoExpenseDate": "",
+      "id": 6
+    },
+    {
+      "total": "5000",
+      "name": "投資",
+      "bankId": 14,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "autoIncome": 0,
+      "autoIncomeDate": "",
+      "autoExpense": 0,
+      "autoExpenseDate": "",
+      "id": 7
     }
   ],
   "banks": [
