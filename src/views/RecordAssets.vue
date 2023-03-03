@@ -1,114 +1,43 @@
 <script setup lang="ts">
-  import { ref, onMounted, computed, watch } from 'vue'
-  import ModalShare from '@/components/ModalShare.vue';
-  import axios from '@/utilities/http'
 
-  // 開啟 modal
-  const modalShare = ref()
-  const openModal = (state: string, id?: number) => {
-    if (state === 'edit') {
-      const singleBankAccount = ref<BankAccount>({})
-      const getSingleBankAccount = async () => {
-        const url = `/personalBankAccounts/${id}`
-        const res = await axios.get(url)
-        
-      }
-    }
-    modalShare.value.openModalInComponent()
+import {
+  ref, onMounted,
+} from 'vue';
+import ModalShare from '@/components/ModalShare.vue';
+import axios from '@/utilities/http';
+import type { BankAccount } from '@/utilities/types';
+import BankAsset from '@/components/BankAsset.vue';
+
+// 開啟 modal
+const modalShare = ref();
+const openModal = (state: string, id?: number) => {
+  if (state === 'edit') {
+    console.log(id);
+    // const singleBankAccount = ref<BankAccount>({});
+    // const getSingleBankAccount = async () => {
+    //   const url = `/personalBankAccounts/${id}`;
+    //   const res = await axios.get(url);
+    // };
   }
-  const closeModal = () => {
-    modalShare.value.closeModalInComponent()
-  }
+  modalShare.value.openModalInComponent();
+};
 
-  // 取得銀行列表
-  interface Bank {
-    id: number;
-    code: string;
-    name: string;
-  } 
-  const banks = ref<Bank[]>([])
-  const getBanksList = async () => {
-    try {
-      const url = '/banks'
-      const res = await axios.get(url)
-      banks.value = res.data
-    } catch(err) {
-      console.log(err);
-    }
-  }
-  onMounted(() => {
-    getBanksList()
-  })
+const closeModal = () => {
+  modalShare.value.closeModalInComponent();
+};
 
-  // 從 datalist 取得 bankId
-  const selectedBankName = ref('')
-  const selectedBankId = computed(() => {
-    const bank = banks.value.find(bank => bank.name === selectedBankName.value)
-    return bank ? bank.id : null
-  })
-  watch(selectedBankId, () => {
-    account.value.bankId = selectedBankId.value
-  })
-
-  // 新增帳戶
-  interface BankAccount {
-    id?: number;
-    total: number | string;
-    name: string;
-    // date: string;
-    bankId: number | null;
-    userId: string | null;
-    bank?: Bank;
-    autoIncome?: number;
-    autoIncomeDate?: string;
-    autoExpense?: number;
-    autoExpenseDate?: string;
-
-  }
-  const account = ref<BankAccount>({
-    total: '',
-    name: '',
-    // date: '',
-    bankId: 0,
-    userId: '',
-    autoIncome: 0,
-    autoIncomeDate: '',
-    autoExpense: 0,
-    autoExpenseDate: '',
-  })
-
-  // 清空表單設置
-  const formClear = ref()
-
-  const addBankAccount = async () => {
-    try {
-      account.value.userId = localStorage.getItem('userId')
-      const url = '/personalBankAccounts'
-      const res = await axios.post(url, account.value)
-      console.log(account.value);
-      console.log(res);
-      alert('成功建立帳戶')
-      formClear.value.resetForm()
-      closeModal()
-      getPersonalBankAccount()
-    } catch(err) {
-      console.log(err);
-    }
-  }
-
-  
-  // 顯示帳戶列表
-  const bankAccountList = ref<BankAccount[]>([])
-  const getPersonalBankAccount = async () => {
-    const userId = localStorage.getItem('userId')
-    const url = `/personalBankAccounts?userId=${userId}&_expand=bank`
-    const res = await axios.get(url)
-    bankAccountList.value = res.data
-    console.log(res.data);
-  }
-  onMounted(() => {
-    getPersonalBankAccount()
-  })
+// 顯示帳戶列表
+const bankAccountList = ref<BankAccount[]>([]);
+const getPersonalBankAccount = async () => {
+  const userId = localStorage.getItem('userId');
+  const url = `/personalBankAccounts?userId=${userId}&_expand=bank`;
+  const res = await axios.get(url);
+  bankAccountList.value = res.data;
+  console.log(res.data);
+};
+onMounted(() => {
+  getPersonalBankAccount();
+});
 
 </script>
 
@@ -117,29 +46,26 @@
   <button type="button" class="btn btn-primary" @click="openModal('new')">＋ 新增帳戶</button>
   <div class="container">
     <div class="row">
-      <div class="col-3 mb-3" >
+      <div class="col-3 mb-3">
         <button type="button" class="add-bank btn rounded-4 mb-3 w-100" style="height: 8rem">+ 新增帳戶</button>
       </div>
-      
+
       <div class="col-3 mb-3" v-for="list in bankAccountList" :key="list.id">
-        <div class="bg-light rounded-4 shadow p-3" style="height: 8rem" >
+        <div class="bg-light rounded-4 shadow p-3" style="height: 8rem">
           <div class="d-flex justify-content-between">
             <p class="h5">{{ list.name }} </p>
             <div>
               <button type="button" class="btn p-0" @click="openModal('edit', list.id)">
                 <span class="material-icons-outlined text-secondary">edit</span>
               </button>
-            <button type="button" class="btn p-0" @click="openModal('delete')">
-              <span class="material-icons-outlined text-secondary">delete_forever</span>
-            </button>
+              <button type="button" class="btn p-0" @click="openModal('delete')">
+                <span class="material-icons-outlined text-secondary">delete_forever</span>
+              </button>
             </div>
-            
           </div>
-          
           <p>
             <span class="h6"> ({{ list.bank?.name }})</span>
           </p>
-
           <p class="h4">{{ list.total }}</p>
         </div>
       </div>
@@ -154,130 +80,42 @@
         </div>
       </div>
       <div class="col-md-6">
-        
         <div class="min-vh-80 overflow-auto shadow p-4 rounded-4">
           <button type="button" class="add-bank btn rounded-4 mb-3 w-100">+ 新增帳戶</button>
-          
           <ul class="list-unstyled">
             <li class="mb-3 bg-light rounded-4 shadow p-3" style="height: 7rem" v-for="list in bankAccountList" :key="list.id">
-              <p class=" h5">{{ list.name }} 
-                <span class="h6"> ({{ list.bank?.name }})</span> 
+              <p class=" h5">{{ list.name }}
+                <span class="h6"> ({{ list.bank?.name }})</span>
               </p>
-
               <p class="h4 text-center">{{ list.total }}</p>
             </li>
-            
           </ul>
-          
-          
-          </div>
-        
+        </div>
       </div>
     </div>
   </div>
-  
+
   <ModalShare ref="modalShare">
     <template v-slot:record-assets>
-      <div class="p-4">
-        <div class=" text-end mb-3">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <h3 class="h4 mb-3">新增帳戶</h3>
-
-        <Form v-slot="{ errors }" @submit="addBankAccount" ref="formClear">
-          {{ errors }}
-          <div class="mb-3"> 
-            <label for="帳戶名稱" class="form-label">帳戶名稱</label>
-            <Field type="text" class="form-control" id="帳戶名稱" placeholder="為帳戶取一個名稱" name="帳戶名稱"
-            :class="{ 'is-invalid': errors['帳戶名稱'] }"
-            rules="required"
-            v-model="account.name"
-            ></Field>
-            <ErrorMessage name="帳戶名稱" class="invalid-feedback"></ErrorMessage>
-          </div>
-          <div class="mb-3">
-            <label for="帳戶初始金額" class="form-label">帳戶初始金額</label>
-            <Field type="number" class="form-control" id="recordBankAmount" placeholder="設定帳戶初始金額" name="帳戶初始金額"
-            :class="{ 'is-invalid': errors['帳戶初始金額'] }"
-            rules="required"
-            v-model="account.total"
-            ></Field>
-            <ErrorMessage name="帳戶初始金額" class="invalid-feedback"></ErrorMessage>
-
-          </div>
-          <div class="mb-3">
-            <label for="使用銀行" class="form-label">使用銀行</label>
-            <Field type="text" list="recordAssetBank" class="form-select" id="使用銀行" name="使用銀行" placeholder="請選擇此帳戶使用的銀行"
-            :class="{ 'is-invalid': errors['使用銀行'] }"
-            rules="required"
-            v-model="selectedBankName"          
-            ></Field>
-            <datalist id="recordAssetBank">
-              <option v-for="bank in banks" :key="bank.code" :value="bank.name">{{ `${bank.code} ${bank.name}` }}</option>
-            </datalist>
-            <ErrorMessage name="使用銀行" class="invalid-feedback"></ErrorMessage>
-          </div>
-          {{ selectedBankId }}
-          <div class="mb-3 row">
-            <div class=" col-6">
-              <label for="recordAssetAutoAmount" class="form-label">每月固定收入金額</label>
-              <input type="number" class="form-control" id="recordAssetAutoAmount" aria-describedby="nameHelp" placeholder="請輸入金額">
-            </div>
-            <div class="col-6">
-              <label for="recordAssetAutoDate" class="form-label">每月自動收入日期</label>
-              <select name="recordAssetAutoDate" id="recordAssetAutoDate" class="form-select">
-                <option value="" selected disabled>選擇日期 (1-28)</option>
-                <option v-for="date in 28" :key="date" :value="date">{{ date }}</option>
-              </select>
-            </div>               
-          </div>
-          <div class="mb-3 row">
-            <div class=" col-6">
-              <label for="recordAssetAutoExpense" class="form-label">每月固定支出金額</label>
-              <input type="number" class="form-control" id="recordAssetAutoExpense" aria-describedby="nameHelp" placeholder="請輸入金額">
-            </div>
-            <div class="col-6">
-              <label for="recordAssetAutoExpenseDate" class="form-label">每月自動支出日期</label>
-              <select name="recordAssetAutoExpenseDate" id="recordAssetAutoExpenseDate" class="form-select">
-                <option value="" selected disabled>選擇日期 (1-28)</option>
-                <option v-for="date in 28" :key="date" value="date">{{ date }}</option>
-              </select>
-            </div>               
-          </div>
-          <!-- <div class="mb-3">
-            <label for="recordAssetTextarea" class="form-label">備註</label>
-            <textarea class="form-control" placeholder="備註" id="recordAssetTextarea" style="height: 100px"></textarea>
-          </div> -->
-
-          <div class="py-4">
-            <!-- <button type="button" class="btn btn-outline-secondary w-20 me-3" data-bs-dismiss="modal">取消</button> -->
-            <button type="submit" 
-            class="btn btn-primary w-100"             
-            :disabled="Object.keys(errors).length > 0 || selectedBankName === '' ">
-              儲存
-            </button>
-          </div>     
-        </Form> 
-      </div>
+      <BankAsset
+        @get-bank-account="getPersonalBankAccount"
+        @close-modal="closeModal"
+      />
     </template>
   </ModalShare>
 </template>
 
 <style scope lang="scss">
   .add-bank {
-
     height: 5rem;
     border: 0.25rem dotted;
     background-color: transparent;
     transition: all 0.3s;
-    
+
     &:hover {
       border: 0.25rem dotted;
       background-color: rgb(221, 220, 220);
-      // transition-duration: 0.3s
+    }
   }
-
-  }
-  
 
 </style>

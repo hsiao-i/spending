@@ -108,6 +108,39 @@
       "autoExpense": 0,
       "autoExpenseDate": "",
       "id": 7
+    },
+    {
+      "total": "7000",
+      "name": "存款",
+      "bankId": 43,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "autoIncome": 0,
+      "autoIncomeDate": "",
+      "autoExpense": 0,
+      "autoExpenseDate": "",
+      "id": 8
+    },
+    {
+      "total": "5000",
+      "name": "私房",
+      "bankId": 4,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "autoIncome": 0,
+      "autoIncomeDate": "",
+      "autoExpense": 0,
+      "autoExpenseDate": "",
+      "id": 9
+    },
+    {
+      "total": "3000",
+      "name": "生活",
+      "bankId": 3,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "autoIncome": 0,
+      "autoIncomeDate": "",
+      "autoExpense": 0,
+      "autoExpenseDate": "",
+      "id": 10
     }
   ],
   "banks": [

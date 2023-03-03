@@ -1,18 +1,16 @@
 <script setup lang="ts">
-  import { ref } from 'vue-demi';
-  import ModalShare from '@/components/ModalShare.vue';
-  import MultipleSpending from '@/components/MultipleSpending.vue'
-  import SingleSpending from '@/components/SingleSpending.vue'
+import { ref } from 'vue';
+import ModalShare from '@/components/ModalShare.vue';
+import MultipleSpending from '@/components/MultipleSpending.vue';
+import SingleSpending from '@/components/SingleSpending.vue';
 
+const modalShare = ref();
+const openModal = (status: string) => {
+  openModalStatus.value = status;
+  modalShare.value.openModalInComponent();
+};
 
-  const modalShare = ref()
-
-  const openModal = (status: string) => {
-    openModalStatus.value = status
-    modalShare.value.openModalInComponent() 
-  }
-
-  const openModalStatus = ref('single')
+const openModalStatus = ref('single');
 </script>
 
 <template>
@@ -28,13 +26,13 @@
         </div>
         <ModalShare ref="modalShare">
           <template v-slot:record-spending>
-            <SingleSpending v-if="openModalStatus === 'single'"/>
-            <MultipleSpending v-else-if="openModalStatus === 'multiple'"/>
+            <SingleSpending v-if="openModalStatus === 'single'" />
+            <MultipleSpending v-else-if="openModalStatus === 'multiple'" />
           </template>
-          
+
         </ModalShare>
       </div>
     </div>
-    
+
   </div>
 </template>
