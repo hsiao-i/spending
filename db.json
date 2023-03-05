@@ -33,10 +33,10 @@
   ],
   "personalBankAccounts": [
     {
-      "total": "5222",
-      "name": "測試",
-      "bankName": "合作金庫商業銀行",
-      "bankId": 3,
+      "total": "5000",
+      "name": "生活2",
+      "bankName": "華南商業銀行",
+      "bankId": 5,
       "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
       "autoIncome": 0,
       "autoIncomeDate": "",
@@ -45,8 +45,8 @@
       "id": 1
     },
     {
-      "total": "5000",
-      "name": "生活2",
+      "total": "3000",
+      "name": "生活",
       "bankName": "臺灣土地銀行",
       "bankId": 2,
       "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",

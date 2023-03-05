@@ -40,3 +40,14 @@ export interface BankAccount {
   autoExpense?: number;
   autoExpenseDate?: string;
 }
+
+export interface Expense {
+  id?: number;
+  uuid: string;
+  dateTime: Date;
+  name?: string;
+  amount: string | number;
+  description: string;
+  categoryId: number;
+  personalBankId: number;
+}

@@ -3,6 +3,8 @@ import { ref } from 'vue';
 import ModalShare from '@/components/ModalShare.vue';
 import MultipleSpending from '@/components/MultipleSpending.vue';
 import SingleSpending from '@/components/SingleSpending.vue';
+import { v4 as uuidv4 } from 'uuid';
+import type { Expense } from '@/utilities/types';
 
 const modalShare = ref();
 
@@ -11,6 +13,16 @@ const openModal = (status: string) => {
   openModalStatus.value = status;
   modalShare.value.openModalInComponent();
 };
+
+const updateExpense = ref<Expense>({
+  uuid: uuidv4(),
+  dateTime: new Date(),
+  name: '',
+  amount: '',
+  description: '',
+  categoryId: 0,
+  personalBankId: 0,
+});
 
 </script>
 
@@ -27,7 +39,10 @@ const openModal = (status: string) => {
         </div>
         <ModalShare ref="modalShare">
           <template v-slot:record-spending>
-            <SingleSpending v-if="openModalStatus === 'single'" />
+            <SingleSpending
+              v-if="openModalStatus === 'single'"
+              :update-expense="updateExpense"
+            />
             <MultipleSpending v-else-if="openModalStatus === 'multiple'" />
           </template>
 

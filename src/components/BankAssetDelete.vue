@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { BankAccount } from '@/utilities/types';
-// import axios from '@/utilities/http';
+import axios from '@/utilities/http';
 import { toRefs } from 'vue';
 
 const props = defineProps<{
@@ -13,14 +13,9 @@ const emit = defineEmits(['getBankAccount', 'closeModal']);
 const deleteBankAccount = async () => {
   console.log(account.value.id);
   try {
-    const url = `/personalBankAccounts/${account.value.id}`;
-    // const res = await axios.delete(url);
-    // console.log(res);
-
-    // const fetchOpt: Fetch = { method: 'delete', mode: 'cors', cache: 'no-cache' };
-    const res = await fetch(`http://localhost:3000${url}`, { method: 'delete', mode: 'cors', cache: 'no-cache' });
-    const data = res.json();
-    console.log(data);
+    const url = `/personalBankAccounts/${account.value.id}?_noRemoveDependents=true`;
+    const res = await axios.delete(url);
+    console.log(res);
     emit('closeModal');
     emit('getBankAccount');
   } catch (err) {
