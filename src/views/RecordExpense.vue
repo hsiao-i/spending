@@ -5,12 +5,13 @@ import MultipleSpending from '@/components/MultipleSpending.vue';
 import SingleSpending from '@/components/SingleSpending.vue';
 
 const modalShare = ref();
+
+const openModalStatus = ref('single');
 const openModal = (status: string) => {
   openModalStatus.value = status;
   modalShare.value.openModalInComponent();
 };
 
-const openModalStatus = ref('single');
 </script>
 
 <template>

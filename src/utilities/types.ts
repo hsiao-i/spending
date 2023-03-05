@@ -31,8 +31,9 @@ export interface BankAccount {
   total: number | string;
   name: string;
   // date: string;
-  bankId: number | null;
-  userId: string | null;
+  bankName?: string;
+  bankId?: number | null;
+  userId?: string | null;
   bank?: Bank;
   autoIncome?: number;
   autoIncomeDate?: string;

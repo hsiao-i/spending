@@ -33,114 +33,28 @@
   ],
   "personalBankAccounts": [
     {
-      "id": 1,
-      "total": 2000,
-      "name": "旅遊基金",
-      "autoIncome": 23000,
-      "autoIncomeDate": 10,
-      "autoExpense": 1000,
-      "autoExpenseDate": 10,
-      "userId": 1,
-      "bankId": 1
-    },
-    {
-      "total": "1000",
-      "name": "生活",
-      "bankId": 43,
-      "userId": "2",
-      "autoIncome": 0,
-      "autoIncomeDate": "",
-      "autoExpense": 0,
-      "autoExpenseDate": "",
-      "id": 2
-    },
-    {
-      "total": "2000",
-      "name": "旅遊",
-      "bankId": 38,
-      "userId": "2",
-      "autoIncome": 0,
-      "autoIncomeDate": "",
-      "autoExpense": 0,
-      "autoExpenseDate": "",
-      "id": 3
-    },
-    {
-      "total": "3000",
-      "name": "投資",
-      "bankId": 8,
-      "userId": "2",
-      "autoIncome": 0,
-      "autoIncomeDate": "",
-      "autoExpense": 0,
-      "autoExpenseDate": "",
-      "id": 4
-    },
-    {
-      "total": "3000",
-      "name": "生活",
-      "bankId": 6,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "autoIncome": 0,
-      "autoIncomeDate": "",
-      "autoExpense": 0,
-      "autoExpenseDate": "",
-      "id": 5
-    },
-    {
-      "total": "5000",
-      "name": "旅遊",
-      "bankId": 7,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "autoIncome": 0,
-      "autoIncomeDate": "",
-      "autoExpense": 0,
-      "autoExpenseDate": "",
-      "id": 6
-    },
-    {
-      "total": "5000",
-      "name": "投資",
-      "bankId": 14,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "autoIncome": 0,
-      "autoIncomeDate": "",
-      "autoExpense": 0,
-      "autoExpenseDate": "",
-      "id": 7
-    },
-    {
-      "total": "7000",
-      "name": "存款",
-      "bankId": 43,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "autoIncome": 0,
-      "autoIncomeDate": "",
-      "autoExpense": 0,
-      "autoExpenseDate": "",
-      "id": 8
-    },
-    {
-      "total": "5000",
-      "name": "私房",
-      "bankId": 4,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "autoIncome": 0,
-      "autoIncomeDate": "",
-      "autoExpense": 0,
-      "autoExpenseDate": "",
-      "id": 9
-    },
-    {
-      "total": "3000",
-      "name": "生活",
+      "total": "5222",
+      "name": "測試",
+      "bankName": "合作金庫商業銀行",
       "bankId": 3,
       "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
       "autoIncome": 0,
       "autoIncomeDate": "",
       "autoExpense": 0,
       "autoExpenseDate": "",
-      "id": 10
+      "id": 1
+    },
+    {
+      "total": "5000",
+      "name": "生活2",
+      "bankName": "臺灣土地銀行",
+      "bankId": 2,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "autoIncome": 0,
+      "autoIncomeDate": "",
+      "autoExpense": 0,
+      "autoExpenseDate": "",
+      "id": 2
     }
   ],
   "banks": [
@@ -370,40 +284,8 @@
       "name": "中華民國信用合作社聯合社南區聯合資訊處理中心"
     }
   ],
-  "expenses": [
-    {
-      "id": 1,
-      "uuid": "xxx",
-      "datetime": 1675115164,
-      "category": "飲食",
-      "name": "早餐",
-      "description": "xxx",
-      "amount": 100,
-      "personalBankAccountId": 1
-    },
-    {
-      "id": 2,
-      "uuid": "xxx",
-      "datetime": 1675115164,
-      "category": "飲食",
-      "name": "午餐",
-      "description": "xxx",
-      "amount": 120,
-      "personalBankAccountId": 1
-    }
-  ],
-  "income": [
-    {
-      "id": 1,
-      "uuid": "xxx",
-      "datetime": 1675115164,
-      "category": "薪水",
-      "name": "薪水",
-      "description": "xxx",
-      "amount": 35000,
-      "personalBankAccountId": 1
-    }
-  ],
+  "expenses": [],
+  "income": [],
   "expenseCategories": [
     {
       "id": 1,

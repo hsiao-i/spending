@@ -45,7 +45,6 @@ onMounted(() => {
         </div>
 
         <div class="py-4">
-          <!-- <button type="button" class="btn btn-outline-secondary w-20 me-3" data-bs-dismiss="modal">取消</button> -->
           <button type="button" class="btn btn-primary w-100">儲存</button>
         </div>
       </form>

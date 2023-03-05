@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import {
-  ref, computed, onMounted, watch,
+  ref, computed, onMounted, watch, toRefs,
 } from 'vue';
 import type { BankAccount, Bank } from '@/utilities/types';
 import axios from '@/utilities/http';
-// import { useModalStore } from '@/stores/useModalStore';
 
-// const store = useModalStore();
 // 取得銀行列表
 const banks = ref<Bank[]>([]);
 const getBanksList = async () => {
@@ -20,27 +18,34 @@ const getBanksList = async () => {
 };
 onMounted(() => {
   getBanksList();
+  console.log('新增帳戶');
 });
 
-// 從 datalist 取得 bankId
-const selectedBankName = ref('');
+// 從外層取得帳戶資訊、開啟狀態
+const props = defineProps<{
+  account: BankAccount,
+  openState: string
+}>();
+const { account, openState } = toRefs(props);
+
+// 取得 bankId
 const selectedBankId = computed(() => {
-  const bank = banks.value.find((bankInfo) => bankInfo.name === selectedBankName.value);
+  const bank = banks.value.find((bankInfo) => bankInfo.name === account.value.bankName);
   return bank ? bank.id : null;
 });
 
 // 新增帳戶
-const account = ref<BankAccount>({
-  total: '',
-  name: '',
-  // date: '',
-  bankId: 0,
-  userId: '',
-  autoIncome: 0,
-  autoIncomeDate: '',
-  autoExpense: 0,
-  autoExpenseDate: '',
-});
+// const account = ref<BankAccount>({
+//   total: '',
+//   name: '',
+//   // date: '',
+//   bankId: 0,
+//   userId: '',
+//   autoIncome: 0,
+//   autoIncomeDate: '',
+//   autoExpense: 0,
+//   autoExpenseDate: '',
+// });
 
 // 監聽，為了取得 bankId
 watch(selectedBankId, () => {
@@ -50,42 +55,44 @@ watch(selectedBankId, () => {
 // 清空表單設置
 const formClear = ref();
 
+// 新增、編輯銀行帳戶
 const emit = defineEmits(['getBankAccount', 'closeModal']);
-// 新增銀行帳戶
+
 const addBankAccount = async () => {
   try {
     account.value.userId = localStorage.getItem('userId');
-    const url = '/personalBankAccounts';
-    const res = await axios.post(url, account.value);
-    console.log(account.value);
-    console.log(res);
-    alert('成功建立帳戶');
+    let url = '/personalBankAccounts';
+    let request: 'post' | 'put' = 'post';
+    let situation = '成功新增帳戶';
+
+    if (openState.value === 'edit') {
+      url = `/personalBankAccounts/${account.value.id}`;
+      request = 'put';
+      situation = '成功更新帳戶';
+    }
+    await axios[request](url, account.value);
+    alert(situation);
     formClear.value.resetForm();
-    // store.closeModal();
-    // emit();
     emit('closeModal');
     emit('getBankAccount');
-    // getPersonalBankAccount();
   } catch (err) {
     console.log(err);
   }
-};
-const click = () => {
-  emit('closeModal');
 };
 
 </script>
 
 <template>
-  <button type="button" @click="click">test</button>
   <div class="p-4">
     <div class=" text-end mb-3">
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
     </div>
-    <h3 class="h4 mb-3">新增帳戶</h3>
+    <h3 class="h4 mb-3">
+      <span v-if="openState === 'new'">新增</span>
+      <span v-else-if="openState === 'edit'">編輯</span>帳戶
+    </h3>
 
     <Form v-slot="{ errors }" @submit="addBankAccount" ref="formClear">
-      {{ errors }}
       <div class="mb-3">
         <label for="帳戶名稱" class="form-label">帳戶名稱</label>
         <Field
@@ -126,7 +133,7 @@ const click = () => {
           placeholder="請選擇此帳戶使用的銀行"
           :class="{ 'is-invalid': errors['使用銀行'] }"
           rules="required"
-          v-model="selectedBankName"
+          v-model="account.bankName"
         />
         <datalist id="recordAssetBank">
           <option v-for="bank in banks" :key="bank.code" :value="bank.name">{{ `${bank.code} ${bank.name}` }}</option>
@@ -164,7 +171,7 @@ const click = () => {
         <button
           type="submit"
           class="btn btn-primary w-100"
-          :disabled="Object.keys(errors).length > 0 || selectedBankName === '' ">
+          :disabled="Object.keys(errors).length > 0">
           儲存
         </button>
       </div>
