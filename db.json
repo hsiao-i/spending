@@ -284,8 +284,108 @@
       "name": "中華民國信用合作社聯合社南區聯合資訊處理中心"
     }
   ],
-  "expenses": [],
-  "income": [],
+  "expenses": [
+    {
+      "uuid": "e2163122-3fa9-425f-8b9d-3ef6acb1b9cb",
+      "dateTime": "2023-03-06T06:22:00.970Z",
+      "date": "2023-03-06",
+      "name": "電影",
+      "amount": "200",
+      "description": "",
+      "expenseCategoryId": 1,
+      "personalBankAccountId": 2,
+      "userId": 2,
+      "id": 2
+    },
+    {
+      "uuid": "e2163122-3fa9-425f-8b9d-3ef6acb1b9cc",
+      "dateTime": "2023-03-06T06:22:00.970Z",
+      "date": "2023-03-06",
+      "name": "電影",
+      "amount": "200",
+      "description": "",
+      "expenseCategoryId": 1,
+      "personalBankAccountId": 2,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "id": 3
+    },
+    {
+      "uuid": "763589d5-3994-4a73-9947-85b3671380dc",
+      "dateTime": "2023-03-06T06:26:20.717Z",
+      "date": "2023-03-06",
+      "name": "午餐",
+      "amount": "75",
+      "description": "",
+      "expenseCategoryId": 1,
+      "personalBankAccountId": 1,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "id": 4
+    },
+    {
+      "uuid": "763589d5-3994-4a73-9947-85b3671380dc",
+      "dateTime": "2023-03-06T06:26:20.717Z",
+      "date": "2023-03-06",
+      "name": "午餐",
+      "amount": "80",
+      "description": "",
+      "expenseCategoryId": 1,
+      "personalBankAccountId": 1,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "id": 5
+    },
+    {
+      "uuid": "e032d292-0fd8-47e6-9001-0d7c1a874e57",
+      "dateTime": "2023-03-06T08:29:04.739Z",
+      "date": "2023-03-06",
+      "name": "儲值",
+      "amount": "1000",
+      "description": "",
+      "expenseCategoryId": 2,
+      "personalBankAccountId": 2,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "categoryId": 2,
+      "id": 6
+    },
+    {
+      "uuid": "ce469f8c-7efb-4e53-973d-91b605b3cc07",
+      "dateTime": "2023-03-06T08:38:05.773Z",
+      "date": "2023-03-06",
+      "name": "線",
+      "amount": "590",
+      "description": "",
+      "expenseCategoryId": 4,
+      "personalBankAccountId": 0,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "personalBankId": 1,
+      "id": 7
+    },
+    {
+      "uuid": "ce469f8c-7efb-4e53-973d-91b605b3cc07",
+      "dateTime": "2023-03-06T08:38:05.773Z",
+      "date": "2023-03-06",
+      "name": "線",
+      "amount": "300",
+      "description": "",
+      "expenseCategoryId": 3,
+      "personalBankAccountId": 0,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "personalBankId": 1,
+      "id": 8
+    },
+    {
+      "uuid": "b1a2ec13-8d8d-44e1-8342-3ae6dd61fc36",
+      "dateTime": "2023-03-06T08:40:00.691Z",
+      "date": "2023-03-06",
+      "name": "儲值",
+      "amount": "300",
+      "description": "",
+      "expenseCategoryId": 2,
+      "personalBankAccountId": 1,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "id": 9
+    }
+  ],
+  "incomes": [],
   "expenseCategories": [
     {
       "id": 1,

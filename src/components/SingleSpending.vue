@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { toRefs, onMounted } from 'vue';
-// import { v4 as uuidv4 } from 'uuid';
+import { ref, toRefs, onMounted } from 'vue';
 import type { Expense } from '@/utilities/types';
-
 import { useCategoryStore } from '@/stores/useCategoryStore';
 import { usePersonalBank } from '@/stores/usePersonalBank';
+import { useSpendingStore } from '@/stores/useSpendingStore';
+import axios from '@/utilities/http';
 // import { onMounted } from 'vue';
 // import CategoryIconView from './CategoryIconView.vue';
 // const
@@ -12,6 +12,7 @@ import { usePersonalBank } from '@/stores/usePersonalBank';
 // 同時取出 store.categoryIcon
 const store = useCategoryStore();
 const bankStore = usePersonalBank();
+const spendingStore = useSpendingStore();
 onMounted(() => {
   store.getExpenseCategories();
   bankStore.getBankAccountList();
@@ -24,12 +25,35 @@ const props = defineProps<{
 }>();
 const { updateExpense } = toRefs(props);
 
-const updateExpenseInfo = () => {
-  console.log(updateExpense.value);
+// 將日期格式轉換為 YYYY-MM-DD，input type="date" 才能顯示
+const formatDate = () => {
+  updateExpense.value.date = new Date().toISOString().slice(0, 10);
 };
-// onMounted(() => {
-//   console.log(updateExpense.value.categoryId);
-// });
+onMounted(() => {
+  formatDate();
+});
+
+const emit = defineEmits(['closeModal']);
+const expenseForm = ref();
+
+// 新增、編輯 expense
+const updateExpenseInfo = async () => {
+  try {
+    const userId = localStorage.getItem('userId');
+    updateExpense.value.userId = userId;
+
+    const url = '/expenses';
+    const res = await axios.post(url, updateExpense.value);
+    console.log(updateExpense.value);
+    console.log(res);
+    alert('成功新增支出');
+    emit('closeModal');
+    expenseForm.value.resetForm();
+    spendingStore.getExpense();
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 </script>
 
@@ -45,15 +69,16 @@ const updateExpenseInfo = () => {
           :category="category"
         />
       </div> -->
-      <Form v-slot="{ errors }">
+      <Form v-slot="{ errors }" @submit="updateExpenseInfo" ref="expenseForm">
         <div class=" mb-3">
-          <!-- <label for="recordInputDate" class="form-label">日期</label>
-          <input type="date"
+          <label for="recordInputDate" class="form-label">日期</label>
+          <input
+            type="date"
             class="form-control"
             id="recordInputDate"
             aria-describedby="dateHelp"
-            v-model="updateExpense.dateTime"
-          > -->
+            v-model="updateExpense.date"
+          >
         </div>
         <div class="mb-3">
           <label for="銀行帳戶" class="form-label">銀行帳戶</label>
@@ -65,7 +90,7 @@ const updateExpenseInfo = () => {
             :class="{ 'is-invalid': errors['銀行帳戶'] }"
             rules="required"
             as="select"
-            v-model="updateExpense.personalBankId"
+            v-model="updateExpense.personalBankAccountId"
           >
             <option value="" disabled selected>請選擇使用的銀行帳戶</option>
             <option
@@ -84,13 +109,14 @@ const updateExpenseInfo = () => {
           <Field
             name="類別"
             id="recordExpenseCategory"
+            placeholder="請選擇類別"
             class="form-select"
             :class="{ 'is-invalid': errors['類別'] }"
             rules="required"
             as="select"
-            v-model="updateExpense.categoryId"
+            v-model="updateExpense.expenseCategoryId"
           >
-            <option value="">請選擇類別</option>
+            <option value="" disabled selected>請選擇類別</option>
             <option
               :value="category.id"
               v-for="category in store.categoryIcon"
@@ -111,7 +137,7 @@ const updateExpenseInfo = () => {
               class="form-control"
               id="recordInputName"
               aria-describedby="nameHelp"
-              placeholder="名稱"
+              placeholder="請輸入名稱"
               v-model="updateExpense.name"
             >
           </div>
@@ -123,7 +149,6 @@ const updateExpenseInfo = () => {
               name="金額"
               id="recordInputPrice"
               placeholder="輸入金額"
-              value=""
               :class="{ 'is-invalid': errors['金額'] }"
               rules="required"
               v-model="updateExpense.amount"
@@ -143,7 +168,11 @@ const updateExpenseInfo = () => {
         </div>
 
         <div class="py-4">
-          <button type="button" class="btn btn-primary w-100" @click="updateExpenseInfo">儲存</button>
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            :disabled="Object.keys(errors).length > 0"
+          >儲存</button>
         </div>
       </Form>
     </div>
