@@ -18,7 +18,7 @@ export const useCategoryStore = defineStore('category', () => {
   };
 
   const categoryIncome = ref<CategoryIcon[]>([]);
-  url = `${import.meta.env.VITE_PATH}/incomeCatogories`;
+  url = `${import.meta.env.VITE_PATH}/incomeCategories`;
   const getIncomeCategories = async () => {
     try {
       const res = await axios.get(url);

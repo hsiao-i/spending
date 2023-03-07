@@ -6,7 +6,7 @@ import SingleSpending from '@/components/SingleSpending.vue';
 import EditSpending from '@/components/EditSpending.vue';
 import DeleteSpending from '@/components/DeleteSpending.vue';
 import { v4 as uuidv4 } from 'uuid';
-import type { Expense } from '@/utilities/types';
+import type { Expense, Income } from '@/utilities/types';
 import { useSpendingStore } from '@/stores/useSpendingStore';
 
 const updateExpense = ref<Expense>({
@@ -22,18 +22,25 @@ const updateExpense = ref<Expense>({
   userId: '',
 });
 
-const expenseStore = useSpendingStore();
+const spendingStore = useSpendingStore();
 onMounted(() => {
-  expenseStore.getExpense();
+  spendingStore.getExpense();
+  spendingStore.getIncomeList();
 });
 
 const modalShare = ref();
 
 const openModalStatus = ref('');
-const openModal = (status: string, editInfo?: Expense) => {
+const expenseOrIncome = ref('');
+const openModal = (status: string, editInfo?: Expense | Income, expenseIncome?: string) => {
   openModalStatus.value = status;
+  if (expenseIncome) {
+    expenseOrIncome.value = expenseIncome!;
+  }
+
   if (status === 'editSpending' || status === 'deleteSpending') {
     updateExpense.value = JSON.parse(JSON.stringify(editInfo));
+    spendingStore.updateIncomeData = JSON.parse(JSON.stringify(editInfo));
   } else if (status === 'single') {
     updateExpense.value = {
       uuid: uuidv4(),
@@ -47,6 +54,11 @@ const openModal = (status: string, editInfo?: Expense) => {
       personalBankAccountId: 0,
       userId: '',
     };
+
+    // if (expenseIncome === 'expense' || expenseIncome === 'income') {
+
+    console.log(expenseOrIncome.value);
+    // }
   }
 
   modalShare.value.openModalInComponent();
@@ -62,7 +74,7 @@ const closeModal = () => {
     <div class="row">
       <div class="col-md-6">左邊日曆</div>
       <div class="col-md-6">
-        <div class="bg-light shadow rounded-3 min-vh-80 p-4">
+        <div class="bg-light shadow rounded-3 p-4 h-75 overflow-auto">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
             <button type="button" class="btn btn-outline-primary" @click="openModal('single')">+ 記錄單筆</button>
             <button type="button" class="btn btn-outline-primary" @click="openModal('multiple')">+ 記錄多筆 </button>
@@ -78,25 +90,41 @@ const closeModal = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="expense in expenseStore.expenseList" :key="expense.uuid" role="button" class="tr-hover">
+                <tr v-for="expense in spendingStore.expenseList" :key="expense.uuid" role="button" class="tr-hover">
                   <td>{{ expense.expenseCategory?.name }}</td>
                   <td>{{ expense.name }}</td>
-                  <td class="text-end">
-                    $ {{ expense.amount }}<br>
+                  <td class="text-end"> <span class="text-danger">
+                                          $ {{ expense.amount }}</span> <br>
                     <span class="h6 mb-0 badge-blue-outline">{{ expense.personalBankAccount?.bankName }}</span>
                   </td>
                   <td>
                     <div class="text-end">
-                      <button type="button" class="me-2 btn-hover p-0" @click="openModal('editSpending', expense)">
+                      <button type="button" class="me-2 btn-hover p-0" @click="openModal('editSpending', expense, 'expense')">
                         <span class="material-icons-outlined text-secondary btn-hover">edit</span>
                       </button>
-                      <button type="button" class="btn-hover p-0" @click="openModal('deleteSpending', expense)">
+                      <button type="button" class="btn-hover p-0" @click="openModal('deleteSpending', expense, 'expense')">
                         <span class="material-icons-outlined text-secondary btn-hover">delete_forever</span>
                       </button>
-
                     </div>
                   </td>
-
+                </tr>
+                <tr v-for="income in spendingStore.incomeList" :key="income.uuid" role="button" class="tr-hover">
+                  <td>{{ income.incomeCategory?.name }}</td>
+                  <td>{{ income.name }}</td>
+                  <td class="text-end"> <span class="text-success">
+                                          $ {{ income.amount }}</span> <br>
+                    <span class="h6 mb-0 badge-blue-outline">{{ income.personalBankAccount?.bankName }}</span>
+                  </td>
+                  <td>
+                    <div class="text-end">
+                      <button type="button" class="me-2 btn-hover p-0" @click="openModal('editSpending', income, 'income')">
+                        <span class="material-icons-outlined text-secondary btn-hover">edit</span>
+                      </button>
+                      <button type="button" class="btn-hover p-0" @click="openModal('deleteSpending', income, 'income')">
+                        <span class="material-icons-outlined text-secondary btn-hover">delete_forever</span>
+                      </button>
+                    </div>
+                  </td>
                 </tr>
                 <!-- <tr>
                   <th scope="row">2</th>
@@ -126,11 +154,13 @@ const closeModal = () => {
             <EditSpending
               v-if="openModalStatus === 'editSpending'"
               :update-expense="updateExpense"
+              :expense-or-income="expenseOrIncome"
               @close-modal="closeModal"
             />
             <DeleteSpending
               v-else-if="openModalStatus === 'deleteSpending'"
               :update-expense="updateExpense"
+              :expense-or-income="expenseOrIncome"
               @close-modal="closeModal"
             />
           </template>

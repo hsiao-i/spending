@@ -32,6 +32,7 @@ const formatDate = () => {
 };
 onMounted(() => {
   formatDate();
+  spendingStore.formatDate();
 });
 
 const emit = defineEmits(['closeModal']);
@@ -56,6 +57,8 @@ const updateExpenseInfo = async () => {
     console.log(err);
   }
 };
+
+// const addMultipleExpense
 
 </script>
 
@@ -189,7 +192,7 @@ const updateExpenseInfo = async () => {
             class="form-control"
             id="recordInputDate"
             aria-describedby="dateHelp"
-            v-model="updateExpense.date"
+            v-model="spendingStore.updateIncomeData.date"
           >
         </div>
         <div class="mb-3">
@@ -202,7 +205,7 @@ const updateExpenseInfo = async () => {
             :class="{ 'is-invalid': errors['銀行帳戶'] }"
             rules="required"
             as="select"
-            v-model="updateExpense.personalBankAccountId"
+            v-model="spendingStore.updateIncomeData.personalBankAccountId"
           >
             <option value="" disabled selected>請選擇使用的銀行帳戶</option>
             <option
@@ -226,7 +229,7 @@ const updateExpenseInfo = async () => {
             :class="{ 'is-invalid': errors['類別'] }"
             rules="required"
             as="select"
-            v-model="updateExpense.expenseCategoryId"
+            v-model="spendingStore.updateIncomeData.incomeCategoryId"
           >
             <option value="" disabled selected>請選擇類別</option>
             <option
@@ -250,7 +253,7 @@ const updateExpenseInfo = async () => {
               id="recordInputName"
               aria-describedby="nameHelp"
               placeholder="請輸入名稱"
-              v-model="updateExpense.name"
+              v-model="spendingStore.updateIncomeData.name"
             >
           </div>
           <div class="col-4">
@@ -263,7 +266,7 @@ const updateExpenseInfo = async () => {
               placeholder="輸入金額"
               :class="{ 'is-invalid': errors['金額'] }"
               rules="required"
-              v-model="updateExpense.amount"
+              v-model="spendingStore.updateIncomeData.amount"
             />
             <ErrorMessage name="金額" class="invalid-feedback" />
           </div>
@@ -275,7 +278,7 @@ const updateExpenseInfo = async () => {
             placeholder="備註"
             id="recordTextarea"
             style="height: 100px"
-            v-model="updateExpense.description"
+            v-model="spendingStore.updateIncomeData.description"
           />
         </div>
 

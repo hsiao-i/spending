@@ -5,6 +5,7 @@ import axios from '@/utilities/http';
 import { v4 as uuidv4 } from 'uuid';
 
 export const useSpendingStore = defineStore('spending', () => {
+  // 取得支出列表
   const expenseList = ref<Expense[]>([]);
   const getExpense = async () => {
     try {
@@ -22,7 +23,6 @@ export const useSpendingStore = defineStore('spending', () => {
   const updateIncomeData = ref<Income>({
     uuid: uuidv4(),
     dateTime: new Date(),
-    // 取出像 20xx/xx/xx
     date: '',
     name: '',
     amount: '',
@@ -32,35 +32,55 @@ export const useSpendingStore = defineStore('spending', () => {
     userId: '',
   });
 
-  const incomeForm = ref();
-  // const emit = defineEmits(['closeModal']);
-  const updateIncomeInfo = async () => {
-    try {
-      updateIncomeData.value.userId = localStorage.getItem('userId');
-      const url = '/incomes';
-      const request: 'post' | 'put' = 'post';
-      const situation = '成功新增收入';
+  const formatDate = () => {
+    // 取出日期格式為 YYYY-MM-DD
+    updateIncomeData.value.date = new Date().toISOString().slice(0, 10);
+  };
 
-      // if (openState.value === 'edit') {
-      //   url = `/personalBankAccounts/${account.value.id}`;
-      //   request = 'put';
-      //   situation = '成功更新帳戶';
-      // }
-      const res = await axios[request](url, updateIncomeData.value);
+  // 取得收入列表
+  const incomeList = ref<Income[]>([]);
+  const getIncomeList = async () => {
+    try {
+      const userId = localStorage.getItem('userId');
+      const url = `incomes?_expand=personalBankAccount&_expand=incomeCategory&userId=${userId}`;
+      const res = await axios.get(url);
+      incomeList.value = res.data;
       console.log(res);
-      alert(situation);
-      incomeForm.value.resetForm();
-      // emit('closeModal');
-      // emit('getBankAccount');
     } catch (err) {
       console.log(err);
     }
   };
 
-  // 取得收入列表
-  // const getIncomeList = ref<Income[]>([]);
+  const requestState = ref('');
+  const updateIncomeInfo = async () => {
+    try {
+      updateIncomeData.value.userId = localStorage.getItem('userId');
+      let url = '/incomes';
+      let request: 'post' | 'put' = 'post';
+      let situation = '成功新增收入';
+
+      if (requestState.value === 'edit') {
+        url = `/incomes/${updateIncomeData.value.id}`;
+        request = 'put';
+        situation = '成功更新收入';
+      }
+      const res = await axios[request](url, updateIncomeData.value);
+      console.log(res);
+      alert(situation);
+      getIncomeList();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return {
-    expenseList, getExpense, updateIncomeInfo, updateIncomeData,
+    expenseList,
+    getExpense,
+    updateIncomeInfo,
+    updateIncomeData,
+    formatDate,
+    incomeList,
+    getIncomeList,
+    requestState,
   };
 });

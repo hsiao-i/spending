@@ -27,7 +27,7 @@ const updateBankAccount = ref<BankAccount>({
 // 開啟 modal 時的狀態
 const openModalState = ref('');
 
-const openModal = (state: string, list: BankAccount) => {
+const openModal = (state: string, list?: BankAccount) => {
   openModalState.value = state;
 
   if (state === 'edit') {
@@ -51,7 +51,7 @@ const openModal = (state: string, list: BankAccount) => {
     };
   } else if (state === 'delete') {
     openModalState.value = 'delete';
-    updateBankAccount.value = { ...list };
+    updateBankAccount.value = { ...list! };
   }
 
   modalShare.value.openModalInComponent();
