@@ -3,20 +3,11 @@ import { ref, onMounted } from 'vue';
 import ModalShare from '@/components/ModalShare.vue';
 import MultipleSpending from '@/components/MultipleSpending.vue';
 import SingleSpending from '@/components/SingleSpending.vue';
+import EditSpending from '@/components/EditSpending.vue';
+import DeleteSpending from '@/components/DeleteSpending.vue';
 import { v4 as uuidv4 } from 'uuid';
 import type { Expense } from '@/utilities/types';
 import { useSpendingStore } from '@/stores/useSpendingStore';
-
-const modalShare = ref();
-
-const openModalStatus = ref('single');
-const openModal = (status: string) => {
-  openModalStatus.value = status;
-  modalShare.value.openModalInComponent();
-};
-const closeModal = () => {
-  modalShare.value.closeModalInComponent();
-};
 
 const updateExpense = ref<Expense>({
   uuid: uuidv4(),
@@ -35,6 +26,34 @@ const expenseStore = useSpendingStore();
 onMounted(() => {
   expenseStore.getExpense();
 });
+
+const modalShare = ref();
+
+const openModalStatus = ref('');
+const openModal = (status: string, editInfo?: Expense) => {
+  openModalStatus.value = status;
+  if (status === 'editSpending' || status === 'deleteSpending') {
+    updateExpense.value = JSON.parse(JSON.stringify(editInfo));
+  } else if (status === 'single') {
+    updateExpense.value = {
+      uuid: uuidv4(),
+      dateTime: new Date(),
+      // 取出像 20xx/xx/xx
+      date: '',
+      name: '',
+      amount: '',
+      description: '',
+      expenseCategoryId: 0,
+      personalBankAccountId: 0,
+      userId: '',
+    };
+  }
+
+  modalShare.value.openModalInComponent();
+};
+const closeModal = () => {
+  modalShare.value.closeModalInComponent();
+};
 
 </script>
 
@@ -68,10 +87,10 @@ onMounted(() => {
                   </td>
                   <td>
                     <div class="text-end">
-                      <button type="button" class="me-2 btn-hover p-0">
+                      <button type="button" class="me-2 btn-hover p-0" @click="openModal('editSpending', expense)">
                         <span class="material-icons-outlined text-secondary btn-hover">edit</span>
                       </button>
-                      <button type="button" class="btn-hover p-0">
+                      <button type="button" class="btn-hover p-0" @click="openModal('deleteSpending', expense)">
                         <span class="material-icons-outlined text-secondary btn-hover">delete_forever</span>
                       </button>
 
@@ -102,6 +121,18 @@ onMounted(() => {
               @close-modal="closeModal"
             />
             <MultipleSpending v-else-if="openModalStatus === 'multiple'" />
+          </template>
+          <template v-slot:record-assets>
+            <EditSpending
+              v-if="openModalStatus === 'editSpending'"
+              :update-expense="updateExpense"
+              @close-modal="closeModal"
+            />
+            <DeleteSpending
+              v-else-if="openModalStatus === 'deleteSpending'"
+              :update-expense="updateExpense"
+              @close-modal="closeModal"
+            />
           </template>
 
         </ModalShare>

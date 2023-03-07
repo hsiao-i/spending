@@ -15,6 +15,7 @@ const bankStore = usePersonalBank();
 const spendingStore = useSpendingStore();
 onMounted(() => {
   store.getExpenseCategories();
+  store.getIncomeCategories();
   bankStore.getBankAccountList();
   // console.log(store.categoryIcon);
 });
@@ -35,6 +36,7 @@ onMounted(() => {
 
 const emit = defineEmits(['closeModal']);
 const expenseForm = ref();
+const incomeForm = ref();
 
 // 新增、編輯 expense
 const updateExpenseInfo = async () => {
@@ -178,6 +180,113 @@ const updateExpenseInfo = async () => {
     </div>
 
     <!-- 支出 modal -->
-    <div class="tab-pane fade" id="tabIncome" role="tabpanel" aria-labelledby="profile-tab">Income</div>
+    <div class="tab-pane fade" id="tabIncome" role="tabpanel" aria-labelledby="profile-tab">
+      <Form v-slot="{ errors }" @submit="spendingStore.updateIncomeInfo" ref="incomeForm">
+        <div class="mb-3">
+          <label for="recordInputDate" class="form-label">日期</label>
+          <input
+            type="date"
+            class="form-control"
+            id="recordInputDate"
+            aria-describedby="dateHelp"
+            v-model="updateExpense.date"
+          >
+        </div>
+        <div class="mb-3">
+          <label for="銀行帳戶" class="form-label">銀行帳戶</label>
+          <Field
+            name="銀行帳戶"
+            id="recordExpenseBank"
+            placeholder="請選擇使用的銀行帳戶"
+            class="form-select"
+            :class="{ 'is-invalid': errors['銀行帳戶'] }"
+            rules="required"
+            as="select"
+            v-model="updateExpense.personalBankAccountId"
+          >
+            <option value="" disabled selected>請選擇使用的銀行帳戶</option>
+            <option
+              v-for="account in bankStore.personalBankAccountList"
+              :key="account.id"
+              :value="account.id">
+              {{ account.bank?.name }}
+            </option>
+          </Field>
+          <ErrorMessage
+            name="銀行帳戶"
+            class="invalid-feedback" />
+        </div>
+        <div class="mb-3">
+          <label for="類別" class="form-label">類別</label>
+          <Field
+            name="類別"
+            id="recordExpenseCategory"
+            placeholder="請選擇類別"
+            class="form-select"
+            :class="{ 'is-invalid': errors['類別'] }"
+            rules="required"
+            as="select"
+            v-model="updateExpense.expenseCategoryId"
+          >
+            <option value="" disabled selected>請選擇類別</option>
+            <option
+              :value="category.id"
+              v-for="category in store.categoryIncome"
+              :key="category.id">
+              {{ category.name }}
+            </option>
+          </Field>
+          <ErrorMessage
+            name="類別"
+            class="invalid-feedback" />
+
+        </div>
+        <div class="mb-3 row">
+          <div class=" col-8">
+            <label for="recordInputName" class="form-label">名稱</label>
+            <input
+              type="text"
+              class="form-control"
+              id="recordInputName"
+              aria-describedby="nameHelp"
+              placeholder="請輸入名稱"
+              v-model="updateExpense.name"
+            >
+          </div>
+          <div class="col-4">
+            <label for="金額" class="form-label">金額</label>
+            <Field
+              type="number"
+              class="form-control"
+              name="金額"
+              id="recordInputPrice"
+              placeholder="輸入金額"
+              :class="{ 'is-invalid': errors['金額'] }"
+              rules="required"
+              v-model="updateExpense.amount"
+            />
+            <ErrorMessage name="金額" class="invalid-feedback" />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="recordTextarea" class="form-label">備註</label>
+          <textarea
+            class="form-control"
+            placeholder="備註"
+            id="recordTextarea"
+            style="height: 100px"
+            v-model="updateExpense.description"
+          />
+        </div>
+
+        <div class="py-4">
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            :disabled="Object.keys(errors).length > 0"
+          >儲存</button>
+        </div>
+      </Form>
+    </div>
   </div>
 </template>

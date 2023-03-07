@@ -55,3 +55,18 @@ export interface Expense {
   personalBankAccount?: BankAccount;
   expenseCategory?: CategoryIcon;
 }
+
+export interface Income {
+  id?: number;
+  uuid: string;
+  dateTime: Date;
+  date: string;
+  name?: string;
+  amount: string | number;
+  description: string;
+  incomeCategoryId: number;
+  personalBankAccountId: number;
+  userId: string | null;
+  personalBankAccount?: BankAccount;
+  incomeCategory?: CategoryIcon;
+}
