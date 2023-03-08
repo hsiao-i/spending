@@ -5,10 +5,10 @@ import axios from '@/utilities/http';
 
 export const useCategoryStore = defineStore('category', () => {
   const categoryIcon = ref<CategoryIcon[]>([]);
-  let url = `${import.meta.env.VITE_PATH}/expenseCategories`;
+  const expenseUrl = '/expenseCategories';
   const getExpenseCategories = async () => {
     try {
-      const res = await axios.get(url);
+      const res = await axios.get(expenseUrl);
       console.log(res);
       categoryIcon.value = res.data;
       console.log(categoryIcon);
@@ -18,10 +18,10 @@ export const useCategoryStore = defineStore('category', () => {
   };
 
   const categoryIncome = ref<CategoryIcon[]>([]);
-  url = `${import.meta.env.VITE_PATH}/incomeCategories`;
+  const incomeUrl = '/incomeCategories';
   const getIncomeCategories = async () => {
     try {
-      const res = await axios.get(url);
+      const res = await axios.get(incomeUrl);
       console.log(res);
       categoryIncome.value = res.data;
       console.log(categoryIncome);
