@@ -35,6 +35,7 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/prefer-default-export': 'off',
     'import/no-default-export': 'error',
+    'vue/max-len': ['error', { code: 150 }],
   },
 };
 

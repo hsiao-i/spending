@@ -70,3 +70,9 @@ export interface Income {
   personalBankAccount?: BankAccount;
   incomeCategory?: CategoryIcon;
 }
+
+export interface MonthBankTotal {
+  balance: number;
+  expense: number;
+  income: number;
+}

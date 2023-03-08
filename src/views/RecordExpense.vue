@@ -8,6 +8,8 @@ import DeleteSpending from '@/components/DeleteSpending.vue';
 import { v4 as uuidv4 } from 'uuid';
 import type { Expense, Income } from '@/utilities/types';
 import { useSpendingStore } from '@/stores/useSpendingStore';
+import { usePersonalBank } from '@/stores/usePersonalBank';
+import { useCalculateStore } from '@/stores/useCalculateStore';
 
 const updateExpense = ref<Expense>({
   uuid: uuidv4(),
@@ -23,9 +25,15 @@ const updateExpense = ref<Expense>({
 });
 
 const spendingStore = useSpendingStore();
+const bankStore = usePersonalBank();
+const totalStore = useCalculateStore();
 onMounted(() => {
   spendingStore.getExpense();
   spendingStore.getIncomeList();
+  bankStore.getBankAccountList();
+  // totalStore.calculateTotal();
+  // console.log(spendingStore.expenseList);
+  console.log(totalStore.monthBankTotal);
 });
 
 const modalShare = ref();
@@ -72,7 +80,20 @@ const closeModal = () => {
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-md-6">左邊日曆</div>
+      <div class="col-md-6 ">
+        <div class="h-75 overflow-auto shadow p-4 rounded-4">
+
+          <h4>帳戶總額</h4>
+          <ul class="list-unstyled">
+            <li class="mb-3 bg-light rounded-4 shadow p-3" style="height: 7rem" v-for="list in bankStore.personalBankAccountList" :key="list.id">
+              <p class=" h5">{{ list.name }}
+                <span class="h6"> ({{ list.bank?.name }})</span>
+              </p>
+              <p class="h4 text-center">{{ list.total }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
       <div class="col-md-6">
         <div class="bg-light shadow rounded-3 p-4 h-75 overflow-auto">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
