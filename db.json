@@ -441,6 +441,18 @@
       "personalBankAccountId": 1,
       "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
       "id": 12
+    },
+    {
+      "uuid": "cec15ca6-49ec-4f5b-bfee-c2433e0f9699",
+      "dateTime": "2023-03-09T01:31:11.243Z",
+      "date": "2023-04-12",
+      "name": "儲值",
+      "amount": "1000",
+      "description": "",
+      "expenseCategoryId": 2,
+      "personalBankAccountId": 1,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "id": 13
     }
   ],
   "incomes": [
