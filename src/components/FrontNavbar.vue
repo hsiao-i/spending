@@ -6,7 +6,14 @@ import { RouterLink } from 'vue-router';
     <div class="container">
       <h1><a class="navbar-brand text-danger letter-1 fm-fre" href="#">ExpenSaver</a></h1>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" />
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">

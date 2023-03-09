@@ -121,7 +121,11 @@
           </div>
 
           <div class="col-md-6 position-relative">
-            <img src="@/assets/images/decoration-4.png" alt="decoration" class="z-index position-absolute" style="top: 4rem; right: -8rem; transform: rotate(10deg)">
+            <img
+              src="@/assets/images/decoration-4.png"
+              alt="decoration"
+              class="z-index position-absolute"
+              style="top: 4rem; right: -8rem; transform: rotate(10deg)">
             <div class="text-center bg-white shadow rounded-4 py-5">
               <div class="mb-4">
                 <img src="@/assets/images/banner-4-4-goal.png" alt="goal" width="95%">
