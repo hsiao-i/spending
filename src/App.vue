@@ -1,26 +1,31 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterView } from 'vue-router';
+import FrontNavbar from './components/FrontNavbar.vue';
+import FrontFooter from './components/FrontFooter.vue';
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
+  <FrontNavbar />
   <RouterView />
+  <FrontFooter />
 </template>
 
-<style scss>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 body {
-  background-color: #FAF0D7;
+  /* background-color: antiquewhite; */
+  color: #22272E;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.fm-fre {
+  font-family: 'Fredoka One', cursive;
+}
+
+.letter-1 {
+  letter-spacing: 2px;
 }
 </style>
