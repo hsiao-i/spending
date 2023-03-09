@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-danger py-4">
+  <div class="bg-danger py-4 mt-7">
     <div class="container">
       <div class="row text-white">
         <div class="col-md-4 mb-4">
