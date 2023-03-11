@@ -1,1 +1,0 @@
-import{z as o}from"./index-80a515c8.js";const s=o.create({baseURL:"http://localhost:3000",headers:{"Content-Type":"application/json"},timeout:2e4});s.interceptors.request.use(e=>{const t=document.cookie.replace(/(?:(?:^|.*;\s*)spendingToken\s*\=\s*([^;]*).*$)|^.*$/,"$1");return t&&(e.headers.Authorization=`Bearer ${t}`,console.log(t)),e},e=>Promise.reject(e));export{s as i};
