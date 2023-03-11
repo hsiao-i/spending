@@ -33,28 +33,16 @@
   ],
   "personalBankAccounts": [
     {
-      "total": "5000",
-      "name": "生活2",
-      "bankName": "華南商業銀行",
-      "bankId": 5,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "total": "1000",
+      "name": "測試",
+      "bankName": "彰化商業銀行",
+      "bankId": 6,
+      "userId": "4",
       "autoIncome": 0,
       "autoIncomeDate": "",
       "autoExpense": 0,
       "autoExpenseDate": "",
-      "id": 1
-    },
-    {
-      "total": "3000",
-      "name": "生活",
-      "bankName": "臺灣土地銀行",
-      "bankId": 2,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "autoIncome": 0,
-      "autoIncomeDate": "",
-      "autoExpense": 0,
-      "autoExpenseDate": "",
-      "id": 2
+      "id": 3
     }
   ],
   "banks": [
@@ -286,192 +274,137 @@
   ],
   "expenses": [
     {
-      "uuid": "e2163122-3fa9-425f-8b9d-3ef6acb1b9cb",
-      "dateTime": "2023-03-06T06:22:00.970Z",
-      "date": "2023-03-06",
-      "name": "電影",
+      "uuid": "f813abc9-ff56-4814-820b-267a8d94046e",
+      "dateTime": "2023-03-11T06:54:01.766Z",
+      "date": "2023-03-11",
+      "name": "",
       "amount": "200",
       "description": "",
-      "expenseCategoryId": 1,
-      "personalBankAccountId": 2,
-      "userId": 2,
-      "id": 2
-    },
-    {
-      "uuid": "e2163122-3fa9-425f-8b9d-3ef6acb1b9cc",
-      "dateTime": "2023-03-06T06:22:00.970Z",
-      "date": "2023-03-06",
-      "name": "電影",
-      "amount": "200",
-      "description": "",
-      "expenseCategoryId": 1,
-      "personalBankAccountId": 2,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "expenseCategoryId": 3,
+      "personalBankAccountId": 3,
+      "userId": "4",
       "id": 3
     },
     {
-      "uuid": "763589d5-3994-4a73-9947-85b3671380dc",
-      "dateTime": "2023-03-06T06:26:20.717Z",
-      "date": "2023-03-06",
-      "name": "午餐",
-      "amount": "75",
+      "uuid": "4d33bf06-f3ae-4596-873a-c6be3378af0a",
+      "dateTime": "2023-03-11T07:07:04.482Z",
+      "date": "2023-03-11",
+      "name": "",
+      "amount": "200",
       "description": "",
-      "expenseCategoryId": 1,
-      "personalBankAccountId": 1,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "expenseCategoryId": 4,
+      "personalBankAccountId": 3,
+      "userId": "4",
       "id": 4
     },
     {
-      "uuid": "763589d5-3994-4a73-9947-85b3671380dc",
-      "dateTime": "2023-03-06T06:26:20.717Z",
-      "date": "2023-03-06",
-      "name": "午餐",
-      "amount": "80",
-      "description": "",
-      "expenseCategoryId": 1,
-      "personalBankAccountId": 1,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "id": 5
-    },
-    {
-      "uuid": "e032d292-0fd8-47e6-9001-0d7c1a874e57",
-      "dateTime": "2023-03-06T08:29:04.739Z",
-      "date": "2023-03-06",
-      "name": "儲值",
-      "amount": "1000",
-      "description": "",
-      "expenseCategoryId": 2,
-      "personalBankAccountId": 2,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "categoryId": 2,
-      "id": 6
-    },
-    {
-      "uuid": "ce469f8c-7efb-4e53-973d-91b605b3cc07",
-      "dateTime": "2023-03-06T08:38:05.773Z",
-      "date": "2023-03-06",
-      "name": "線",
-      "amount": "590",
-      "description": "",
-      "expenseCategoryId": 4,
-      "personalBankAccountId": 2,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "personalBankId": 1,
-      "id": 7,
-      "expenseCategory": {
-        "id": 4,
-        "name": "購物",
-        "iconName": "shopping_cart"
-      }
-    },
-    {
-      "uuid": "ce469f8c-7efb-4e53-973d-91b605b3cc07",
-      "dateTime": "2023-03-06T08:38:05.773Z",
-      "date": "2023-03-06",
-      "name": "線",
-      "amount": "300",
-      "description": "",
-      "expenseCategoryId": 3,
-      "personalBankAccountId": 1,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "personalBankId": 1,
-      "id": 8,
-      "expenseCategory": {
-        "id": 3,
-        "name": "娛樂",
-        "iconName": "sports_esports"
-      }
-    },
-    {
-      "uuid": "b1a2ec13-8d8d-44e1-8342-3ae6dd61fc36",
-      "dateTime": "2023-03-06T08:40:00.691Z",
-      "date": "2023-03-06",
-      "name": "儲值",
+      "uuid": "dd327948-9fd1-4066-b627-7a8bf5e9a698",
+      "dateTime": "2023-03-11T07:07:13.134Z",
+      "date": "2023-03-23",
+      "name": "",
       "amount": "300",
       "description": "",
       "expenseCategoryId": 2,
-      "personalBankAccountId": 1,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "id": 9
-    },
-    {
-      "uuid": "6b314e8d-3bdd-4ce2-bd9e-d3d8534c8dcf",
-      "dateTime": "2023-03-07T02:29:31.176Z",
-      "date": "2023-03-07",
-      "name": "",
-      "amount": "100",
-      "description": "",
-      "expenseCategoryId": 1,
-      "personalBankAccountId": 1,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "id": 10
-    },
-    {
-      "uuid": "d72ea04c-c42b-4da9-b293-9bc67a20d2b5",
-      "dateTime": "2023-03-07T05:35:44.306Z",
-      "date": "2023-03-07",
-      "name": "",
-      "amount": "3000",
-      "description": "",
-      "expenseCategoryId": 1,
-      "personalBankAccountId": 1,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "id": 11
-    }
-  ],
-  "incomes": [
-    {
-      "uuid": "196ff631-8a1a-493d-bfc4-e2728be77142",
-      "dateTime": "2023-03-07T03:15:39.754Z",
-      "date": "",
-      "name": "獎金",
-      "amount": "200",
-      "description": "",
-      "incomeCategoryId": 2,
-      "personalBankAccountId": 1,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "id": 1
-    },
-    {
-      "uuid": "a8c8f5b5-8a7e-47c4-9c78-8bc059d10e7c",
-      "dateTime": "2023-03-07T05:43:09.697Z",
-      "date": "2023-03-07",
-      "name": "公司薪水",
-      "amount": "3000",
-      "description": "",
-      "incomeCategoryId": 1,
-      "personalBankAccountId": 2,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
-      "id": 2,
+      "personalBankAccountId": 3,
+      "userId": "4",
+      "id": 5,
       "personalBankAccount": {
-        "total": "3000",
-        "name": "生活",
-        "bankName": "臺灣土地銀行",
-        "bankId": 2,
-        "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+        "total": "1000",
+        "name": "測試",
+        "bankName": "彰化商業銀行",
+        "bankId": 6,
+        "userId": "4",
         "autoIncome": 0,
         "autoIncomeDate": "",
         "autoExpense": 0,
         "autoExpenseDate": "",
-        "id": 2
+        "id": 3
       },
-      "incomeCategory": {
-        "id": 1,
-        "name": "薪水",
-        "iconName": ""
+      "expenseCategory": {
+        "id": 2,
+        "name": "交通",
+        "iconName": "directions_car"
       }
     },
     {
-      "uuid": "a8c8f5b5-8a7e-47c4-9c78-8bc059d10e7b",
-      "dateTime": "2023-03-07T05:43:09.697Z",
-      "date": "2023-03-07",
+      "uuid": "e778b213-727d-404d-80e1-a17ecb3038cd",
+      "dateTime": "2023-03-11T07:07:42.556Z",
+      "date": "2023-03-11",
       "name": "",
-      "amount": "3000",
+      "amount": "2000",
       "description": "",
-      "incomeCategoryId": 1,
-      "personalBankAccountId": 2,
-      "userId": "2",
-      "id": 3
+      "expenseCategoryId": 3,
+      "personalBankAccountId": 3,
+      "userId": "4",
+      "id": 7
+    },
+    {
+      "uuid": "07765846-dbf6-4666-9569-ea1db2a34361",
+      "dateTime": "2023-03-11T07:07:54.712Z",
+      "date": "",
+      "name": "",
+      "amount": "2000",
+      "description": "",
+      "expenseCategoryId": 3,
+      "personalBankAccountId": 3,
+      "userId": "4",
+      "id": 8
+    },
+    {
+      "uuid": "e670d46d-f343-4498-af5a-269f62df2e46",
+      "dateTime": "2023-03-11T07:08:07.245Z",
+      "date": "",
+      "name": "",
+      "amount": "2000",
+      "description": "",
+      "expenseCategoryId": 4,
+      "personalBankAccountId": 3,
+      "userId": "4",
+      "id": 9
+    },
+    {
+      "uuid": "6ecc655b-c7f5-4f1c-8511-dda7b9daf885",
+      "dateTime": "2023-03-11T07:18:39.193Z",
+      "date": "2023-03-11",
+      "name": "",
+      "amount": "300",
+      "description": "",
+      "expenseCategoryId": 3,
+      "personalBankAccountId": 3,
+      "userId": "4",
+      "id": 10
+    }
+  ],
+  "incomes": [
+    {
+      "uuid": "95e93ed1-1101-4fa2-a9ad-a5fb12b2dd9c",
+      "dateTime": "2023-03-11T07:07:21.481Z",
+      "date": "2023-03-11",
+      "name": "",
+      "amount": "200",
+      "description": "",
+      "expenseCategoryId": 3,
+      "personalBankAccountId": 3,
+      "userId": "4",
+      "id": 6,
+      "personalBankAccount": {
+        "total": "1000",
+        "name": "測試",
+        "bankName": "彰化商業銀行",
+        "bankId": 6,
+        "userId": "4",
+        "autoIncome": 0,
+        "autoIncomeDate": "",
+        "autoExpense": 0,
+        "autoExpenseDate": "",
+        "id": 3
+      },
+      "expenseCategory": {
+        "id": 3,
+        "name": "娛樂",
+        "iconName": "sports_esports"
+      },
+      "incomeCategoryId": 2
     }
   ],
   "expenseCategories": [

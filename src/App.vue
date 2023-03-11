@@ -28,4 +28,8 @@ img {
 .letter-1 {
   letter-spacing: 2px;
 }
+
+.max-vh-80 {
+  max-height: 80vh;
+}
 </style>

@@ -132,7 +132,7 @@ onMounted(() => {
         </div>
       </div>
       <div class="col-md-6">
-        <div class="min-vh-80 overflow-auto shadow p-4 rounded-4">
+        <div class="min-vh-80 max-vh-80 overflow-auto shadow p-4 rounded-4">
           <button type="button" class="add-bank btn rounded-4 mb-3 w-100">+ 新增帳戶</button>
           <ul class="list-unstyled">
             <li class="mb-3 bg-light rounded-4 shadow p-3" style="height: 7rem" v-for="list in bankAccountList" :key="list.id">

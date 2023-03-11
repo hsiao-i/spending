@@ -14,7 +14,7 @@ const submitLogin = async () => {
     const url = '/login';
     const res = await axios.post(url, user.value);
 
-    localStorage.setItem('userId', res.data.user.uuid);
+    localStorage.setItem('userId', res.data.user.id);
     document.cookie = `spendingToken=${res.data.accessToken}`;
     alert('成功登入');
     router.push('/expense');

@@ -81,7 +81,7 @@ const closeModal = () => {
   <div class="container">
     <div class="row">
       <div class="col-md-6 ">
-        <div class="h-75 overflow-auto shadow p-4 rounded-4">
+        <div class="min-vh-80 max-vh-80 overflow-auto shadow p-4 rounded-4">
 
           <h4>帳戶總額</h4>
           <ul class="list-unstyled">
@@ -95,7 +95,7 @@ const closeModal = () => {
         </div>
       </div>
       <div class="col-md-6">
-        <div class="bg-light shadow rounded-3 p-4 h-75 overflow-auto">
+        <div class="bg-light shadow rounded-3 p-4 min-vh-80 max-vh-80 overflow-auto">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
             <button type="button" class="btn btn-outline-primary" @click="openModal('single')">+ 記錄單筆</button>
             <button type="button" class="btn btn-outline-primary" @click="openModal('multiple')">+ 記錄多筆 </button>
