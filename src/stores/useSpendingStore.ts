@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import type { Expense, Income } from '@/utilities/types';
-import { ref } from 'vue';
+import { ref, watch, computed } from 'vue';
 import axios from '@/utilities/http';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -73,6 +73,40 @@ export const useSpendingStore = defineStore('spending', () => {
     }
   };
 
+  interface RefactorCalculate {
+    date: string;
+    amount: number;
+    categoryName: string | undefined;
+  }
+
+  // 取出 expense 後重組
+
+  const calculate = ref<RefactorCalculate[]>([]);
+  watch(
+    () => expenseList.value,
+    () => {
+      const nowMonth = new Date().toISOString().slice(0, 7);
+      const filterMonthList = expenseList.value.filter((expense) => expense.date.slice(0, 7) === nowMonth);
+      const refactorList = filterMonthList.map((expense) => ({
+        date: expense.date,
+        amount: Number(expense.amount),
+        categoryName: expense.expenseCategory?.name,
+      }));
+      calculate.value = refactorList;
+    },
+  );
+
+  const refactor = computed(() => calculate.value
+    .reduce((acc: Record<string, unknown>, item) => {
+      const { categoryName, amount } = item;
+      if (categoryName! in acc) {
+        acc[categoryName!] = (acc[categoryName!] as number) + amount;
+      } else {
+        acc[categoryName!] = amount;
+      }
+      return acc;
+    }, {}));
+
   return {
     expenseList,
     getExpense,
@@ -82,5 +116,7 @@ export const useSpendingStore = defineStore('spending', () => {
     incomeList,
     getIncomeList,
     requestState,
+    calculate,
+    refactor,
   };
 });

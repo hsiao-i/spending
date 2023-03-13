@@ -1,22 +1,45 @@
 <script setup lang="ts">
 import { useSpendingStore } from '@/stores/useSpendingStore';
-import { onMounted, computed, ref } from 'vue';
+import {
+  onMounted, computed, ref, watch,
+} from 'vue';
 import type { ChartData, ChartOptions } from 'chart.js';
 import PieChart from '@/components/PieChart.vue';
 
 const spendingStore = useSpendingStore();
 
+interface RefactorCalculate {
+  date: string;
+  amount: number;
+  categoryName: string | undefined;
+}
+
 // 取出 expense 後重組
-const calculate = computed(() => spendingStore.expenseList
-  .map((expense) => ({
-    date: expense.date,
-    amount: Number(expense.amount),
-    categoryName: expense.expenseCategory?.name,
-  }))
-  .filter((item) => {
-    console.log(new Date().toISOString().slice(0, 7));
-    return item.date.slice(0, 7) === new Date().toISOString().slice(0, 7);
-  }));
+
+const calculate = ref<RefactorCalculate[]>([]);
+watch(
+  () => spendingStore.expenseList,
+  () => {
+    const nowMonth = new Date().toISOString().slice(0, 7);
+    const filterMonthList = spendingStore.expenseList.filter((expense) => expense.date.slice(0, 7) === nowMonth);
+    const refactorList = filterMonthList.map((expense) => ({
+      date: expense.date,
+      amount: Number(expense.amount),
+      categoryName: expense.expenseCategory?.name,
+    }));
+    calculate.value = refactorList;
+  },
+);
+// const calculate = computed(() => spendingStore.expenseList
+//   .map((expense) => ({
+//     date: expense.date,
+//     amount: Number(expense.amount),
+//     categoryName: expense.expenseCategory?.name,
+//   }))
+//   .filter((item) => {
+//     console.log(new Date().toISOString().slice(0, 7));
+//     return item.date.slice(0, 7) === new Date().toISOString().slice(0, 7);
+//   }));
 
 /* eslint no-undef: "error" */
 const refactor = computed(() => calculate.value
@@ -32,7 +55,7 @@ const refactor = computed(() => calculate.value
 
 // 圖表
 const expenseChartDate = ref<ChartData<'pie'>>({
-  labels: Object.keys(refactor.value),
+  labels: Object.keys(spendingStore.refactor),
   // labels: ['飲食', '交通', '購物', '娛樂', 'undefined'],
   datasets: [
     {
@@ -72,7 +95,10 @@ onMounted(async () => {
 </script>
 
 <template>
-
+  <!-- {{ spendingStore.expenseList }} -->
+  {{ spendingStore.refactor }}
+  {{ refactor.value }}
+  <!-- {{ spendingStore.calculate }} -->
   圖表分析
   <PieChart
     :expense-data="expenseChartDate"
