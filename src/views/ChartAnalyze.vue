@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { useSpendingStore } from '@/stores/useSpendingStore';
+// import {
+//   onMounted, computed, ref, watch,
+// } from 'vue';
 import {
-  onMounted, computed, ref, watch,
+  onMounted, ref, watch, computed,
 } from 'vue';
+
 import type { ChartData, ChartOptions } from 'chart.js';
 import PieChart from '@/components/PieChart.vue';
 
@@ -30,6 +34,7 @@ watch(
     calculate.value = refactorList;
   },
 );
+
 // const calculate = computed(() => spendingStore.expenseList
 //   .map((expense) => ({
 //     date: expense.date,
@@ -53,14 +58,16 @@ const refactor = computed(() => calculate.value
     return acc;
   }, {}));
 
+// const refactor = computed(() => spendingStore.refactor);
+const loading = ref(false);
 // 圖表
-const expenseChartDate = ref<ChartData<'pie'>>({
-  labels: Object.keys(spendingStore.refactor),
+const expenseChartData = ref<ChartData<'pie'>>({
+  labels: [],
   // labels: ['飲食', '交通', '購物', '娛樂', 'undefined'],
   datasets: [
     {
       label: '每月支出類別比例',
-      data: [100, 200, 300, 590, 100],
+      data: [],
       // data: Object.values(refactor.value),
       backgroundColor: [
         '#77CEFF',
@@ -79,29 +86,55 @@ const chartOptions = ref<ChartOptions<'pie'>>({
   plugins: {
     title: {
       display: true,
-      text: 'title',
+      text: '每月支出類別比例',
     },
   },
 });
 
 onMounted(async () => {
-  await spendingStore.getExpense();
-  expenseChartDate.value.labels = Object.keys(refactor.value);
-  console.log(calculate.value);
-  console.log(refactor.value);
-  console.log(Object.keys(refactor.value));
-  // console.log(Object.values(refactor.value));
+  loading.value = false;
+  try {
+    await spendingStore.getExpense();
+    expenseChartData.value.labels = Object.keys(refactor.value);
+    expenseChartData.value.datasets[0].data = Object.values(refactor.value);
+    loading.value = true;
+  } catch (err) {
+    console.log(err);
+  }
 });
+
+watch(
+  () => refactor.value,
+  // () => spendingStore.refactor,
+  () => {
+    // expenseChartDate.value.labels = ['1', '2', '3', '4', '5'];
+    expenseChartData.value.labels = Object.keys(refactor.value);
+    // expenseChartData.value.labels = Object.keys(spendingStore.refactor);
+    expenseChartData.value.datasets[0].data = Object.values(refactor.value);
+  },
+  {
+    immediate: true,
+  },
+);
+
+// onUpdated(() => {
+//   expenseChartDate.value.labels = Object.keys(spendingStore.refactor);
+// });
+
 </script>
 
 <template>
   <!-- {{ spendingStore.expenseList }} -->
-  {{ spendingStore.refactor }}
-  {{ refactor.value }}
+  {{ refactor }}
+  <!-- {{ Object.keys(spendingStore.refactor) }} -->
+  {{ Object.keys(refactor) }}
+  {{ Object.values(refactor) }}
+  <!-- {{ refactor.value }} -->
   <!-- {{ spendingStore.calculate }} -->
   圖表分析
   <PieChart
-    :expense-data="expenseChartDate"
-    :chartOptions="chartOptions"
+    v-if="loading"
+    :expense-data="expenseChartData"
+    :chart-options="chartOptions"
   />
 </template>

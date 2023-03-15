@@ -3,6 +3,7 @@ import type { Expense, Income } from '@/utilities/types';
 import { ref, watch, computed } from 'vue';
 import axios from '@/utilities/http';
 import { v4 as uuidv4 } from 'uuid';
+import type { ChartData, ChartOptions } from 'chart.js';
 
 export const useSpendingStore = defineStore('spending', () => {
   // 取得支出列表
@@ -82,6 +83,7 @@ export const useSpendingStore = defineStore('spending', () => {
   // 取出 expense 後重組
 
   const calculate = ref<RefactorCalculate[]>([]);
+
   watch(
     () => expenseList.value,
     () => {
@@ -116,7 +118,7 @@ export const useSpendingStore = defineStore('spending', () => {
     incomeList,
     getIncomeList,
     requestState,
-    calculate,
-    refactor,
+    // calculate,
+    // refactor,
   };
 });
