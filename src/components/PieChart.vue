@@ -52,11 +52,12 @@ ChartJS.register(
 // }
 
 const props = defineProps<{
-  expenseData: ChartData<'pie'>,
+  chartId: string,
+  chartData: ChartData<'pie'>,
   chartOptions: ChartOptions<'pie'>
 }>();
-const { expenseData, chartOptions } = toRefs(props);
-// const expensePieChartDate = ref<ChartData<'pie'>>({
+const { chartData, chartOptions } = toRefs(props);
+// const dexpensePieChartDate = ref<ChartData<'pie'>>({
 //   // labels: Object.keys(refactor.value),
 //   labels: ['飲食', '交通', '購物', '娛樂', 'undefined'],
 //   datasets: [
@@ -89,7 +90,8 @@ const { expenseData, chartOptions } = toRefs(props);
 <template>
   <div class="w-75">
     <Pie
-      :data="expenseData"
+      :id="chartId"
+      :data="chartData"
       :options="chartOptions"
     />
   </div>

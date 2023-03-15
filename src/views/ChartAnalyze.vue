@@ -46,8 +46,34 @@ watch(
 //     return item.date.slice(0, 7) === new Date().toISOString().slice(0, 7);
 //   }));
 
-/* eslint no-undef: "error" */
 const refactor = computed(() => calculate.value
+  .reduce((acc: Record<string, unknown>, item) => {
+    const { categoryName, amount } = item;
+    if (categoryName! in acc) {
+      acc[categoryName!] = (acc[categoryName!] as number) + amount;
+    } else {
+      acc[categoryName!] = amount;
+    }
+    return acc;
+  }, {}));
+
+// 重新處理 incom 資料
+const incomeCalculate = ref<RefactorCalculate[]>([]);
+watch(
+  () => spendingStore.incomeList,
+  () => {
+    const nowMonth = new Date().toISOString().slice(0, 7);
+    const filterMonthList = spendingStore.incomeList.filter((income) => income.date.slice(0, 7) === nowMonth);
+    const refactorList = filterMonthList.map((income) => ({
+      date: income.date,
+      amount: Number(income.amount),
+      categoryName: income.incomeCategory?.name,
+    }));
+    incomeCalculate.value = refactorList;
+  },
+);
+
+const incomeRefactor = computed(() => incomeCalculate.value
   .reduce((acc: Record<string, unknown>, item) => {
     const { categoryName, amount } = item;
     if (categoryName! in acc) {
@@ -60,7 +86,7 @@ const refactor = computed(() => calculate.value
 
 // const refactor = computed(() => spendingStore.refactor);
 const loading = ref(false);
-// 圖表
+// 支出圖表設置
 const expenseChartData = ref<ChartData<'pie'>>({
   labels: [],
   // labels: ['飲食', '交通', '購物', '娛樂', 'undefined'],
@@ -70,11 +96,35 @@ const expenseChartData = ref<ChartData<'pie'>>({
       data: [],
       // data: Object.values(refactor.value),
       backgroundColor: [
-        '#77CEFF',
-        '#0079AF',
-        '#123E6B',
-        '#97B0C4',
-        '#A5C8ED',
+        '#7693B5',
+        '#8CB9BF',
+        '#EECA80',
+        '#D98383',
+        '#E9BAAA',
+        '#D49550',
+
+      ],
+    },
+  ],
+});
+
+// 收入圖表設置
+const incomeChartData = ref<ChartData<'pie'>>({
+  labels: [],
+  // labels: ['飲食', '交通', '購物', '娛樂', 'undefined'],
+  datasets: [
+    {
+      label: '每月支出類別比例',
+      data: [],
+      // data: Object.values(refactor.value),
+      backgroundColor: [
+        '#7693B5',
+        '#8CB9BF',
+        '#EECA80',
+        '#D98383',
+        '#E9BAAA',
+        '#D49550',
+
       ],
     },
   ],
@@ -95,8 +145,14 @@ onMounted(async () => {
   loading.value = false;
   try {
     await spendingStore.getExpense();
+    await spendingStore.getIncomeList();
+
     expenseChartData.value.labels = Object.keys(refactor.value);
     expenseChartData.value.datasets[0].data = Object.values(refactor.value);
+
+    incomeChartData.value.labels = Object.keys(incomeRefactor.value);
+    incomeChartData.value.datasets[0].data = Object.values(incomeRefactor.value);
+
     loading.value = true;
   } catch (err) {
     console.log(err);
@@ -105,11 +161,8 @@ onMounted(async () => {
 
 watch(
   () => refactor.value,
-  // () => spendingStore.refactor,
   () => {
-    // expenseChartDate.value.labels = ['1', '2', '3', '4', '5'];
     expenseChartData.value.labels = Object.keys(refactor.value);
-    // expenseChartData.value.labels = Object.keys(spendingStore.refactor);
     expenseChartData.value.datasets[0].data = Object.values(refactor.value);
   },
   {
@@ -117,24 +170,50 @@ watch(
   },
 );
 
-// onUpdated(() => {
-//   expenseChartDate.value.labels = Object.keys(spendingStore.refactor);
-// });
+watch(
+  () => incomeRefactor.value,
+  () => {
+    incomeChartData.value.labels = Object.keys(incomeRefactor.value);
+    incomeChartData.value.datasets[0].data = Object.values(incomeRefactor.value);
+  },
+  {
+    immediate: true,
+  },
+);
 
 </script>
 
 <template>
-  <!-- {{ spendingStore.expenseList }} -->
   {{ refactor }}
   <!-- {{ Object.keys(spendingStore.refactor) }} -->
   {{ Object.keys(refactor) }}
   {{ Object.values(refactor) }}
   <!-- {{ refactor.value }} -->
   <!-- {{ spendingStore.calculate }} -->
-  圖表分析
-  <PieChart
-    v-if="loading"
-    :expense-data="expenseChartData"
-    :chart-options="chartOptions"
-  />
+  {{ incomeRefactor }}
+  <h2>圖表分析</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h3 class="text-center">每月支出類別比例</h3>
+        <PieChart
+          v-if="loading"
+          :chart-id="'expense-category-chart'"
+          :chart-data="expenseChartData"
+          :chart-options="chartOptions"
+        />
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-center">每月收入類別比例</h3>
+        <PieChart
+          v-if="loading"
+          :chart-id="'income-category-chart'"
+          :chart-data="incomeChartData"
+          :chart-options="chartOptions"
+        />
+      </div>
+    </div>
+
+  </div>
+
 </template>
