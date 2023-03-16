@@ -23,6 +23,10 @@ const router = createRouter({
           name: 'assets',
           component: () => import('../views/RecordAssets.vue'),
         },
+        {
+          path: 'charts',
+          component: () => import('../views/ChartAnalyze.vue'),
+        },
       ],
     },
     {

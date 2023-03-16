@@ -42,6 +42,30 @@
       "autoIncomeDate": "",
       "autoExpense": 0,
       "autoExpenseDate": "",
+      "id": 1
+    },
+    {
+      "total": "3000",
+      "name": "生活",
+      "bankName": "臺灣土地銀行",
+      "bankId": 2,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "autoIncome": 0,
+      "autoIncomeDate": "",
+      "autoExpense": 0,
+      "autoExpenseDate": "",
+      "id": 2
+    },
+    {
+      "total": "2000",
+      "name": "旅遊",
+      "bankName": "臺灣土地銀行",
+      "bankId": 2,
+      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "autoIncome": 0,
+      "autoIncomeDate": "",
+      "autoExpense": 0,
+      "autoExpenseDate": "",
       "id": 3
     }
   ],
