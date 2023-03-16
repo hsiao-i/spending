@@ -78,9 +78,13 @@ const closeModal = () => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container my-5">
+    {{ totalStore.monthBankTotal }}
+    {{ totalStore.incomeMonthTotal }}
+    {{ totalStore.calculateMonthTotal }}
+    <h2 class="mb-5">當月收支記錄</h2>
     <div class="row">
-      <div class="col-md-6 ">
+      <div class="col-md-6">
         <div class="min-vh-80 max-vh-80 overflow-auto shadow p-4 rounded-4">
 
           <h4>帳戶總額</h4>

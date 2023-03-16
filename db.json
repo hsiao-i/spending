@@ -49,7 +49,7 @@
       "name": "生活",
       "bankName": "臺灣土地銀行",
       "bankId": 2,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "userId": "4",
       "autoIncome": 0,
       "autoIncomeDate": "",
       "autoExpense": 0,
@@ -61,7 +61,7 @@
       "name": "旅遊",
       "bankName": "臺灣土地銀行",
       "bankId": 2,
-      "userId": "412afe52-3e61-4a41-aa72-dcf540b3a21e",
+      "userId": "4",
       "autoIncome": 0,
       "autoIncomeDate": "",
       "autoExpense": 0,
@@ -397,6 +397,42 @@
       "personalBankAccountId": 3,
       "userId": "4",
       "id": 10
+    },
+    {
+      "uuid": "a0184962-8c40-4bc8-a16a-596327993f26",
+      "dateTime": "2023-03-16T01:27:19.057Z",
+      "date": "2023-03-16",
+      "name": "",
+      "amount": "200",
+      "description": "",
+      "expenseCategoryId": 2,
+      "personalBankAccountId": 2,
+      "userId": "4",
+      "id": 11
+    },
+    {
+      "uuid": "a9dd178f-d0bf-4c04-8367-950d15a06c22",
+      "dateTime": "2023-03-16T02:21:26.884Z",
+      "date": "2023-03-16",
+      "name": "",
+      "amount": "2000",
+      "description": "",
+      "expenseCategoryId": 2,
+      "personalBankAccountId": 1,
+      "userId": "4",
+      "id": 12
+    },
+    {
+      "uuid": "e0ff8414-7eef-433d-87d4-71a08218bbc3",
+      "dateTime": "2023-03-16T02:21:53.368Z",
+      "date": "2023-03-16",
+      "name": "",
+      "amount": "300",
+      "description": "",
+      "expenseCategoryId": 3,
+      "personalBankAccountId": 1,
+      "userId": "4",
+      "id": 13
     }
   ],
   "incomes": [
