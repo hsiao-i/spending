@@ -133,12 +133,12 @@ const incomeChartData = ref<ChartData<'pie'>>({
 const chartOptions = ref<ChartOptions<'pie'>>({
   responsive: true,
   maintainAspectRatio: false,
-  plugins: {
-    title: {
-      display: true,
-      text: '每月支出類別比例',
-    },
-  },
+  // plugins: {
+  //   title: {
+  //     display: true,
+  //     text: '每月支出類別比例',
+  //   },
+  // },
 });
 
 onMounted(async () => {
@@ -184,36 +184,32 @@ watch(
 </script>
 
 <template>
-  {{ refactor }}
-  <!-- {{ Object.keys(spendingStore.refactor) }} -->
-  {{ Object.keys(refactor) }}
-  {{ Object.values(refactor) }}
-  <!-- {{ refactor.value }} -->
-  <!-- {{ spendingStore.calculate }} -->
-  {{ incomeRefactor }}
-  <h2>圖表分析</h2>
   <div class="container">
+    <h2 class="mb-3">當月消費圖表分析</h2>
     <div class="row">
       <div class="col-md-6">
-        <h3 class="text-center">每月支出類別比例</h3>
-        <PieChart
-          v-if="loading"
-          :chart-id="'expense-category-chart'"
-          :chart-data="expenseChartData"
-          :chart-options="chartOptions"
-        />
+        <div class="bg-white rounded-3 shadow p-4">
+          <h3 class="text-center h5">當月<span class="text-danger fw-bold">支出</span>類別比例</h3>
+          <PieChart
+            v-if="loading"
+            :chart-id="'expense-category-chart'"
+            :chart-data="expenseChartData"
+            :chart-options="chartOptions"
+          />
+        </div>
+
       </div>
       <div class="col-md-6">
-        <h3 class="text-center">每月收入類別比例</h3>
-        <PieChart
-          v-if="loading"
-          :chart-id="'income-category-chart'"
-          :chart-data="incomeChartData"
-          :chart-options="chartOptions"
-        />
+        <div class="bg-white rounded-3 shadow p-4">
+          <h3 class="text-center h5">當月<span class="text-success fw-bold">收入</span>類別比例</h3>
+          <PieChart
+            v-if="loading"
+            :chart-id="'income-category-chart'"
+            :chart-data="incomeChartData"
+            :chart-options="chartOptions"
+          />
+        </div>
       </div>
     </div>
-
   </div>
-
 </template>

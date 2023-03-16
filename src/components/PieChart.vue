@@ -88,7 +88,7 @@ const { chartData, chartOptions } = toRefs(props);
 
 </script>
 <template>
-  <div class="w-75">
+  <div class="w-75 mx-auto">
     <Pie
       :id="chartId"
       :data="chartData"
