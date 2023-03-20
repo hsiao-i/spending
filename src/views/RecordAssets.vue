@@ -8,7 +8,9 @@ import axios from '@/utilities/http';
 import type { BankAccount } from '@/utilities/types';
 import BankAssetUpdate from '@/components/BankAssetUpdate.vue';
 import BankAssetDelete from '@/components/BankAssetDelete.vue';
+import { useCalculateStore } from '@/stores/useCalculateStore';
 
+const totalStore = useCalculateStore();
 // 開啟 modal
 const modalShare = ref();
 
@@ -77,6 +79,7 @@ onMounted(() => {
 </script>
 
 <template>
+  {{ totalStore.singleBankTotal }}
   <h2>資產管理</h2>
   <button type="button" class="btn btn-primary" @click="openModal('new', updateBankAccount)">＋ 新增帳戶</button>
   <div class="container">

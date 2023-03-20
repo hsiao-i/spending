@@ -114,7 +114,7 @@ const incomeChartData = ref<ChartData<'pie'>>({
   // labels: ['飲食', '交通', '購物', '娛樂', 'undefined'],
   datasets: [
     {
-      label: '每月支出類別比例',
+      label: '每月收入類別比例',
       data: [],
       // data: Object.values(refactor.value),
       backgroundColor: [
@@ -184,8 +184,8 @@ watch(
 </script>
 
 <template>
-  <div class="container">
-    <h2 class="mb-3">當月消費圖表分析</h2>
+  <div class="container mt-5">
+    <h2 class="mb-5">當月消費圖表分析</h2>
     <div class="row">
       <div class="col-md-6">
         <div class="bg-white rounded-3 shadow p-4">

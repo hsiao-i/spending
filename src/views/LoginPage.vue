@@ -17,7 +17,7 @@ const submitLogin = async () => {
     localStorage.setItem('userId', res.data.user.id);
     document.cookie = `spendingToken=${res.data.accessToken}`;
     alert('成功登入');
-    router.push('/expense');
+    router.push('/spending');
   } catch (err) {
     console.log(err);
   }

@@ -298,30 +298,6 @@
   ],
   "expenses": [
     {
-      "uuid": "f813abc9-ff56-4814-820b-267a8d94046e",
-      "dateTime": "2023-03-11T06:54:01.766Z",
-      "date": "2023-03-11",
-      "name": "",
-      "amount": "200",
-      "description": "",
-      "expenseCategoryId": 3,
-      "personalBankAccountId": 3,
-      "userId": "4",
-      "id": 3
-    },
-    {
-      "uuid": "4d33bf06-f3ae-4596-873a-c6be3378af0a",
-      "dateTime": "2023-03-11T07:07:04.482Z",
-      "date": "2023-03-11",
-      "name": "",
-      "amount": "200",
-      "description": "",
-      "expenseCategoryId": 4,
-      "personalBankAccountId": 3,
-      "userId": "4",
-      "id": 4
-    },
-    {
       "uuid": "dd327948-9fd1-4066-b627-7a8bf5e9a698",
       "dateTime": "2023-03-11T07:07:13.134Z",
       "date": "2023-03-23",
@@ -433,6 +409,18 @@
       "personalBankAccountId": 1,
       "userId": "4",
       "id": 13
+    },
+    {
+      "uuid": "17492d54-be0e-4acf-952e-7b2f8b3b853d",
+      "dateTime": "2023-03-20T13:51:09.667Z",
+      "date": "2023-03-20",
+      "name": "",
+      "amount": "2000",
+      "description": "",
+      "expenseCategoryId": 4,
+      "personalBankAccountId": 2,
+      "userId": "4",
+      "id": 14
     }
   ],
   "incomes": [

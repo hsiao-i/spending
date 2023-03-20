@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row align-items-center mb-9 ">
           <div class="col-md-6">
-            <h2 class="h1 text-danger fw-bold mb-3 fm-fre letter-1">ExpenSaver</h2>
+            <h2 class="h1 text-danger fw-bold mb-3 fm-fre letter-1 text-break">ExpenSaver</h2>
             <p class="fs-2 fw-bold mb-4">懶人快速記帳 <br>
               一次記錄多筆常用開銷
             </p>
@@ -75,46 +75,60 @@
       </div>
     </div>
     <div class="position-relative">
-      <div class="container mb-8 ">
+      <div class="container mb-8">
         <h2 class="text-center mb-3">懶人記帳，解決這些煩惱！</h2>
         <p class="text-center text-secondary mb-6">
           快速記帳功能讓記帳更為方便，同時可設定每月固定收支，減省重複性行為。且透過圖表報表了解消費習費，更掌握自己的財務運用情形。
         </p>
         <div class="row g-4">
           <div class="col-md-6">
-            <img src="@/assets/images/decoration-5.png" alt="decoration" class="z-index position-absolute" style="left:0.5rem; top:5rem">
-            <div class="mb-0 text-center bg-white shadow rounded-4 py-5">
+            <img
+              src="@/assets/images/decoration-5.png"
+              alt="decoration"
+              class="z-index position-absolute d-none d-sm-block"
+              style="left:0.5rem; top:5rem">
+            <div class="mb-0 text-center bg-white shadow rounded-4 py-5 px-2">
               <div class="mb-4">
                 <img src="@/assets/images/banner-4-1-multipleRecord.png" alt="multiple record" width="95%">
               </div>
               <div class="text-center">
-                <h3 class="h5 mb-3">一鍵記錄常用收支</h3>
+                <h3 class="h5 mb-md-3 mb-2">一鍵記錄常用收支</h3>
                 <p>早餐午餐晚餐一次記錄</p>
               </div>
             </div>
           </div>
 
           <div class="col-md-6 position-relative">
-            <img src="@/assets/images/decoration-8.png" alt="decoration" class="z-index-top position-absolute" style="right: -1rem; bottom: 4rem">
-            <div class="text-center bg-white shadow rounded-4 py-5">
+            <img
+              src="@/assets/images/decoration-8.png"
+              alt="decoration"
+              class="z-index-top position-absolute r-deco d-none d-sm-block"
+              style="right: 0rem; bottom: 4rem"
+              width="15%"
+            >
+            <div class="text-center bg-white shadow rounded-4 py-5 px-2">
               <div class="mb-4">
                 <img src="@/assets/images/banner-4-2-autoRecord.png" alt="auto record" width="95%">
               </div>
               <div class="text-center">
-                <h3 class="h5 mb-3">自動記錄每月固定收支</h3>
+                <h3 class="h5 mb-md-3 mb-2">自動記錄每月固定收支</h3>
                 <p>每月自動記錄薪水和固定消費</p>
               </div>
             </div>
           </div>
 
           <div class="col-md-6 position-relative">
-            <img src="@/assets/images/decoration-6.png" alt="decoration" class="z-index-top position-absolute" style="bottom: 5rem; left: -2rem">
-            <div class="text-center bg-white shadow rounded-4 py-5">
+            <img
+              src="@/assets/images/decoration-6.png"
+              alt="decoration"
+              class="z-index-top position-absolute d-none d-sm-block"
+              style="bottom: 5rem; left: -2rem">
+            <div class="text-center bg-white shadow rounded-4 py-5 px-2">
               <div class="mb-4">
                 <img src="@/assets/images/banner-4-3-bankRecord.png" alt="bank record" width="95%">
               </div>
               <div class="text-center">
-                <h3 class="h5 mb-3">分帳戶管理</h3>
+                <h3 class="h5 mb-md-3 mb-2">分帳戶管理</h3>
                 <p>多個帳戶個別記錄收支</p>
               </div>
             </div>
@@ -124,38 +138,49 @@
             <img
               src="@/assets/images/decoration-4.png"
               alt="decoration"
-              class="z-index position-absolute"
-              style="top: 4rem; right: -8rem; transform: rotate(10deg)">
-            <div class="text-center bg-white shadow rounded-4 py-5">
+              class="z-index position-absolute r-deco d-none d-sm-block"
+              style="top: 4rem; right: 0rem; transform: rotate(10deg)"
+              width="15%">
+            <div class="text-center bg-white shadow rounded-4 py-5 px-2">
               <div class="mb-4">
                 <img src="@/assets/images/banner-4-4-goal.png" alt="goal" width="95%">
               </div>
               <div class="text-center">
-                <h3 class="h5 mb-3">設定財務目標</h3>
+                <h3 class="h5 mb-md-3 mb-2">設定財務目標</h3>
                 <p>有目標讓記帳更有動力</p>
               </div>
             </div>
           </div>
           <div class="col-md-6 position-relative">
-            <img src="@/assets/images/decoration-3.png" alt="decoration" class="z-index position-absolute" style="top: 7rem; left: -8rem;">
-            <div class="text-center bg-white shadow rounded-4 py-5">
+            <img
+              src="@/assets/images/decoration-3.png"
+              alt="decoration"
+              class="z-index position-absolute d-none d-sm-block"
+              style="top: 7rem; left: -8rem;">
+            <div class="text-center bg-white shadow rounded-4 py-5 px-2">
               <div class="mb-4">
                 <img src="@/assets/images/banner-4-5-chart.png" alt="chart" width="95%">
               </div>
               <div class="text-center">
-                <h3 class="h5 mb-3">圖表分析</h3>
+                <h3 class="h5 mb-md-3 mb-2">圖表分析</h3>
                 <p>藉以了解自己的消費習慣</p>
               </div>
             </div>
           </div>
           <div class="col-md-6 position-relative">
-            <img src="@/assets/images/decoration-7.png" alt="decoration" class="z-index-top position-absolute" style="bottom: 5rem; right: -2rem;">
-            <div class="text-center bg-white shadow rounded-4 py-5">
+            <img
+              src="@/assets/images/decoration-7.png"
+              alt="decoration"
+              class="z-index-top position-absolute r-deco d-none d-sm-block"
+              style="bottom: 5rem; right: 0rem;"
+              width="15%"
+            >
+            <div class="text-center bg-white shadow rounded-4 py-5 px-2">
               <div class="mb-4">
                 <img src="@/assets/images/banner-4-6-sort.png" alt="sort" width="95%">
               </div>
               <div class="text-center">
-                <h3 class="h5 mb-3">每月支出金額前三名</h3>
+                <h3 class="h5 mb-md-3 mb-2">每月支出金額前三名</h3>
                 <p>觀察自己是否有不必要的花費</p>
               </div>
             </div>
@@ -163,9 +188,6 @@
         </div>
       </div>
     </div>
-
-    <!-- </div> -->
-
   </main>
 
 </template>
@@ -190,6 +212,19 @@
 }
 .z-index-top {
   z-index: 20;
+}
+
+/* .r-deco {
+  right: 0rem !important;
+  width: 15% !important;
+} */
+
+@media (max-width: 912px) {
+  /* .r-deco  {
+  width: 10%;
+  right: 1rem !important;
+  display: none;
+  } */
 }
 
 </style>

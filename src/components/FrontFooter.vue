@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row text-white">
         <div class="col-md-4 mb-4">
-          <h2 class="h3 mb-2 fm-fre letter-1">ExpenSaver</h2>
+          <h2 class="h3 mb-2 fm-fre letter-1 text-break">ExpenSaver</h2>
           <p>讓你更順利記帳，達成理財目標！</p>
         </div>
         <div class="col-md-4 mb-4">
@@ -14,7 +14,7 @@
               email
             </span>
             <!-- </div> -->
-            <p class="mb-0">eva090029@gmail.com</p>
+            <p class="mb-0 text-break">eva090029@gmail.com</p>
           </div>
 
         </div>

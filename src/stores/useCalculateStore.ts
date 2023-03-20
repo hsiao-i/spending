@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import {
-  onMounted, ref, watch, computed,
+  onMounted, ref, computed,
 } from 'vue';
 import type { MonthBankTotal } from '@/utilities/types';
 // import { usePersonalBank } from './usePersonalBank';
@@ -63,18 +63,30 @@ export const useCalculateStore = defineStore('calculate', () => {
   //   },
   // );
 
-  const expenseTotal = computed<number>(() => spendingStore.expenseList.reduce((total: number, expense) => total + Number(expense.amount), 0));
+  const expenseMonthTotal = computed<number>(() => spendingStore.expenseList.reduce((total: number, expense) => total + Number(expense.amount), 0));
 
   const incomeMonthTotal = computed<number>(() => spendingStore.incomeList.reduce((total: number, income) => total + Number(income.amount), 0));
 
-  const calculateMonthTotal = computed<number>(() => incomeMonthTotal.value - expenseTotal.value);
+  const calculateMonthTotal = computed<number>(() => incomeMonthTotal.value - expenseMonthTotal.value);
 
   // console.log(monthBankTotal.value);
+
+  const singleBankTotal = computed(() => spendingStore.expenseList.reduce((acc: Record<string, unknown>, item) => {
+    const { personalBankAccount, amount } = item;
+    if (personalBankAccount?.bankName! in acc) {
+      acc[personalBankAccount?.bankName!] = (acc[personalBankAccount?.bankName!] as number) + Number(amount);
+    } else {
+      acc[personalBankAccount?.bankName!] = amount;
+    }
+    return acc;
+  }, {}));
+
   return {
     monthBankTotal,
     incomeMonthTotal,
-    expenseTotal,
+    expenseMonthTotal,
     calculateMonthTotal,
+    singleBankTotal,
   };
   //  monthBankTotal,
 });

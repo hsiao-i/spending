@@ -33,7 +33,7 @@ onMounted(() => {
   bankStore.getBankAccountList();
   // totalStore.calculateTotal();
   // console.log(spendingStore.expenseList);
-  console.log(totalStore.monthBankTotal);
+  console.log(totalStore.expenseMonthTotal);
 });
 
 const modalShare = ref();
@@ -79,30 +79,40 @@ const closeModal = () => {
 
 <template>
   <div class="container my-5">
-    {{ totalStore.monthBankTotal }}
-    {{ totalStore.incomeMonthTotal }}
-    {{ totalStore.calculateMonthTotal }}
     <h2 class="mb-5">當月收支記錄</h2>
     <div class="row">
-      <div class="col-md-6">
-        <div class="min-vh-80 max-vh-80 overflow-auto shadow p-4 rounded-4">
+      <div class="col-md-6 mb-5">
+        <div class="min-vh-80 max-vh-80 overflow-auto shadow p-4 rounded-4 bg-light">
 
-          <h4>帳戶總額</h4>
-          <ul class="list-unstyled">
-            <li class="mb-3 bg-light rounded-4 shadow p-3" style="height: 7rem" v-for="list in bankStore.personalBankAccountList" :key="list.id">
+          <!-- <h4>帳戶總額</h4> -->
+          <ul class="list-unstyled d-flex align-items-center flex-column">
+            <!-- <li class="mb-3 rounded-4 shadow p-3" style="height: 7rem" v-for="list in bankStore.personalBankAccountList" :key="list.id">
               <p class=" h5">{{ list.name }}
                 <span class="h6"> ({{ list.bank?.name }})</span>
               </p>
               <p class="h4 text-center">{{ list.total }}</p>
+            </li> -->
+            <li class="mb-3 rounded-4 shadow p-3" style="height: 7rem">
+              <h5>當月總額</h5>
+              <p class="text-center h4 text-primary">{{ totalStore.calculateMonthTotal }}</p>
             </li>
+            <li class="mb-3 rounded-4 shadow p-3" style="height: 7rem">
+              <h5>當月收入</h5>
+              <p class="text-center h4 text-success">{{ totalStore.incomeMonthTotal }}</p>
+            </li>
+            <li class="mb-3 rounded-4 shadow p-3" style="height: 7rem">
+              <h5>當月支出</h5>
+              <p class="text-center h4 text-danger">{{ totalStore.expenseMonthTotal }}</p>
+            </li>
+
           </ul>
         </div>
       </div>
       <div class="col-md-6">
         <div class="bg-light shadow rounded-3 p-4 min-vh-80 max-vh-80 overflow-auto">
-          <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <div class="btn-group text-end" role="group" aria-label="Basic outlined example">
             <button type="button" class="btn btn-outline-primary" @click="openModal('single')">+ 記錄單筆</button>
-            <button type="button" class="btn btn-outline-primary" @click="openModal('multiple')">+ 記錄多筆 </button>
+            <!-- <button type="button" class="btn btn-outline-primary" @click="openModal('multiple')">+ 記錄多筆 </button> -->
           </div>
           <div class="mt-3">
             <table class="table">
@@ -120,7 +130,7 @@ const closeModal = () => {
                   <td>{{ expense.name }}</td>
                   <td class="text-end"> <span class="text-danger">
                                           $ {{ expense.amount }}</span> <br>
-                    <span class="h6 mb-0 badge-blue-outline">{{ expense.personalBankAccount?.bankName }}</span>
+                    <span class="h6 mb-0 badge-outline-primary">{{ expense.personalBankAccount?.bankName }}</span>
                   </td>
                   <td>
                     <div class="text-end">
@@ -138,7 +148,7 @@ const closeModal = () => {
                   <td>{{ income.name }}</td>
                   <td class="text-end"> <span class="text-success">
                                           $ {{ income.amount }}</span> <br>
-                    <span class="h6 mb-0 badge-blue-outline">{{ income.personalBankAccount?.bankName }}</span>
+                    <span class="h6 mb-0 badge-outline-primary">{{ income.personalBankAccount?.bankName }}</span>
                   </td>
                   <td>
                     <div class="text-end">
@@ -198,9 +208,9 @@ const closeModal = () => {
 </template>
 
 <style scope lang="scss">
-.badge-blue-outline {
-  border: 1px solid rgb(0, 225, 255);
-  color: rgb(0, 225, 255);
+.badge-outline-primary {
+  border: 1px solid #7fbcd2;
+  color: #7fbcd2;
   font-size: 0.8rem;
   border-radius: 1rem;
   padding: 0.1rem 0.3rem;
