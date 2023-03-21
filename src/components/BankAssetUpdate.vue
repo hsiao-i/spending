@@ -140,8 +140,8 @@ const addBankAccount = async () => {
         </datalist>
         <ErrorMessage name="使用銀行" class="invalid-feedback" />
       </div>
-      {{ selectedBankId }}
-      <div class="mb-3 row">
+      <!-- {{ selectedBankId }} -->
+      <!-- <div class="mb-3 row">
         <div class=" col-6">
           <label for="recordAssetAutoAmount" class="form-label">每月固定收入金額</label>
           <input type="number" class="form-control" id="recordAssetAutoAmount" aria-describedby="nameHelp" placeholder="請輸入金額">
@@ -166,7 +166,7 @@ const addBankAccount = async () => {
             <option v-for="date in 28" :key="date" value="date">{{ date }}</option>
           </select>
         </div>
-      </div>
+      </div> -->
       <div class="py-4">
         <button
           type="submit"

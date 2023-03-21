@@ -85,7 +85,7 @@ const closeModal = () => {
         <div class="min-vh-80 max-vh-80 overflow-auto shadow p-4 rounded-4 bg-light">
 
           <!-- <h4>帳戶總額</h4> -->
-          <ul class="list-unstyled d-flex align-items-center flex-column">
+          <ul class="list-unstyled ">
             <!-- <li class="mb-3 rounded-4 shadow p-3" style="height: 7rem" v-for="list in bankStore.personalBankAccountList" :key="list.id">
               <p class=" h5">{{ list.name }}
                 <span class="h6"> ({{ list.bank?.name }})</span>

@@ -11,7 +11,9 @@
             <p class="fs-4 mb-4">不再怕麻煩，早餐、午餐、晚餐一次記錄！</p>
             <img src="@/assets/images/decoration-1.png" alt="decoration" class="b-image position-absolute d-sm-block d-none">
 
-            <button type="button" class="btn btn-danger rounded-pill text-white px-5">立即試用</button>
+            <RouterLink to="/login">
+              <button type="button" class="btn btn-danger rounded-pill text-white px-5">立即試用</button>
+            </RouterLink>
           </div>
           <div class="col-md-6">
             <img src="@/assets/images/banner-1-main.png" alt="banner">

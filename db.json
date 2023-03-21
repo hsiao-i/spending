@@ -67,6 +67,18 @@
       "autoExpense": 0,
       "autoExpenseDate": "",
       "id": 3
+    },
+    {
+      "total": "100",
+      "name": "測試",
+      "bankName": "第一商業銀行",
+      "bankId": 4,
+      "userId": "4",
+      "autoIncome": 0,
+      "autoIncomeDate": "",
+      "autoExpense": 0,
+      "autoExpenseDate": "",
+      "id": 4
     }
   ],
   "banks": [

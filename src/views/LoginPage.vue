@@ -25,7 +25,7 @@ const submitLogin = async () => {
 </script>
 <template>
   <div class="container">
-    <div class="w-50 shadow bg-light mx-auto p-4 rounded-5">
+    <div class="w-50 shadow bg-light mx-auto p-4 rounded-5 min-vh-80">
       <h2 clsaa="text-center">登入</h2>
       <Form v-slot="{ errors }" @submit="submitLogin">
         <!-- {{ errors }} {{ typeof(errors) }} -->

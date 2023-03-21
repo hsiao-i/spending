@@ -76,7 +76,7 @@ export const useCalculateStore = defineStore('calculate', () => {
     if (personalBankAccount?.bankName! in acc) {
       acc[personalBankAccount?.bankName!] = (acc[personalBankAccount?.bankName!] as number) + Number(amount);
     } else {
-      acc[personalBankAccount?.bankName!] = amount;
+      acc[personalBankAccount?.bankName!] = Number(amount);
     }
     return acc;
   }, {}));

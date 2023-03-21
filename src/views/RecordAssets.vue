@@ -8,9 +8,9 @@ import axios from '@/utilities/http';
 import type { BankAccount } from '@/utilities/types';
 import BankAssetUpdate from '@/components/BankAssetUpdate.vue';
 import BankAssetDelete from '@/components/BankAssetDelete.vue';
-import { useCalculateStore } from '@/stores/useCalculateStore';
+// import { useCalculateStore } from '@/stores/useCalculateStore';
 
-const totalStore = useCalculateStore();
+// const totalStore = useCalculateStore();
 // 開啟 modal
 const modalShare = ref();
 
@@ -79,10 +79,12 @@ onMounted(() => {
 </script>
 
 <template>
-  {{ totalStore.singleBankTotal }}
-  <h2>資產管理</h2>
-  <button type="button" class="btn btn-primary" @click="openModal('new', updateBankAccount)">＋ 新增帳戶</button>
-  <div class="container">
+  <!-- {{ totalStore.singleBankTotal }} -->
+
+  <!-- <button type="button" class="btn btn-primary" @click="openModal('new', updateBankAccount)">＋ 新增帳戶</button> -->
+
+  <!-- <div class="container">
+    <h2>資產管理</h2>
     <div class="row">
       <div class="col-3 mb-3">
         <button type="button" class="add-bank btn rounded-4 mb-3 w-100" style="height: 8rem" @click="openModal('new')">+ 新增帳戶</button>
@@ -108,7 +110,7 @@ onMounted(() => {
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <ModalShare ref="modalShare">
     <template #record-assets>
       <BankAssetUpdate
@@ -128,20 +130,33 @@ onMounted(() => {
   </ModalShare>
 
   <div class="container">
+    <h2>資產管理</h2>
     <div class="row gx-4">
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
         <div class="bg-light shadow rounded-5 p-3 min-vh-80">
           左邊 detail list
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="min-vh-80 max-vh-80 overflow-auto shadow p-4 rounded-4">
-          <button type="button" class="add-bank btn rounded-4 mb-3 w-100">+ 新增帳戶</button>
+      </div> -->
+      <div class="col-md-12">
+        <div class="min-vh-80 max-vh-80 overflow-auto shadow p-4 rounded-4 bg-light">
+          <button type="button" class="add-bank btn rounded-4 mb-3 w-100" @click="openModal('new')">+ 新增帳戶</button>
           <ul class="list-unstyled">
-            <li class="mb-3 bg-light rounded-4 shadow p-3" style="height: 7rem" v-for="list in bankAccountList" :key="list.id">
-              <p class=" h5">{{ list.name }}
-                <span class="h6"> ({{ list.bank?.name }})</span>
-              </p>
+            <li class="mb-3 bg-warning rounded-4 shadow p-3" style="height: 7rem" v-for="list in bankAccountList" :key="list.id">
+              <div class="d-flex justify-content-between">
+                <p class=" h5">{{ list.name }}
+                  <span class="h6"> ({{ list.bank?.name }})</span>
+                </p>
+                <div>
+                  <button type="button" class="btn p-0" @click="openModal('edit', list)">
+                    <span class="material-icons-outlined text-secondary">edit</span>
+                  </button>
+                  <button type="button" class="btn p-0" @click="openModal('delete', list)">
+                    <span class="material-icons-outlined text-secondary">delete_forever</span>
+                  </button>
+                </div>
+
+              </div>
+
               <p class="h4 text-center">{{ list.total }}</p>
             </li>
           </ul>
