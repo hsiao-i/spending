@@ -148,10 +148,10 @@ onMounted(async () => {
     await spendingStore.getIncomeList();
 
     expenseChartData.value.labels = Object.keys(refactor.value);
-    expenseChartData.value.datasets[0].data = Object.values(refactor.value);
+    expenseChartData.value.datasets[0].data = Object.values(refactor.value) as number[];
 
     incomeChartData.value.labels = Object.keys(incomeRefactor.value);
-    incomeChartData.value.datasets[0].data = Object.values(incomeRefactor.value);
+    incomeChartData.value.datasets[0].data = Object.values(incomeRefactor.value) as number[];
 
     loading.value = true;
   } catch (err) {
@@ -163,7 +163,7 @@ watch(
   () => refactor.value,
   () => {
     expenseChartData.value.labels = Object.keys(refactor.value);
-    expenseChartData.value.datasets[0].data = Object.values(refactor.value);
+    expenseChartData.value.datasets[0].data = Object.values(refactor.value) as number[];
   },
   {
     immediate: true,
@@ -174,7 +174,7 @@ watch(
   () => incomeRefactor.value,
   () => {
     incomeChartData.value.labels = Object.keys(incomeRefactor.value);
-    incomeChartData.value.datasets[0].data = Object.values(incomeRefactor.value);
+    incomeChartData.value.datasets[0].data = Object.values(incomeRefactor.value) as number[];
   },
   {
     immediate: true,
