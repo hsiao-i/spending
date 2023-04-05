@@ -5,7 +5,7 @@ import { fileURLToPath, URL } from 'node:url';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/spending/',
+  base: process.env.NODE_ENV === 'production' ? '/spending/' : '/',
   plugins: [
     vue(),
     eslintPlugin({

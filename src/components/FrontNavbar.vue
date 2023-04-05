@@ -3,7 +3,7 @@ import { RouterLink } from 'vue-router';
 import { onMounted, ref } from 'vue';
 
 const height = ref(window.innerWidth);
-const userId = localStorage.getItem('user');
+// const userId = localStorage.getItem('user');
 
 onMounted(() => {
   console.log(height);
@@ -41,18 +41,16 @@ onMounted(() => {
             <RouterLink to="/charts" class="nav-link fw-bold">圖表分析</RouterLink>
           </li>
 
-          <template v-if="userId">
-            <li class="mx-md-3 mx-0">
-              <!-- <button type="button" class="btn btn-outline-danger rounded-pill   "> -->
-              <RouterLink to="/login" class="btn btn-outline-danger rounded-pill nav-link fw-bold text-danger login-btn px-4">登入</RouterLink>
+          <li class="mx-md-3 mx-0">
+            <!-- <button type="button" class="btn btn-outline-danger rounded-pill   "> -->
+            <RouterLink to="/login" class="btn btn-outline-danger rounded-pill nav-link fw-bold text-danger login-btn px-4">登入</RouterLink>
             <!-- </button> -->
-            </li>
-            <li>
-              <!-- <button type="button" class="btn btn-danger rounded-pill"> -->
-              <RouterLink to="/register" class="btn btn-danger rounded-pill nav-link fw-bold px-4 text-white">註冊</RouterLink>
+          </li>
+          <li>
+            <!-- <button type="button" class="btn btn-danger rounded-pill"> -->
+            <RouterLink to="/register" class="btn btn-danger rounded-pill nav-link fw-bold px-4 text-white">註冊</RouterLink>
             <!-- </button> -->
-            </li>
-          </template>
+          </li>
 
         </ul>
       </div>

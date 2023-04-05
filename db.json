@@ -433,6 +433,18 @@
       "personalBankAccountId": 2,
       "userId": "4",
       "id": 14
+    },
+    {
+      "uuid": "b8d6e441-f22e-4638-b09a-d47769ddfdd7",
+      "dateTime": "2023-04-03T09:59:10.601Z",
+      "date": "2023-04-03",
+      "name": "",
+      "amount": "100",
+      "description": "",
+      "expenseCategoryId": 1,
+      "personalBankAccountId": 1,
+      "userId": "4",
+      "id": 15
     }
   ],
   "incomes": [

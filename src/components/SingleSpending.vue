@@ -5,6 +5,7 @@ import { useCategoryStore } from '@/stores/useCategoryStore';
 import { usePersonalBank } from '@/stores/usePersonalBank';
 import { useSpendingStore } from '@/stores/useSpendingStore';
 import axios from '@/utilities/http';
+import Swal from 'sweetalert2';
 // import { onMounted } from 'vue';
 // import CategoryIconView from './CategoryIconView.vue';
 // const
@@ -49,12 +50,21 @@ const updateExpenseInfo = async () => {
     const res = await axios.post(url, updateExpense.value);
     console.log(updateExpense.value);
     console.log(res);
-    alert('成功新增支出');
+    Swal.fire({
+      icon: 'success',
+      title: '成功記錄',
+      confirmButtonColor: '#7fbcd2',
+    });
     emit('closeModal');
     expenseForm.value.resetForm();
     spendingStore.getExpense();
   } catch (err) {
     console.log(err);
+    Swal.fire({
+      icon: 'error',
+      title: '失敗，請再次操作或連繫管理員',
+      confirmButtonColor: '#cb7d56',
+    });
   }
 };
 
@@ -74,7 +84,7 @@ const updateExpenseInfo = async () => {
           :category="category"
         />
       </div> -->
-      <Form v-slot="{ errors }" @submit="updateExpenseInfo" ref="expenseForm">
+      <VForm v-slot="{ errors }" @submit="updateExpenseInfo" ref="expenseForm">
         <div class=" mb-3">
           <label for="recordInputDate" class="form-label">日期</label>
           <input
@@ -87,7 +97,7 @@ const updateExpenseInfo = async () => {
         </div>
         <div class="mb-3">
           <label for="銀行帳戶" class="form-label">銀行帳戶</label>
-          <Field
+          <VField
             name="銀行帳戶"
             id="recordExpenseBank"
             placeholder="請選擇使用的銀行帳戶"
@@ -104,14 +114,14 @@ const updateExpenseInfo = async () => {
               :value="account.id">
               {{ account.bank?.name }}
             </option>
-          </Field>
+          </VField>
           <ErrorMessage
             name="銀行帳戶"
             class="invalid-feedback" />
         </div>
         <div class="mb-3">
           <label for="類別" class="form-label">類別</label>
-          <Field
+          <VField
             name="類別"
             id="recordExpenseCategory"
             placeholder="請選擇類別"
@@ -128,7 +138,7 @@ const updateExpenseInfo = async () => {
               :key="category.id">
               {{ category.name }}
             </option>
-          </Field>
+          </VField>
           <ErrorMessage
             name="類別"
             class="invalid-feedback" />
@@ -148,7 +158,7 @@ const updateExpenseInfo = async () => {
           </div>
           <div class="col-4">
             <label for="金額" class="form-label">金額</label>
-            <Field
+            <VField
               type="number"
               class="form-control"
               name="金額"
@@ -179,12 +189,12 @@ const updateExpenseInfo = async () => {
             :disabled="Object.keys(errors).length > 0"
           >儲存</button>
         </div>
-      </Form>
+      </VForm>
     </div>
 
     <!-- 支出 modal -->
     <div class="tab-pane fade" id="tabIncome" role="tabpanel" aria-labelledby="profile-tab">
-      <Form v-slot="{ errors }" @submit="spendingStore.updateIncomeInfo" ref="incomeForm">
+      <VForm v-slot="{ errors }" @submit="spendingStore.updateIncomeInfo" ref="incomeForm">
         <div class="mb-3">
           <label for="recordInputDate" class="form-label">日期</label>
           <input
@@ -197,7 +207,7 @@ const updateExpenseInfo = async () => {
         </div>
         <div class="mb-3">
           <label for="銀行帳戶" class="form-label">銀行帳戶</label>
-          <Field
+          <VField
             name="銀行帳戶"
             id="recordExpenseBank"
             placeholder="請選擇使用的銀行帳戶"
@@ -214,14 +224,14 @@ const updateExpenseInfo = async () => {
               :value="account.id">
               {{ account.bank?.name }}
             </option>
-          </Field>
+          </VField>
           <ErrorMessage
             name="銀行帳戶"
             class="invalid-feedback" />
         </div>
         <div class="mb-3">
           <label for="類別" class="form-label">類別</label>
-          <Field
+          <VField
             name="類別"
             id="recordExpenseCategory"
             placeholder="請選擇類別"
@@ -238,7 +248,7 @@ const updateExpenseInfo = async () => {
               :key="category.id">
               {{ category.name }}
             </option>
-          </Field>
+          </VField>
           <ErrorMessage
             name="類別"
             class="invalid-feedback" />
@@ -258,7 +268,7 @@ const updateExpenseInfo = async () => {
           </div>
           <div class="col-4">
             <label for="金額" class="form-label">金額</label>
-            <Field
+            <VField
               type="number"
               class="form-control"
               name="金額"
@@ -289,7 +299,7 @@ const updateExpenseInfo = async () => {
             :disabled="Object.keys(errors).length > 0"
           >儲存</button>
         </div>
-      </Form>
+      </VForm>
     </div>
   </div>
 </template>

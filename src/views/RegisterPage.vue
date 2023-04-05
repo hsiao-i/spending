@@ -4,6 +4,8 @@ import axios from '@/utilities/http';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Swal from 'sweetalert2';
 
 const router = useRouter();
 const user = ref<UserRegister>({
@@ -23,11 +25,17 @@ const submitRegister = async () => {
     const res = await axios.post(url, user.value);
 
     console.log(res);
-    alert('成功註冊，請重新登入');
+    Swal.fire({
+      icon: 'success',
+      title: '成功註冊，請重新登入',
+      confirmButtonColor: '#7fbcd2',
+    });
     router.push('/login');
   } catch (err) {
     console.log(err);
-    if (err instanceof Error) alert('此email 帳號已被註冊');
+    if (err instanceof Error) {
+      Swal.fire({ icon: 'error', title: '註冊失敗', confirmButtonColor: '#cb7d56' });
+    }
   }
 };
 
@@ -45,10 +53,10 @@ const isPhone = (inputNumber: string) => {
   <div class="container">
     <div class="w-50 shadow bg-light mx-auto p-4 rounded-5">
       <h2 clsaa="text-center">註冊</h2>
-      <Form v-slot="{ errors }" @submit="submitRegister">
+      <VForm v-slot="{ errors }" @submit="submitRegister">
         <div class="mb-3">
           <label for="姓名" class="form-label">姓名</label>
-          <Field
+          <VField
             type="text"
             class="form-control"
             id="姓名"
@@ -62,8 +70,8 @@ const isPhone = (inputNumber: string) => {
         </div>
         <div class="mb-3">
           <label for="Email" class="form-label">Email</label>
-          <Field
-            type="email"
+          <VField
+            type="mail"
             class="form-control"
             id="Email"
             name="Email"
@@ -76,7 +84,7 @@ const isPhone = (inputNumber: string) => {
         </div>
         <div class="mb-3">
           <label for="密碼" class="form-label">密碼</label>
-          <Field
+          <VField
             type="password"
             class="form-control"
             id="密碼"
@@ -90,8 +98,8 @@ const isPhone = (inputNumber: string) => {
         </div>
         <div class="mb-5">
           <label for="手機號碼" class="form-label">手機號碼</label>
-          <Field
-            type="text"
+          <VField
+            type="tel"
             class="form-control"
             id="手機號碼"
             name="手機號碼"
@@ -109,7 +117,7 @@ const isPhone = (inputNumber: string) => {
           :disabled="Object.keys(errors).length > 0"
         >送出</button>
 
-      </Form>
+      </VForm>
     </div>
   </div>
 </template>

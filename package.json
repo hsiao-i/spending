@@ -22,13 +22,15 @@
     "chart.js": "^4.2.1",
     "material-icons": "^1.13.1",
     "pinia": "^2.0.28",
+    "sweetalert2": "^11.7.3",
     "uuid": "^9.0.0",
     "vee-validate": "^4.7.4",
     "vite-plugin-eslint": "^1.8.1",
     "vue": "^3.2.45",
     "vue-axios": "^3.5.2",
     "vue-chartjs": "^5.2.0",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "bootstrap": "^5.2.3"
   },
   "devDependencies": {
     "@popperjs/core": "^2.11.6",

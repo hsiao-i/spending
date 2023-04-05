@@ -4,6 +4,8 @@ import {
 } from 'vue';
 import type { BankAccount, Bank } from '@/utilities/types';
 import axios from '@/utilities/http';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Swal from 'sweetalert2';
 
 // 取得銀行列表
 const banks = ref<Bank[]>([]);
@@ -71,12 +73,21 @@ const addBankAccount = async () => {
       situation = '成功更新帳戶';
     }
     await axios[request](url, account.value);
-    alert(situation);
+    Swal.fire({
+      icon: 'success',
+      title: situation,
+      confirmButtonColor: '#7fbcd2',
+    });
     formClear.value.resetForm();
     emit('closeModal');
     emit('getBankAccount');
   } catch (err) {
     console.log(err);
+    Swal.fire({
+      icon: 'error',
+      title: '失敗，請再次操作或連繫管理員',
+      confirmButtonColor: '#cb7d56',
+    });
   }
 };
 
@@ -92,10 +103,10 @@ const addBankAccount = async () => {
       <span v-else-if="openState === 'edit'">編輯</span>帳戶
     </h3>
 
-    <Form v-slot="{ errors }" @submit="addBankAccount" ref="formClear">
+    <VForm v-slot="{ errors }" @submit="addBankAccount" ref="formClear">
       <div class="mb-3">
         <label for="帳戶名稱" class="form-label">帳戶名稱</label>
-        <Field
+        <VField
           type="text"
           class="form-control"
           id="帳戶名稱"
@@ -109,7 +120,7 @@ const addBankAccount = async () => {
       </div>
       <div class="mb-3">
         <label for="帳戶初始金額" class="form-label">帳戶初始金額</label>
-        <Field
+        <VField
           type="number"
           class="form-control"
           id="recordBankAmount"
@@ -124,7 +135,7 @@ const addBankAccount = async () => {
       </div>
       <div class="mb-3">
         <label for="使用銀行" class="form-label">使用銀行</label>
-        <Field
+        <VField
           type="text"
           list="recordAssetBank"
           class="form-select"
@@ -175,6 +186,6 @@ const addBankAccount = async () => {
           儲存
         </button>
       </div>
-    </Form>
+    </VForm>
   </div>
 </template>

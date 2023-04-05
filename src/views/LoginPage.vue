@@ -3,6 +3,7 @@ import type { UserLogin } from '@/utilities/types';
 import { ref } from 'vue';
 import axios from '@/utilities/http';
 import { useRouter } from 'vue-router';
+import Swal from 'sweetalert2';
 
 const router = useRouter();
 const user = ref<UserLogin>({
@@ -16,9 +17,17 @@ const submitLogin = async () => {
 
     localStorage.setItem('userId', res.data.user.id);
     document.cookie = `spendingToken=${res.data.accessToken}`;
-    alert('成功登入');
+    Swal.fire({
+      icon: 'success',
+      title: '成功登入',
+      confirmButtonColor: '#7fbcd2',
+    });
     router.push('/spending');
   } catch (err) {
+    Swal.fire({
+      icon: 'error',
+      title: '請確認帳號或密碼是否正確',
+    });
     console.log(err);
   }
 };
@@ -27,13 +36,13 @@ const submitLogin = async () => {
   <div class="container">
     <div class="w-50 shadow bg-light mx-auto p-4 rounded-5 min-vh-80">
       <h2 clsaa="text-center">登入</h2>
-      <Form v-slot="{ errors }" @submit="submitLogin">
+      <VForm v-slot="{ errors }" @submit="submitLogin">
         <!-- {{ errors }} {{ typeof(errors) }} -->
 
         <div class="mb-3">
           <label for="Email" class="form-label">Email</label>
-          <Field
-            type="email"
+          <VField
+            type="mail"
             class="form-control"
             id="Email"
             name="Email"
@@ -46,7 +55,7 @@ const submitLogin = async () => {
         </div>
         <div class="mb-3">
           <label for="密碼" class="form-label">密碼</label>
-          <Field
+          <VField
             type="password"
             class="form-control"
             id="密碼"
@@ -65,7 +74,7 @@ const submitLogin = async () => {
           :disabled="Object.keys(errors).length > 0"
         >送出</button>
 
-      </Form>
+      </VForm>
     </div>
   </div>
 </template>

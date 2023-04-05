@@ -3,6 +3,7 @@ import type { Expense, Income } from '@/utilities/types';
 import { ref } from 'vue';
 import axios from '@/utilities/http';
 import { v4 as uuidv4 } from 'uuid';
+import Swal from 'sweetalert2';
 
 export const useSpendingStore = defineStore('spending', () => {
   // 取得支出列表
@@ -66,10 +67,19 @@ export const useSpendingStore = defineStore('spending', () => {
       }
       const res = await axios[request](url, updateIncomeData.value);
       console.log(res);
-      alert(situation);
+      Swal.fire({
+        icon: 'success',
+        title: situation,
+        confirmButtonColor: '#7fbcd2',
+      });
       getIncomeList();
     } catch (err) {
       console.log(err);
+      Swal.fire({
+        icon: 'error',
+        title: '失敗，請再次操作或連繫管理員',
+        confirmButtonColor: '#cb7d56',
+      });
     }
   };
 

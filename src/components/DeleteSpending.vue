@@ -3,6 +3,7 @@ import { toRefs } from 'vue';
 import type { Expense } from '@/utilities/types';
 import axios from '@/utilities/http';
 import { useSpendingStore } from '@/stores/useSpendingStore';
+import Swal from 'sweetalert2';
 
 const spendingStore = useSpendingStore();
 
@@ -17,10 +18,20 @@ const deleteSpending = async () => {
     const url = `/expenses/${updateExpense.value.id}?_noRemoveDependents=true`;
     const res = await axios.delete(url);
     console.log(res);
+    Swal.fire({
+      icon: 'success',
+      title: '成功刪除',
+      confirmButtonColor: '#7fbcd2',
+    });
     emit('closeModal');
     spendingStore.getExpense();
   } catch (err) {
     console.log(err);
+    Swal.fire({
+      icon: 'error',
+      title: '刪除失敗，請再次操作或連繫管理員',
+      confirmButtonColor: '#cb7d56',
+    });
   }
 };
 </script>

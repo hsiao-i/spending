@@ -47,4 +47,15 @@ const router = createRouter({
   ],
 });
 
+// router.beforeEach((to, from, next) => {
+//   const isLogin: boolean = !!localStorage.token;
+
+//   if (to.path === '/login' || to.path === '/register') {
+//     next();
+//   } else {
+//     isLogin ? next() : next('/login');
+//     // 如果登入過的話，要到什麼 路由都可以 next()，如果沒登入過，就會導到 login
+//   }
+// });
+
 export default router;

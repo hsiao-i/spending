@@ -5,6 +5,7 @@ import { usePersonalBank } from '@/stores/usePersonalBank';
 import { useCategoryStore } from '@/stores/useCategoryStore';
 import { useSpendingStore } from '@/stores/useSpendingStore';
 import axios from '@/utilities/http';
+import Swal from 'sweetalert2';
 
 const bankStore = usePersonalBank();
 const categoryStore = useCategoryStore();
@@ -34,12 +35,21 @@ const updateExpenseInfo = async () => {
     const res = await axios.put(url, updateExpense.value);
     console.log(updateExpense.value);
     console.log(res);
-    alert('成功更新');
+    Swal.fire({
+      icon: 'success',
+      title: '成功更新',
+      confirmButtonColor: '#7fbcd2',
+    });
     emit('closeModal');
     spendingEditForm.value.resetForm();
     spendingStore.getExpense();
   } catch (err) {
     console.log(err);
+    Swal.fire({
+      icon: 'error',
+      title: '失敗，請再次操作或連繫管理員',
+      confirmButtonColor: '#cb7d56',
+    });
   }
 };
 
@@ -59,7 +69,7 @@ const updateIncomeInfo = () => {
     <h3 class="h4 mb-3">編輯紀錄</h3>
     <template v-if="expenseOrIncome === 'expense'">
       {{ expenseOrIncome }}
-      <Form v-slot="{ errors }" @submit="updateExpenseInfo" ref="spendingEditForm">
+      <VForm v-slot="{ errors }" @submit="updateExpenseInfo" ref="spendingEditForm">
         <div class=" mb-3">
           <label for="recordInputDate" class="form-label">日期</label>
           <input
@@ -72,7 +82,7 @@ const updateIncomeInfo = () => {
         </div>
         <div class="mb-3">
           <label for="銀行帳戶" class="form-label">銀行帳戶</label>
-          <Field
+          <VField
             name="銀行帳戶"
             id="recordExpenseBank"
             placeholder="請選擇使用的銀行帳戶"
@@ -89,14 +99,14 @@ const updateIncomeInfo = () => {
               :value="account.id">
               {{ account.bank?.name }}
             </option>
-          </Field>
+          </VField>
           <ErrorMessage
             name="銀行帳戶"
             class="invalid-feedback" />
         </div>
         <div class="mb-3">
           <label for="類別" class="form-label">類別</label>
-          <Field
+          <VField
             name="類別"
             id="recordExpenseCategory"
             placeholder="請選擇類別"
@@ -113,7 +123,7 @@ const updateIncomeInfo = () => {
               :key="category.id">
               {{ category.name }}
             </option>
-          </Field>
+          </VField>
           <ErrorMessage
             name="類別"
             class="invalid-feedback" />
@@ -132,7 +142,7 @@ const updateIncomeInfo = () => {
           </div>
           <div class="col-4">
             <label for="金額" class="form-label">金額</label>
-            <Field
+            <VField
               type="number"
               class="form-control"
               name="金額"
@@ -163,7 +173,7 @@ const updateIncomeInfo = () => {
             :disabled="Object.keys(errors).length > 0"
           >儲存</button>
         </div>
-      </Form>
+      </VForm>
     </template>
     <template v-else-if="expenseOrIncome === 'income'">
       {{ expenseOrIncome }}
@@ -180,7 +190,7 @@ const updateIncomeInfo = () => {
         </div>
         <div class="mb-3">
           <label for="銀行帳戶" class="form-label">銀行帳戶</label>
-          <Field
+          <VField
             name="銀行帳戶"
             id="recordExpenseBank"
             placeholder="請選擇使用的銀行帳戶"
@@ -197,14 +207,14 @@ const updateIncomeInfo = () => {
               :value="account.id">
               {{ account.bank?.name }}
             </option>
-          </Field>
+          </VField>
           <ErrorMessage
             name="銀行帳戶"
             class="invalid-feedback" />
         </div>
         <div class="mb-3">
           <label for="類別" class="form-label">類別</label>
-          <Field
+          <VField
             name="類別"
             id="recordExpenseCategory"
             placeholder="請選擇類別"
@@ -221,7 +231,7 @@ const updateIncomeInfo = () => {
               :key="category.id">
               {{ category.name }}
             </option>
-          </Field>
+          </VField>
           <ErrorMessage
             name="類別"
             class="invalid-feedback" />
@@ -241,7 +251,7 @@ const updateIncomeInfo = () => {
           </div>
           <div class="col-4">
             <label for="金額" class="form-label">金額</label>
-            <Field
+            <VField
               type="number"
               class="form-control"
               name="金額"
