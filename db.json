@@ -445,6 +445,54 @@
       "personalBankAccountId": 1,
       "userId": "4",
       "id": 15
+    },
+    {
+      "uuid": "8a715b45-fb64-4e04-8158-bb2db94157f7",
+      "dateTime": "2023-04-09T08:28:42.985Z",
+      "date": "2023-04-09",
+      "name": "早餐",
+      "amount": "100",
+      "description": "",
+      "expenseCategoryId": 1,
+      "personalBankAccountId": 1,
+      "userId": "4",
+      "id": 16
+    },
+    {
+      "uuid": "718d11e3-58fd-4947-8f8d-8671e4861f8b",
+      "dateTime": "2023-04-09T08:29:17.770Z",
+      "date": "2023-04-09",
+      "name": "午餐",
+      "amount": "200",
+      "description": "",
+      "expenseCategoryId": 1,
+      "personalBankAccountId": 1,
+      "userId": "4",
+      "id": 17
+    },
+    {
+      "uuid": "3472db7a-9888-4dbc-b4c5-506ab516c96b",
+      "dateTime": "2023-04-09T08:29:43.433Z",
+      "date": "2023-04-09",
+      "name": "電腦",
+      "amount": "45000",
+      "description": "",
+      "expenseCategoryId": 4,
+      "personalBankAccountId": 1,
+      "userId": "4",
+      "id": 18
+    },
+    {
+      "uuid": "e48fac0f-d2bb-4132-bb32-5aef2adff7ab",
+      "dateTime": "2023-04-09T08:30:04.210Z",
+      "date": "2023-04-09",
+      "name": "hub",
+      "amount": "1000",
+      "description": "",
+      "expenseCategoryId": 4,
+      "personalBankAccountId": 2,
+      "userId": "4",
+      "id": 19
     }
   ],
   "incomes": [

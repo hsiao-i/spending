@@ -9,6 +9,7 @@ import {
 import { localize, setLocale } from '@vee-validate/i18n';
 import AllRules from '@vee-validate/rules';
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'; // 引入多國語系
+import { toThousandth } from './utilities/methods';
 
 import 'material-icons/iconfont/material-icons.css';
 import './assets/scss/all.scss';
@@ -30,6 +31,7 @@ setLocale('zh_TW'); // 因為語系檔沒辦法直接啟用，因此會強制預
 
 const app = createApp(App);
 
+app.config.globalProperties.$toThousandth = toThousandth;
 app.use(createPinia());
 app.use(router);
 app.use(VueAxios, axios);

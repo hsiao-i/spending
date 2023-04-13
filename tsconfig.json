@@ -8,6 +8,8 @@
     },
     "target": "es2017",
     "lib": ["es2017", "dom"]
+    // "types": ["@vue/runtime-core"],
+    // "moduleResolution": "node"
   },
 
   "references": [

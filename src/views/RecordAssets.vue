@@ -157,7 +157,7 @@ onMounted(() => {
 
               </div>
 
-              <p class="h4 text-center">{{ list.total }}</p>
+              <p class="h4 text-center">{{ $toThousandth(list.total) }}</p>
             </li>
           </ul>
         </div>

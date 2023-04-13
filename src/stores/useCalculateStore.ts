@@ -81,6 +81,14 @@ export const useCalculateStore = defineStore('calculate', () => {
     return acc;
   }, {}));
 
+  // const toThousand = (num: number | string) => {
+  //   if (num !== undefined) {
+  //     num = num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+  //   }
+  //   return num;
+  // };
+  // const formattedNum = computed(() => toThousand())
+
   return {
     monthBankTotal,
     incomeMonthTotal,

@@ -94,15 +94,15 @@ const closeModal = () => {
             </li> -->
             <li class="mb-3 rounded-4 shadow p-3" style="height: 7rem">
               <h5>當月總額</h5>
-              <p class="text-center h4 text-primary">{{ totalStore.calculateMonthTotal }}</p>
+              <p class="text-center h4 text-primary">{{ $toThousandth(totalStore.calculateMonthTotal) }}</p>
             </li>
             <li class="mb-3 rounded-4 shadow p-3" style="height: 7rem">
               <h5>當月收入</h5>
-              <p class="text-center h4 text-success">{{ totalStore.incomeMonthTotal }}</p>
+              <p class="text-center h4 text-success">{{ $toThousandth(totalStore.incomeMonthTotal) }}</p>
             </li>
             <li class="mb-3 rounded-4 shadow p-3" style="height: 7rem">
               <h5>當月支出</h5>
-              <p class="text-center h4 text-danger">{{ totalStore.expenseMonthTotal }}</p>
+              <p class="text-center h4 text-danger">{{ $toThousandth(totalStore.expenseMonthTotal) }}</p>
             </li>
 
           </ul>

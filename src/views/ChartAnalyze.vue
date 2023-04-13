@@ -18,7 +18,7 @@ interface RefactorCalculate {
   categoryName: string | undefined;
 }
 
-// 取出 expense 後重組
+// 取出 expense 後重組，並篩選出當月份
 
 const calculate = ref<RefactorCalculate[]>([]);
 watch(
@@ -157,6 +157,13 @@ onMounted(async () => {
   } catch (err) {
     console.log(err);
   }
+
+  console.log(calculate.value);
+});
+
+const calculateTopThree = computed(() => calculate.value.sort((a, b) => a.amount - b.amount))
+onMounted(() => {
+  console.log(calculateTopThree.value);
 });
 
 watch(
@@ -186,6 +193,9 @@ watch(
 <template>
   <div class="container mt-5">
     <h2 class="mb-5">當月消費圖表分析</h2>
+    <div>
+      <h3>當月支出金額前三名</h3>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <div class="bg-white rounded-3 shadow p-4">
