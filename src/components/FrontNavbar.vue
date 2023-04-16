@@ -1,13 +1,5 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import { onMounted, ref } from 'vue';
-
-const height = ref(window.innerWidth);
-// const userId = localStorage.getItem('user');
-
-onMounted(() => {
-  console.log(height);
-});
 
 </script>
 <template>

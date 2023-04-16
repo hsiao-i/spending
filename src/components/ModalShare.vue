@@ -9,11 +9,9 @@ let saveModal: Modal;
 const modalShare = ref<HTMLElement | null >(null);
 
 const openModalInComponent = () => {
-  console.log('觸發');
   saveModal.show();
 };
 const closeModalInComponent = () => {
-  console.log('關閉');
   saveModal.hide();
 };
 defineExpose({

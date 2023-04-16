@@ -31,9 +31,6 @@ onMounted(() => {
   spendingStore.getExpense();
   spendingStore.getIncomeList();
   bankStore.getBankAccountList();
-  // totalStore.calculateTotal();
-  // console.log(spendingStore.expenseList);
-  console.log(totalStore.expenseMonthTotal);
 });
 
 const modalShare = ref();
@@ -62,11 +59,6 @@ const openModal = (status: string, editInfo?: Expense | Income, expenseIncome?: 
       personalBankAccountId: 0,
       userId: '',
     };
-
-    // if (expenseIncome === 'expense' || expenseIncome === 'income') {
-
-    console.log(expenseOrIncome.value);
-    // }
   }
 
   modalShare.value.openModalInComponent();

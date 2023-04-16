@@ -20,7 +20,6 @@ const getBanksList = async () => {
 };
 onMounted(() => {
   getBanksList();
-  console.log('新增帳戶');
 });
 
 // 從外層取得帳戶資訊、開啟狀態

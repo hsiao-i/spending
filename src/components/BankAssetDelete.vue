@@ -11,11 +11,9 @@ const { account } = toRefs(props);
 const emit = defineEmits(['getBankAccount', 'closeModal']);
 
 const deleteBankAccount = async () => {
-  console.log(account.value.id);
   try {
     const url = `/personalBankAccounts/${account.value.id}?_noRemoveDependents=true`;
-    const res = await axios.delete(url);
-    console.log(res);
+    await axios.delete(url);
     emit('closeModal');
     emit('getBankAccount');
   } catch (err) {

@@ -47,9 +47,7 @@ const updateExpenseInfo = async () => {
     updateExpense.value.userId = userId;
 
     const url = '/expenses';
-    const res = await axios.post(url, updateExpense.value);
-    console.log(updateExpense.value);
-    console.log(res);
+    await axios.post(url, updateExpense.value);
     Swal.fire({
       icon: 'success',
       title: '成功記錄',

@@ -32,9 +32,7 @@ const updateExpenseInfo = async () => {
     updateExpense.value.userId = userId;
 
     const url = `/expenses/${updateExpense.value.id}`;
-    const res = await axios.put(url, updateExpense.value);
-    console.log(updateExpense.value);
-    console.log(res);
+    await axios.put(url, updateExpense.value);
     Swal.fire({
       icon: 'success',
       title: '成功更新',

@@ -33,7 +33,7 @@
   ],
   "personalBankAccounts": [
     {
-      "total": "1000",
+      "total": "2000",
       "name": "測試",
       "bankName": "彰化商業銀行",
       "bankId": 6,
@@ -42,7 +42,12 @@
       "autoIncomeDate": "",
       "autoExpense": 0,
       "autoExpenseDate": "",
-      "id": 1
+      "id": 1,
+      "bank": {
+        "id": 6,
+        "code": "009",
+        "name": "彰化商業銀行"
+      }
     },
     {
       "total": "3000",
@@ -67,18 +72,6 @@
       "autoExpense": 0,
       "autoExpenseDate": "",
       "id": 3
-    },
-    {
-      "total": "100",
-      "name": "測試",
-      "bankName": "第一商業銀行",
-      "bankId": 4,
-      "userId": "4",
-      "autoIncome": 0,
-      "autoIncomeDate": "",
-      "autoExpense": 0,
-      "autoExpenseDate": "",
-      "id": 4
     }
   ],
   "banks": [
@@ -493,6 +486,18 @@
       "personalBankAccountId": 2,
       "userId": "4",
       "id": 19
+    },
+    {
+      "uuid": "3391aac7-7eb1-4e4b-bb25-229e550635ce",
+      "dateTime": "2023-04-16T10:48:54.662Z",
+      "date": "2023-04-16",
+      "name": "早餐",
+      "amount": "100",
+      "description": "",
+      "expenseCategoryId": 1,
+      "personalBankAccountId": 2,
+      "userId": "4",
+      "id": 20
     }
   ],
   "incomes": [

@@ -33,11 +33,9 @@ const openModal = (state: string, list?: BankAccount) => {
   openModalState.value = state;
 
   if (state === 'edit') {
-    console.log(list);
     openModalState.value = 'edit';
     updateBankAccount.value = JSON.parse(JSON.stringify(list));
   } else if (state === 'new') {
-    console.log(state);
     openModalState.value = 'new';
     updateBankAccount.value = {
       total: '',
@@ -70,7 +68,6 @@ const getPersonalBankAccount = async () => {
   const url = `/personalBankAccounts?userId=${userId}&_expand=bank`;
   const res = await axios.get(url);
   bankAccountList.value = res.data;
-  console.log(res.data);
 };
 onMounted(() => {
   getPersonalBankAccount();

@@ -17,14 +17,12 @@ const user = ref<UserRegister>({
 });
 const submitRegister = async () => {
   try {
-    console.log(user.value);
     document.cookie = '';
     // user.value.uuid = uuidv4()
     console.log(user.value.uuid);
     const url = '/signup';
     const res = await axios.post(url, user.value);
 
-    console.log(res);
     Swal.fire({
       icon: 'success',
       title: '成功註冊，請重新登入',

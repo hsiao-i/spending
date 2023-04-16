@@ -35,17 +35,6 @@ watch(
   },
 );
 
-// const calculate = computed(() => spendingStore.expenseList
-//   .map((expense) => ({
-//     date: expense.date,
-//     amount: Number(expense.amount),
-//     categoryName: expense.expenseCategory?.name,
-//   }))
-//   .filter((item) => {
-//     console.log(new Date().toISOString().slice(0, 7));
-//     return item.date.slice(0, 7) === new Date().toISOString().slice(0, 7);
-//   }));
-
 const refactor = computed(() => calculate.value
   .reduce((acc: Record<string, unknown>, item) => {
     const { categoryName, amount } = item;

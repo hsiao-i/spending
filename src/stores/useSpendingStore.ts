@@ -14,7 +14,6 @@ export const useSpendingStore = defineStore('spending', () => {
       const url = `expenses?_expand=personalBankAccount&_expand=expenseCategory&userId=${userId}`;
       const res = await axios.get(url);
       expenseList.value = res.data;
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -46,7 +45,6 @@ export const useSpendingStore = defineStore('spending', () => {
       const url = `incomes?_expand=personalBankAccount&_expand=incomeCategory&userId=${userId}`;
       const res = await axios.get(url);
       incomeList.value = res.data;
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -65,8 +63,7 @@ export const useSpendingStore = defineStore('spending', () => {
         request = 'put';
         situation = '成功更新收入';
       }
-      const res = await axios[request](url, updateIncomeData.value);
-      console.log(res);
+      await axios[request](url, updateIncomeData.value);
       Swal.fire({
         icon: 'success',
         title: situation,

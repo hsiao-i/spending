@@ -9,9 +9,7 @@ export const useCategoryStore = defineStore('category', () => {
   const getExpenseCategories = async () => {
     try {
       const res = await axios.get(expenseUrl);
-      console.log(res);
       categoryIcon.value = res.data;
-      console.log(categoryIcon);
     } catch (e) {
       console.log(e);
     }
@@ -22,9 +20,7 @@ export const useCategoryStore = defineStore('category', () => {
   const getIncomeCategories = async () => {
     try {
       const res = await axios.get(incomeUrl);
-      console.log(res);
       categoryIncome.value = res.data;
-      console.log(categoryIncome);
     } catch (e) {
       console.log(e);
     }
