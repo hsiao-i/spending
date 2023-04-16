@@ -161,10 +161,10 @@ onMounted(async () => {
   console.log(calculate.value);
 });
 
-const calculateTopThree = computed(() => calculate.value.sort((a, b) => a.amount - b.amount))
-onMounted(() => {
-  console.log(calculateTopThree.value);
-});
+// const calculateTopThree = computed(() => calculate.value.sort((a, b) => a.amount - b.amount))
+// onMounted(() => {
+//   console.log(calculateTopThree.value);
+// });
 
 watch(
   () => refactor.value,
