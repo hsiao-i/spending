@@ -21,7 +21,7 @@ const submitRegister = async () => {
     // user.value.uuid = uuidv4()
     console.log(user.value.uuid);
     const url = '/signup';
-    const res = await axios.post(url, user.value);
+    await axios.post(url, user.value);
 
     Swal.fire({
       icon: 'success',
