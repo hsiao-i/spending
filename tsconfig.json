@@ -16,5 +16,6 @@
     {
       "path": "./tsconfig.config.json"
     }
-  ]
+  ],
+  "moduleResolution": "nodenext"
 }

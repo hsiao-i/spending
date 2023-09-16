@@ -4,24 +4,28 @@ import { ref } from 'vue';
 import axios from '@/utilities/http';
 import { useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
+// import { useIsLogin } from '@/stores/useIsLogin';
 
 const router = useRouter();
 const user = ref<UserLogin>({
   email: '',
   password: '',
 });
+// const isLoginStore = useIsLogin();
 const submitLogin = async () => {
   try {
     const url = '/login';
     const res = await axios.post(url, user.value);
 
     localStorage.setItem('userId', res.data.user.id);
+    sessionStorage.setItem('isLogin', 'true');
     document.cookie = `spendingToken=${res.data.accessToken}`;
     Swal.fire({
       icon: 'success',
       title: '成功登入',
       confirmButtonColor: '#7fbcd2',
     });
+    // isLoginStore.isLogin = true;
     router.push('/spending');
   } catch (err) {
     Swal.fire({
@@ -35,7 +39,7 @@ const submitLogin = async () => {
 <template>
   <div class="container">
     <div class="w-50 shadow bg-light mx-auto p-4 rounded-5 min-vh-80">
-      <h2 clsaa="text-center">登入</h2>
+      <h2 class="text-center">登入</h2>
       <VForm v-slot="{ errors }" @submit="submitLogin">
         <!-- {{ errors }} {{ typeof(errors) }} -->
 
@@ -72,8 +76,9 @@ const submitLogin = async () => {
           type="submit"
           class="btn btn-primary w-100"
           :disabled="Object.keys(errors).length > 0"
-        >送出</button>
-
+        >
+          送出
+        </button>
       </VForm>
     </div>
   </div>
