@@ -1,42 +1,41 @@
 <script setup lang="ts">
 import router from '@/router';
 import { RouterLink } from 'vue-router';
-// import { useIsLogin } from '@/stores/useIsLogin';
+import {
+  computed, ref, onMounted, watch,
+} from 'vue';
 
-// const isLoginStore = useIsLogin();
+const isLogin = ref(false);
 
 const logout = () => {
   document.cookie = 'spendingToken=; ';
-  // isLoginStore.isLogin = false;
+
   localStorage.removeItem('userId');
-  sessionStorage.removeItem('isLogin');
+  sessionStorage.setItem('isLogin', 'false');
+
+  isLogin.value = false;
   router.push('/');
 };
 
-const isLoginSessionStorage = sessionStorage.getItem('isLogin') === 'true';
-console.log(isLoginSessionStorage);
+const isLoginSessionStorage = computed(() => sessionStorage.getItem('isLogin') === 'true');
 
-// import { ref, onMounted } from 'vue';
-// import { Dropdown } from 'bootstrap';
+watch(isLoginSessionStorage, (newVal: boolean) => {
+  isLogin.value = newVal;
+});
 
-// let dropdownMethod: Dropdown;
-// const dropDown = ref<HTMLElement | null>(null);
-// const toggleDropdown = () => {
-//   dropdownMethod.toggle();
-// };
-// onMounted(() => {
-//   dropdownMethod = new Dropdown(dropDown.value!);
-// });
+onMounted(() => {
+  isLogin.value = isLoginSessionStorage.value;
+});
 
-// const token = document.cookie.replace(/(?:(?:^|.*;\s*)spendingToken\s*\=\s*([^;]*).*$)|^.*$/, '$1');
-// 取出 cookie 名稱為 spendingToken 的值
 </script>
 <template>
   <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-white">
     <div class="container">
       <h1>
-        <a class="navbar-brand text-danger letter-1 fm-fre" href="#"
-          >ExpenSaver</a
+        <a
+          class="navbar-brand text-danger letter-1 fm-fre"
+          href="#"
+        >ExpenSaver</a
         >
       </h1>
 
@@ -57,39 +56,48 @@ console.log(isLoginSessionStorage);
       >
         <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center">
           <li class="nav-item">
-            <RouterLink to="/" class="nav-link fw-bold" aria-current="page"
-              >首頁</RouterLink
+            <RouterLink
+              to="/"
+              class="nav-link fw-bold"
+              aria-current="page"
+            >首頁</RouterLink
             >
           </li>
           <li class="nav-item">
-            <RouterLink to="/spending" class="nav-link fw-bold"
-              >記帳</RouterLink
+            <RouterLink
+              to="/spending"
+              class="nav-link fw-bold"
+            >記帳</RouterLink
             >
           </li>
           <li class="nav-item">
-            <RouterLink to="/assets" class="nav-link fw-bold"
-              >資產管理</RouterLink
+            <RouterLink
+              to="/assets"
+              class="nav-link fw-bold"
+            >資產管理</RouterLink
             >
           </li>
           <li class="nav-item">
-            <RouterLink to="/charts" class="nav-link fw-bold"
-              >圖表分析</RouterLink
+            <RouterLink
+              to="/charts"
+              class="nav-link fw-bold"
+            >圖表分析</RouterLink
             >
           </li>
 
-          <template v-if="!isLoginSessionStorage">
+          <template v-if="!isLogin">
             <li class="mx-md-3 mx-0">
               <RouterLink
                 to="/login"
                 class="btn btn-outline-danger rounded-pill nav-link fw-bold text-danger login-btn px-4"
-                >登入</RouterLink
+              >登入</RouterLink
               >
             </li>
             <li>
               <RouterLink
                 to="/register"
                 class="btn btn-danger rounded-pill nav-link fw-bold px-4 text-white"
-                >註冊</RouterLink
+              >註冊</RouterLink
               >
             </li>
           </template>
