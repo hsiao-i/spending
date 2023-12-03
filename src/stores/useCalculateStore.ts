@@ -63,6 +63,6 @@ export const useCalculateStore = defineStore('calculate', () => {
     expenseMonthTotal,
     calculateMonthTotal,
     singleBankTotal,
+    totalCalculateFormat,
   };
-  //  monthBankTotal,
 });
