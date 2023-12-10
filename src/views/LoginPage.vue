@@ -4,14 +4,12 @@ import { ref } from 'vue';
 import axios from '@/utilities/http';
 import { useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
-// import { useIsLogin } from '@/stores/useIsLogin';
 
 const router = useRouter();
 const user = ref<UserLogin>({
   email: '',
   password: '',
 });
-// const isLoginStore = useIsLogin();
 const submitLogin = async () => {
   try {
     const url = '/login';
@@ -25,7 +23,6 @@ const submitLogin = async () => {
       title: '成功登入',
       confirmButtonColor: '#7fbcd2',
     });
-    // isLoginStore.isLogin = true;
     router.push('/spending');
   } catch (err) {
     Swal.fire({

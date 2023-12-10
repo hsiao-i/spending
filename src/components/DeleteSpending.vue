@@ -26,7 +26,6 @@ const deleteSpending = async () => {
     emit('closeModal');
     spendingStore.getExpense();
   } catch (err) {
-    console.log(err);
     Swal.fire({
       icon: 'error',
       title: '刪除失敗，請再次操作或連繫管理員',
