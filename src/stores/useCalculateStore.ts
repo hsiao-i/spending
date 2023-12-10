@@ -3,6 +3,7 @@ import {
   onMounted, ref, computed,
 } from 'vue';
 import type { MonthBankTotal } from '@/utilities/types';
+import Swal from 'sweetalert2';
 import { useSpendingStore } from './useSpendingStore';
 
 export const useCalculateStore = defineStore('calculate', () => {
