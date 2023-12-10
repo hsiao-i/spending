@@ -32,17 +32,14 @@ const submitLogin = async () => {
       icon: 'error',
       title: '請確認帳號或密碼是否正確',
     });
-    console.log(err);
   }
 };
 </script>
 <template>
   <div class="container">
-    <div class="w-50 shadow bg-light mx-auto p-4 rounded-5 min-vh-80">
+    <div class="w-md-50 w-100 shadow bg-light mx-auto p-4 rounded-5 min-vh-80">
       <h2 class="text-center">登入</h2>
       <VForm v-slot="{ errors }" @submit="submitLogin">
-        <!-- {{ errors }} {{ typeof(errors) }} -->
-
         <div class="mb-3">
           <label for="Email" class="form-label">Email</label>
           <VField

@@ -86,7 +86,7 @@ onMounted(() => {
           </li>
 
           <template v-if="!isLogin">
-            <li class="mx-md-3 mx-0">
+            <li class="mx-0 mx-md-3 mb-2 mb-lg-0  ">
               <RouterLink
                 to="/login"
                 class="btn btn-outline-danger rounded-pill nav-link fw-bold text-danger login-btn px-4"
@@ -131,7 +131,7 @@ onMounted(() => {
   </nav>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .login-btn:hover {
   color: #ffffff !important;
 }
@@ -142,5 +142,10 @@ onMounted(() => {
 }
 .text-logout {
   color: #c1c1c1;
+}
+@media (min-width: 992px) {
+  .mb-lg-0 {
+    margin-bottom: 0rem !important;
+  }
 }
 </style>
