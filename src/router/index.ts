@@ -1,8 +1,5 @@
 import Swal from 'sweetalert2';
 import { createRouter, createWebHashHistory } from 'vue-router';
-import { useIsLogin } from '@/stores/useIsLogin';
-
-// const isLoginStore = useIsLogin();
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
