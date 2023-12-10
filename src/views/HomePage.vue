@@ -1,8 +1,17 @@
+<script setup lang="ts">
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  AOS.init();
+});
+</script>
 <template>
   <main>
     <div class="position-relative">
       <div class="container">
-        <div class="row align-items-center mb-9 ">
+        <div class="row align-items-center mb-9" data-aos="fade-up" data-aos-duration="600">
           <div class="col-md-6">
             <h2 class="h1 text-danger fw-bold mb-3 fm-fre letter-1 text-break">ExpenSaver</h2>
             <p class="fs-2 fw-bold mb-4">懶人快速記帳 <br>
@@ -23,7 +32,7 @@
     </div>
     <!-- <div class="container"> -->
 
-    <div class="container mb-9">
+    <div class="container mb-9" data-aos="fade-up" data-aos-duration="600">
       <h2 class="text-center">你知道自己適合哪種記帳方式嗎？</h2>
       <div class="row align-items-center justify-content-between">
         <div class="col-md-6">
@@ -42,11 +51,11 @@
 
     <div class="position-relative">
       <div class="container mb-9">
-        <h2 class="mb-5 text-center">你在記帳方面是不是有這些煩惱呢？</h2>
+        <h2 class="mb-5 text-center" data-aos="fade-up" data-aos-duration="600">你在記帳方面是不是有這些煩惱呢？</h2>
         <img src="@/assets/images/decoration-2.png" alt="decotation" class="z-index position-absolute top-0 start-0 w-100 d-md-block d-none">
         <div class="row justify-content-between">
 
-          <div class="col-md-3 mb-3">
+          <div class="col-md-3 mb-3" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
             <div class="mb-2 text-center">
               <img src="@/assets/images/banner-3-1-complicate.png" alt="forget to record">
             </div>
@@ -55,7 +64,7 @@
               感到心有餘而力不足
             </p>
           </div>
-          <div class="col-md-3 mb-3">
+          <div class="col-md-3 mb-3" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500">
             <div class="mb-2 text-center">
               <img src="@/assets/images/banner-3-2-annoy.png" alt="annoy">
             </div>
@@ -64,7 +73,7 @@
               怎麼選項按鍵這麼多
             </p>
           </div>
-          <div class="col-md-3 mb-3">
+          <div class="col-md-3 mb-3" data-aos="fade-up" data-aos-duration="600" data-aos-delay="700">
             <div class="mb-2 text-center">
               <img src="@/assets/images/banner-3-3-assets.png" alt="many assets">
             </div>
@@ -78,12 +87,18 @@
     </div>
     <div class="position-relative">
       <div class="container mb-8">
-        <h2 class="text-center mb-3">懶人記帳，解決這些煩惱！</h2>
-        <p class="text-center text-secondary mb-6">
+        <h2 class="text-center mb-3" data-aos="fade-up" data-aos-duration="600">懶人記帳，解決這些煩惱！</h2>
+        <p class="text-center text-secondary mb-6" data-aos="fade-up" data-aos-duration="600">
           快速記帳功能讓記帳更為方便，同時可設定每月固定收支，減省重複性行為。且透過圖表報表了解消費習費，更掌握自己的財務運用情形。
         </p>
-        <div class="row g-4">
-          <div class="col-md-6">
+
+        <div class="row g-4 ">
+          <div
+            class="col-md-6"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="700"
+          >
             <img
               src="@/assets/images/decoration-5.png"
               alt="decoration"
@@ -99,8 +114,11 @@
               </div>
             </div>
           </div>
-
-          <div class="col-md-6 position-relative">
+          <div
+            class="col-md-6"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="700">
             <img
               src="@/assets/images/decoration-8.png"
               alt="decoration"
@@ -118,8 +136,12 @@
               </div>
             </div>
           </div>
-
-          <div class="col-md-6 position-relative">
+          <div
+            class="col-md-6"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="700"
+          >
             <img
               src="@/assets/images/decoration-6.png"
               alt="decoration"
@@ -135,8 +157,12 @@
               </div>
             </div>
           </div>
-
-          <div class="col-md-6 position-relative">
+          <div
+            class="col-md-6"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="700"
+          >
             <img
               src="@/assets/images/decoration-4.png"
               alt="decoration"
@@ -153,7 +179,12 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 position-relative">
+          <div
+            class="col-md-6"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="700"
+          >
             <img
               src="@/assets/images/decoration-3.png"
               alt="decoration"
@@ -169,7 +200,12 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 position-relative">
+          <div
+            class="col-md-6"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="700"
+          >
             <img
               src="@/assets/images/decoration-7.png"
               alt="decoration"
@@ -191,7 +227,6 @@
       </div>
     </div>
   </main>
-
 </template>
 
 <style>
@@ -208,25 +243,10 @@
     width: 100%;
   }
 }
-
 .z-index {
   z-index: -10;
 }
 .z-index-top {
   z-index: 20;
 }
-
-/* .r-deco {
-  right: 0rem !important;
-  width: 15% !important;
-} */
-
-@media (max-width: 912px) {
-  /* .r-deco  {
-  width: 10%;
-  right: 1rem !important;
-  display: none;
-  } */
-}
-
 </style>

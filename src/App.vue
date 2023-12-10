@@ -14,7 +14,6 @@ import FrontFooter from './components/FrontFooter.vue';
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 body {
-  /* background-color: antiquewhite; */
   color: #22272E;
 }
 img {

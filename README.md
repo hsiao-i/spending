@@ -1,46 +1,53 @@
-# 2023-02-01
+# ExpenSaver 記帳
 
-This template should help get you started developing with Vue 3 in Vite.
+- [Demo](https://hsiao-i.github.io/spending/)
 
-## Recommended IDE Setup
+```
+測試帳號：test4@mail.com
+測試密碼：qwerasdzz
+```
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## 使用主要技術
 
-## Type Support for `.vue` Imports in TS
+- Vite 建置工具
+- Json Server 模擬 API
+- Vue3.js (Composition API)
+- TypeScript
+- Vue Router 路由管理
+- Pinia 狀態管理
+- Vee Validate 表單驗證
+- Chart.js 圖表
+- Bootstrap 5
+- (ESLint Airbnb)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## 主要功能
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+- 模擬登入、註冊帳戶
+- 每日收入、支出的新增、編輯、刪除
+- 銀行帳戶的新增、刪除
+- 個別銀行帳戶的收入支出總覽
+- 當月收支的類別比例圓餅圖
+- 當月支出金額前三名
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+### 啟用 json-server
 
-## Customize configuration
+1. 新開 bash，下指令 `npm run server`
+2. db.json 為 json-server 模擬資料庫內容
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+### 初次啟用專案
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 編譯專案及開啟熱更新開發模式
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### 正式環境打包專案
 
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```

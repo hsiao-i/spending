@@ -16,6 +16,7 @@ const submitLogin = async () => {
     const res = await axios.post(url, user.value);
 
     localStorage.setItem('userId', res.data.user.id);
+    sessionStorage.setItem('isLogin', 'true');
     document.cookie = `spendingToken=${res.data.accessToken}`;
     Swal.fire({
       icon: 'success',
@@ -28,17 +29,14 @@ const submitLogin = async () => {
       icon: 'error',
       title: '請確認帳號或密碼是否正確',
     });
-    console.log(err);
   }
 };
 </script>
 <template>
   <div class="container">
-    <div class="w-50 shadow bg-light mx-auto p-4 rounded-5 min-vh-80">
-      <h2 clsaa="text-center">登入</h2>
+    <div class="w-md-50 w-100 shadow bg-light mx-auto p-4 rounded-5 min-vh-80">
+      <h2 class="text-center">登入</h2>
       <VForm v-slot="{ errors }" @submit="submitLogin">
-        <!-- {{ errors }} {{ typeof(errors) }} -->
-
         <div class="mb-3">
           <label for="Email" class="form-label">Email</label>
           <VField
@@ -72,9 +70,18 @@ const submitLogin = async () => {
           type="submit"
           class="btn btn-primary w-100"
           :disabled="Object.keys(errors).length > 0"
-        >送出</button>
-
+        >
+          送出
+        </button>
       </VForm>
     </div>
   </div>
 </template>
+
+<style scope>
+@media(min-width: 768px) {
+  .w-md-50 {
+    width: 50% !important;
+  }
+}
+</style>

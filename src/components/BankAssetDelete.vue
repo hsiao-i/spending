@@ -2,6 +2,7 @@
 import type { BankAccount } from '@/utilities/types';
 import axios from '@/utilities/http';
 import { toRefs } from 'vue';
+import Swal from 'sweetalert2';
 
 const props = defineProps<{
   account: BankAccount
@@ -17,7 +18,10 @@ const deleteBankAccount = async () => {
     emit('closeModal');
     emit('getBankAccount');
   } catch (err) {
-    console.log(err);
+    Swal.fire({
+      icon: 'error',
+      title: '刪除銀行帳戶失敗',
+    });
   }
 };
 

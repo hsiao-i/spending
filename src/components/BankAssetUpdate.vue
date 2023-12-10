@@ -15,7 +15,10 @@ const getBanksList = async () => {
     const res = await axios.get(url);
     banks.value = res.data;
   } catch (err) {
-    console.log(err);
+    Swal.fire({
+      icon: 'error',
+      title: '取得銀行帳戶列表失敗',
+    });
   }
 };
 onMounted(() => {
@@ -81,7 +84,6 @@ const addBankAccount = async () => {
     emit('closeModal');
     emit('getBankAccount');
   } catch (err) {
-    console.log(err);
     Swal.fire({
       icon: 'error',
       title: '失敗，請再次操作或連繫管理員',

@@ -15,7 +15,11 @@ export const useSpendingStore = defineStore('spending', () => {
       const res = await axios.get(url);
       expenseList.value = res.data;
     } catch (err) {
-      console.log(err);
+      Swal.fire({
+        icon: 'error',
+        title: '取得支出列表失敗',
+        confirmButtonColor: '#cb7d56',
+      });
     }
   };
 
@@ -46,7 +50,11 @@ export const useSpendingStore = defineStore('spending', () => {
       const res = await axios.get(url);
       incomeList.value = res.data;
     } catch (err) {
-      console.log(err);
+      Swal.fire({
+        icon: 'error',
+        title: '取得收入列表失敗',
+        confirmButtonColor: '#cb7d56',
+      });
     }
   };
 
@@ -71,7 +79,6 @@ export const useSpendingStore = defineStore('spending', () => {
       });
       getIncomeList();
     } catch (err) {
-      console.log(err);
       Swal.fire({
         icon: 'error',
         title: '失敗，請再次操作或連繫管理員',
@@ -79,41 +86,6 @@ export const useSpendingStore = defineStore('spending', () => {
       });
     }
   };
-
-  // interface RefactorCalculate {
-  //   date: string;
-  //   amount: number;
-  //   categoryName: string | undefined;
-  // }
-
-  // 取出 expense 後重組
-
-  // const calculate = ref<RefactorCalculate[]>([]);
-
-  // watch(
-  //   () => expenseList.value,
-  //   () => {
-  //     const nowMonth = new Date().toISOString().slice(0, 7);
-  //     const filterMonthList = expenseList.value.filter((expense) => expense.date.slice(0, 7) === nowMonth);
-  //     const refactorList = filterMonthList.map((expense) => ({
-  //       date: expense.date,
-  //       amount: Number(expense.amount),
-  //       categoryName: expense.expenseCategory?.name,
-  //     }));
-  //     calculate.value = refactorList;
-  //   },
-  // );
-
-  // const refactor = computed(() => calculate.value
-  //   .reduce((acc: Record<string, unknown>, item) => {
-  //     const { categoryName, amount } = item;
-  //     if (categoryName! in acc) {
-  //       acc[categoryName!] = (acc[categoryName!] as number) + amount;
-  //     } else {
-  //       acc[categoryName!] = amount;
-  //     }
-  //     return acc;
-  //   }, {}));
 
   return {
     expenseList,
@@ -124,7 +96,5 @@ export const useSpendingStore = defineStore('spending', () => {
     incomeList,
     getIncomeList,
     requestState,
-    // calculate,
-    // refactor,
   };
 });

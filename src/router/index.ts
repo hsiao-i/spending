@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { createRouter, createWebHashHistory } from 'vue-router';
 
 const router = createRouter({
@@ -17,15 +18,24 @@ const router = createRouter({
           path: 'spending',
           name: 'spending',
           component: () => import('../views/RecordExpense.vue'),
+          meta: {
+            requireAuth: true,
+          },
         },
         {
           path: 'assets',
           name: 'assets',
           component: () => import('../views/RecordAssets.vue'),
+          meta: {
+            requireAuth: true,
+          },
         },
         {
           path: 'charts',
           component: () => import('../views/ChartAnalyze.vue'),
+          meta: {
+            requireAuth: true,
+          },
         },
       ],
     },
@@ -43,19 +53,21 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       redirect: '/',
     },
-
   ],
 });
 
-// router.beforeEach((to, from, next) => {
-//   const isLogin: boolean = !!localStorage.token;
-
-//   if (to.path === '/login' || to.path === '/register') {
-//     next();
-//   } else {
-//     isLogin ? next() : next('/login');
-//     // 如果登入過的話，要到什麼 路由都可以 next()，如果沒登入過，就會導到 login
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  // const isLoginStore = useIsLogin();
+  const isLoginSessionStorage = sessionStorage.getItem('isLogin') === 'true';
+  if (to.meta.requireAuth && !isLoginSessionStorage) {
+    next('/login');
+    Swal.fire({
+      icon: 'warning',
+      title: '請先登入',
+    });
+  } else {
+    next();
+  }
+});
 
 export default router;

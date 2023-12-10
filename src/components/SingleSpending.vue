@@ -6,9 +6,6 @@ import { usePersonalBank } from '@/stores/usePersonalBank';
 import { useSpendingStore } from '@/stores/useSpendingStore';
 import axios from '@/utilities/http';
 import Swal from 'sweetalert2';
-// import { onMounted } from 'vue';
-// import CategoryIconView from './CategoryIconView.vue';
-// const
 
 // 同時取出 store.categoryIcon
 const store = useCategoryStore();
@@ -18,9 +15,7 @@ onMounted(() => {
   store.getExpenseCategories();
   store.getIncomeCategories();
   bankStore.getBankAccountList();
-  // console.log(store.categoryIcon);
 });
-// const categories = ref<CategoryIcon[]>(store.categoryIcon);
 
 const props = defineProps<{
   updateExpense: Expense;
@@ -57,7 +52,6 @@ const updateExpenseInfo = async () => {
     expenseForm.value.resetForm();
     spendingStore.getExpense();
   } catch (err) {
-    console.log(err);
     Swal.fire({
       icon: 'error',
       title: '失敗，請再次操作或連繫管理員',

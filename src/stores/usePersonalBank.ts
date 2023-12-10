@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { BankAccount } from '@/utilities/types';
 import axios from '@/utilities/http';
+import Swal from 'sweetalert2';
 
 export const usePersonalBank = defineStore('personalBank', () => {
   const personalBankAccountList = ref<BankAccount[]>([]);
@@ -13,7 +14,10 @@ export const usePersonalBank = defineStore('personalBank', () => {
       const res = await axios.get(url);
       personalBankAccountList.value = res.data;
     } catch (err) {
-      console.log(err);
+      Swal.fire({
+        icon: 'error',
+        title: '錯誤，請聯繫管理員',
+      });
     }
   };
 
