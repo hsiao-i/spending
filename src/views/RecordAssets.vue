@@ -67,7 +67,6 @@ const getPersonalBankAccount = async () => {
   const url = `/personalBankAccounts?userId=${userId}&_expand=bank`;
   const res = await axios.get(url);
   bankAccountList.value = res.data;
-  console.log(bankAccountList.value);
 };
 
 const bankAccountId = ref('');
@@ -75,11 +74,8 @@ const bankAccountExpenses = ref<Expense[]>([]);
 // 取得單一帳戶的所有支出
 const getBankAccountExpenses = async () => {
   const url = `expenses?user=${userId}&personalBankAccountId=${bankAccountId.value}&_expand=expenseCategory`;
-  console.log(url);
-  console.log(bankAccountId.value);
   const res = await axios.get(url);
   bankAccountExpenses.value = res.data;
-  console.log(bankAccountExpenses.value);
 };
 onMounted(() => {
   getPersonalBankAccount();

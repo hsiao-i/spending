@@ -8,6 +8,7 @@ import {
 import type { ChartData, ChartOptions } from 'chart.js';
 import PieChart from '@/components/PieChart.vue';
 import type { Expense } from '@/utilities/types';
+import Swal from 'sweetalert2';
 
 const spendingStore = useSpendingStore();
 const calculateStore = useCalculateStore();
@@ -29,7 +30,6 @@ watch(
 
     // 取出當月支出前三名
     topThreeExpense.value = filterMonthList.sort((a, b) => Number(b.amount) - Number(a.amount)).slice(0, 3);
-    console.log(topThreeExpense.value);
 
     const refactorList = filterMonthList.map((expense) => ({
       date: expense.date,
@@ -139,11 +139,12 @@ onMounted(async () => {
 
     loading.value = true;
   } catch (err) {
-    console.log(err);
+    Swal.fire({
+      icon: 'error',
+      title: '操作失敗，請聯繫管理員',
+      confirmButtonColor: '#cb7d56',
+    });
   }
-
-  console.log(calculate.value);
-  console.log(spendingStore.expenseList);
 });
 
 watch(

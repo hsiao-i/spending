@@ -15,7 +15,11 @@ export const useSpendingStore = defineStore('spending', () => {
       const res = await axios.get(url);
       expenseList.value = res.data;
     } catch (err) {
-      console.log(err);
+      Swal.fire({
+        icon: 'error',
+        title: '取得支出列表失敗',
+        confirmButtonColor: '#cb7d56',
+      });
     }
   };
 
@@ -46,7 +50,11 @@ export const useSpendingStore = defineStore('spending', () => {
       const res = await axios.get(url);
       incomeList.value = res.data;
     } catch (err) {
-      console.log(err);
+      Swal.fire({
+        icon: 'error',
+        title: '取得收入列表失敗',
+        confirmButtonColor: '#cb7d56',
+      });
     }
   };
 
@@ -71,7 +79,6 @@ export const useSpendingStore = defineStore('spending', () => {
       });
       getIncomeList();
     } catch (err) {
-      console.log(err);
       Swal.fire({
         icon: 'error',
         title: '失敗，請再次操作或連繫管理員',

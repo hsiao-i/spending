@@ -42,7 +42,6 @@ const updateExpenseInfo = async () => {
     spendingEditForm.value.resetForm();
     spendingStore.getExpense();
   } catch (err) {
-    console.log(err);
     Swal.fire({
       icon: 'error',
       title: '失敗，請再次操作或連繫管理員',

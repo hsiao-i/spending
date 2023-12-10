@@ -19,7 +19,10 @@ export const useCalculateStore = defineStore('calculate', () => {
       await spendingStore.getExpense();
       await spendingStore.getIncomeList();
     } catch (err) {
-      console.log(err);
+      Swal.fire({
+        icon: 'error',
+        title: '錯誤，請聯繫管理員',
+      });
     }
   });
 

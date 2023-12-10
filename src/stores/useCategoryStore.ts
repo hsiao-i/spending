@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { CategoryIcon } from '@/utilities/types';
 import axios from '@/utilities/http';
+import Swal from 'sweetalert2';
 
 export const useCategoryStore = defineStore('category', () => {
   const categoryIcon = ref<CategoryIcon[]>([]);
@@ -11,7 +12,10 @@ export const useCategoryStore = defineStore('category', () => {
       const res = await axios.get(expenseUrl);
       categoryIcon.value = res.data;
     } catch (e) {
-      console.log(e);
+      Swal.fire({
+        icon: 'error',
+        title: '錯誤，請聯繫管理員',
+      });
     }
   };
 
@@ -22,7 +26,10 @@ export const useCategoryStore = defineStore('category', () => {
       const res = await axios.get(incomeUrl);
       categoryIncome.value = res.data;
     } catch (e) {
-      console.log(e);
+      Swal.fire({
+        icon: 'error',
+        title: '錯誤，請聯繫管理員',
+      });
     }
   };
 

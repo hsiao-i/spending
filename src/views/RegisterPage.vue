@@ -18,8 +18,6 @@ const user = ref<UserRegister>({
 const submitRegister = async () => {
   try {
     document.cookie = '';
-    // user.value.uuid = uuidv4()
-    console.log(user.value.uuid);
     const url = '/signup';
     await axios.post(url, user.value);
 
@@ -30,7 +28,6 @@ const submitRegister = async () => {
     });
     router.push('/login');
   } catch (err) {
-    console.log(err);
     if (err instanceof Error) {
       Swal.fire({ icon: 'error', title: '註冊失敗', confirmButtonColor: '#cb7d56' });
     }
