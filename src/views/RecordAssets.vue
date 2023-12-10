@@ -127,7 +127,6 @@ onMounted(() => {
               <p class="h5 text-center">{{ list.name }}
                 <span class="h6"> ({{ list.bank?.name }})</span>
               </p>
-              <!-- <p class="h4 text-center">{{ $toThousandth(list.total) }}</p> -->
             </li>
           </ul>
         </div>
@@ -167,7 +166,7 @@ onMounted(() => {
                     v-for="expense in bankAccountExpenses"
                     :key="expense.uuid"
                   >
-                    <h6 class="w-25 mb-0">{{ expense.dateTime.slice(0, 10) }}</h6>
+                    <h6 class="w-25 mb-0">{{ expense.date }}</h6>
                     <h6 class="w-25 mb-0">{{ expense.expenseCategory?.name }}</h6>
                     <h6 class="w-25 mb-0">{{ expense.name }}</h6>
                     <h6 class="w-25 mb-0">{{ expense.amount }}</h6>
