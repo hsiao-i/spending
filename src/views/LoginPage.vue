@@ -80,3 +80,11 @@ const submitLogin = async () => {
     </div>
   </div>
 </template>
+
+<style scope>
+@media(min-width: 768px) {
+  .w-md-50 {
+    width: 50% !important;
+  }
+}
+</style>
