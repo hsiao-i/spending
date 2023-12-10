@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@mdi/js": "^7.1.96",
+    "@types/aos": "^3.0.7",
     "@vee-validate/i18n": "^4.7.4",
     "@vee-validate/rules": "^4.7.4",
     "@vue/eslint-config-airbnb-with-typescript": "^7.0.0",

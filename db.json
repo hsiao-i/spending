@@ -332,18 +332,6 @@
       }
     },
     {
-      "uuid": "e778b213-727d-404d-80e1-a17ecb3038cd",
-      "dateTime": "2023-03-11T07:07:42.556Z",
-      "date": "2023-03-11",
-      "name": "",
-      "amount": "2000",
-      "description": "",
-      "expenseCategoryId": 3,
-      "personalBankAccountId": 3,
-      "userId": "4",
-      "id": 7
-    },
-    {
       "uuid": "07765846-dbf6-4666-9569-ea1db2a34361",
       "dateTime": "2023-03-11T07:07:54.712Z",
       "date": "",
@@ -366,18 +354,6 @@
       "personalBankAccountId": 3,
       "userId": "4",
       "id": 9
-    },
-    {
-      "uuid": "6ecc655b-c7f5-4f1c-8511-dda7b9daf885",
-      "dateTime": "2023-03-11T07:18:39.193Z",
-      "date": "2023-03-11",
-      "name": "",
-      "amount": "300",
-      "description": "",
-      "expenseCategoryId": 3,
-      "personalBankAccountId": 3,
-      "userId": "4",
-      "id": 10
     },
     {
       "uuid": "a0184962-8c40-4bc8-a16a-596327993f26",
