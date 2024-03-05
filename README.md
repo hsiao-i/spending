@@ -1,6 +1,7 @@
 # ExpenSaver 記帳
 
 - [Demo](https://hsiao-i.github.io/spending/)
+- 初次登入有可能伺服器處於休眠狀態而出現錯誤，可過幾分鐘後再次嘗試
 
 ```
 測試帳號：test4@mail.com
